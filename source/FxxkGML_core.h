@@ -11,6 +11,7 @@ namespace gml {
 		gmvar(bool val) { m_typeid = 0; m_real = val; };
 		gmvar(int val) { m_typeid = 0; m_real = val; };
 		gmvar(double val) { m_typeid = 0; m_real = val; };
+		gmvar(const char * val) { m_typeid = 1; m_string = val; };
 		gmvar(std::string & val) { m_typeid = 1; m_string = val; };
 
 		int m_typeid; // 0 = real, 1 = string
@@ -21,11 +22,14 @@ namespace gml {
 
 	enum class __FuncId {
 		nothing = 0,
-		draw_text,
+		draw_text = 1001,
+		random_range = 1002,
 	};
 
 	static __FuncId funcid;
-	static gmvar args[16]; // GM 的函数最多只能使用 16 个参数 | functions in GM can only use 16 arguments
+	static gmvar funcargs[16]; // GM 的函数最多只能使用 16 个参数 | functions in GM can only use 16 arguments
+	
+	extern gmvar funcres;
 
 	void __basic(__FuncId _fid);
 	void __basic(__FuncId _fid, gmvar _v0);
@@ -46,5 +50,6 @@ namespace gml {
 	void __basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8, gmvar _v9, gmvar _v10, gmvar _v11, gmvar _v12, gmvar _v13, gmvar _v14, gmvar _v15);
 
 	void draw_text(double x, double y, std::string text);
+	double random_range(double x1, double x2);
 
 };

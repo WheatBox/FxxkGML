@@ -2,9 +2,8 @@
 #include "game2.h"
 
 double x = -128;
-double y = 128;
 
-void HELLO() {
+void HELLO(int y) {
 	gml::draw_text(x, y, "~~~Fly~~~");
 	x += 4;
 	if(x > 640) {

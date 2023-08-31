@@ -1,1 +1,1 @@
-void HELLO();
+void HELLO(int y);

@@ -4,6 +4,7 @@
 #include "game2.h"
 
 void gmlmain() {
-	gml::draw_text(128, 64, "Hello, world!");
-	HELLO();
+	gml::random_range(0, 100);
+	// std::string str = "Hello, world!\n[" + std::to_string(val) + "]";
+	// gml::draw_text(128, 64, str);
 }
