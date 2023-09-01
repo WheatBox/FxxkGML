@@ -2,6 +2,8 @@ enum EFxxkGMLFuncId {
 	_nothing = 0,
 	_draw_text = 1001,
 	_random_range = 1002,
+	_asset_get_index = 1003,
+	_draw_sprite_ext = 1004,
 };
 
 #macro ARG external_call
@@ -57,6 +59,14 @@ function FxxkGML(_dll_filename) constructor {
 				RET(__RetR,
 					random_range(ARG(__R, 0), ARG(__R, 1))
 				);
+				
+			CASE EFxxkGMLFuncId._asset_get_index:
+				RET(__RetR,
+					asset_get_index(ARG(__S, 0))
+				);
+				
+			CASE EFxxkGMLFuncId._draw_sprite_ext:
+				draw_sprite_ext(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8));
 				
 		}
 		
