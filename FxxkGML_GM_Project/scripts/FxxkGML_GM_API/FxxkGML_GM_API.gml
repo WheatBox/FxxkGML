@@ -9,7 +9,7 @@ enum EFxxkGMLFuncId {
 #macro CASE break; case
 
 function FxxkGML(_dll_filename) constructor {
-	__dllEntry = external_define(_dll_filename, "Entry", dll_cdecl, ty_real, 0);
+	//__dllEntry = external_define(_dll_filename, "Entry", dll_cdecl, ty_real, 0);
 	__dllResume = external_define(_dll_filename, "Resume", dll_cdecl, ty_real, 0);
 	__dllOver = external_define(_dll_filename, "Over", dll_cdecl, ty_real, 0);
 	
@@ -23,7 +23,7 @@ function FxxkGML(_dll_filename) constructor {
 	
 	/* --------------------------------------------- */
 	/*                这 里 是 主 函 数                */
-	/*             Here Is Main Function             */
+	/*           Here Is The Main Function           */
 	/* --------------------------------------------- /*
 	*/                                               /*
 	*/      static Main = function() {               /*
@@ -37,6 +37,12 @@ function FxxkGML(_dll_filename) constructor {
 	*/      }                                        /*
 	*/                                               /*
 	/* --------------------------------------------- */
+	
+	/* --- 初始化 | Initialization --- */
+	__dllEntry = external_define(_dll_filename, "InitEntry", dll_cdecl, ty_real, 0);
+	Main();
+	__dllEntry = external_define(_dll_filename, "Entry", dll_cdecl, ty_real, 0);
+	/* ------------------------------ */
 	
 	static __RunFunc = function() {
 		switch(external_call(__dllGetFuncId)) {

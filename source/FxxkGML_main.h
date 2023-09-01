@@ -1,35 +1,72 @@
 #pragma once
 
 #include "FxxkGML_core.h"
-#include "coroutine/coroutine.h"
+
+#define MINICORO_IMPL
+#include "minicoro/minicoro.h"
 
 #define EXPORT extern "C" __declspec(dllexport)
-
-coroutine::routine_t rtGame;
 
 /* ----- 给用户的接口 ----- */
 /* - Interface for Users - */
 
+/* ---
+ * 初始化，相当于只运行一次的 gmlmain();
+ * 主要用于获取各种 Object 和 Sprite 等资源
+ * ---
+ * Initialization, equivalent to running gmlmain(); only once
+ * Mainly used to obtain various resources such as Objects and Sprite
+ * ---
+ */
+void gmlinit();
+
+/* ---
+ * 主函数，具体运行在哪里取决于 GM 里如何调用
+ *
+ * ---
+ * The main function, where it runs depends on how it is called in GM
+ * 
+ * ---
+ */
 void gmlmain();
 
 /* ----- 给 GM 的接口 ----- */
 /* -- Interface for GM -- */
 
-void gmlmainexport() {
+mco_coro * coGame;
+
+bool __resume = false, __entrywait = false;
+
+void gmlinitexport(mco_coro * co) {
+	gmlinit();
+	gml::funcid = gml::__FuncId::nothing;
+	__resume = true;
+}
+
+void gmlmainexport(mco_coro * co) {
 	gmlmain();
 	gml::funcid = gml::__FuncId::nothing;
+	__resume = true;
+}
+
+EXPORT void InitEntry() {
+	mco_desc desc = mco_desc_init(gmlinitexport, 0);
+	desc.user_data = NULL;
+	mco_result res = mco_create(& coGame, & desc);
 }
 
 EXPORT void Entry() {
-	rtGame = coroutine::create(gmlmainexport);
+	mco_desc desc = mco_desc_init(gmlmainexport, 0);
+	desc.user_data = NULL;
+	mco_result res = mco_create(& coGame, & desc);
 }
 
 EXPORT void Resume() {
-	coroutine::resume(rtGame);
+	mco_resume(coGame);
 }
 
 EXPORT void Over() {
-	coroutine::destroy(rtGame);
+	mco_destroy(coGame);
 }
 
 EXPORT double GetFuncId() {
@@ -56,111 +93,115 @@ EXPORT void ReturnString(const char * val) {
 
 /* ----------------------- */
 
+#define ____YIELDTEMP mco_yield(coGame);
+
 void gml::__basic(__FuncId _fid) {
 	funcid = _fid;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0) {
 	funcid = _fid;
 	funcargs[0] = _v0;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
 	funcargs[8] = _v8;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8, gmvar _v9) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
 	funcargs[8] = _v8; funcargs[9] = _v9;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8, gmvar _v9, gmvar _v10) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
 	funcargs[8] = _v8; funcargs[9] = _v9; funcargs[10] = _v10;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8, gmvar _v9, gmvar _v10, gmvar _v11) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
 	funcargs[8] = _v8; funcargs[9] = _v9; funcargs[10] = _v10; funcargs[11] = _v11;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8, gmvar _v9, gmvar _v10, gmvar _v11, gmvar _v12) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
 	funcargs[8] = _v8; funcargs[9] = _v9; funcargs[10] = _v10; funcargs[11] = _v11; funcargs[12] = _v12;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8, gmvar _v9, gmvar _v10, gmvar _v11, gmvar _v12, gmvar _v13) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
 	funcargs[8] = _v8; funcargs[9] = _v9; funcargs[10] = _v10; funcargs[11] = _v11; funcargs[12] = _v12; funcargs[13] = _v13;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8, gmvar _v9, gmvar _v10, gmvar _v11, gmvar _v12, gmvar _v13, gmvar _v14) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
 	funcargs[8] = _v8; funcargs[9] = _v9; funcargs[10] = _v10; funcargs[11] = _v11; funcargs[12] = _v12; funcargs[13] = _v13; funcargs[14] = _v14;
-	coroutine::yield();
+	____YIELDTEMP
 }
 
 void gml::__basic(__FuncId _fid, gmvar _v0, gmvar _v1, gmvar _v2, gmvar _v3, gmvar _v4, gmvar _v5, gmvar _v6, gmvar _v7, gmvar _v8, gmvar _v9, gmvar _v10, gmvar _v11, gmvar _v12, gmvar _v13, gmvar _v14, gmvar _v15) {
 	funcid = _fid;
 	funcargs[0] = _v0; funcargs[1] = _v1; funcargs[2] = _v2; funcargs[3] = _v3; funcargs[4] = _v4; funcargs[5] = _v5; funcargs[6] = _v6; funcargs[7] = _v7;
 	funcargs[8] = _v8; funcargs[9] = _v9; funcargs[10] = _v10; funcargs[11] = _v11; funcargs[12] = _v12; funcargs[13] = _v13; funcargs[14] = _v14; funcargs[15] = _v15;
-	coroutine::yield();
+	____YIELDTEMP
 }
+
+#undef ____YIELDTEMP
