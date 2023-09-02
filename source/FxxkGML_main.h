@@ -35,18 +35,14 @@ void gmlmain();
 
 mco_coro * coGame;
 
-bool __resume = false, __entrywait = false;
-
 void gmlinitexport(mco_coro * co) {
 	gmlinit();
 	gml::funcid = gml::__FuncId::nothing;
-	__resume = true;
 }
 
 void gmlmainexport(mco_coro * co) {
 	gmlmain();
 	gml::funcid = gml::__FuncId::nothing;
-	__resume = true;
 }
 
 EXPORT void InitEntry() {

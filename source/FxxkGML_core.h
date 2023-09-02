@@ -2,6 +2,34 @@
 
 #include "FxxkGML_vars.h"
 
+namespace gml {
+	class instance {
+	public:
+		instance() = default;
+
+		double getid();
+
+		double getx(bool _synch_from_gm = false);
+		double gety(bool _synch_from_gm = false);
+		vec2 getpos(bool _synch_from_gm = false);
+		void getpos(double * xdest, double * ydest, bool _synch_from_gm = false);
+
+		void setx(bool _synch_to_gm = true);
+		void sety(bool _synch_to_gm = true);
+		void setpos(vec2 & _vec2, bool _synch_to_gm = true);
+		void setpos(double x, double y, bool _synch_to_gm = true);
+
+		void move(vec2 & _vec2, bool _synch_to_gm = true);
+		void move(double xadd, double yadd, bool _synch_to_gm = true);
+		
+	private:
+		
+		double m_id = noone;
+		vec2 m_pos;
+		vec2 m_scale;
+	};
+}
+
 // 有啥 GML 的函数都往这塞
 // Put your GML functions here
 namespace gml {
@@ -56,4 +84,4 @@ namespace gml {
 	asset asset_get_index(std::string name);
 	void draw_sprite_ext(asset sprite, int subming, double x, double y, double xscale, double yscale, double rot, int col, double alpha);
 
-};
+}

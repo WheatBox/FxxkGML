@@ -88,7 +88,6 @@ namespace gml {
 				, m_y * cosr + m_x * sinr
 			);
 		}
-
 		/* 旋转，角度，原向量不变，返回变换后的向量
 		 * rotate, degree, keep original vector, return the transformed vector
 		 */
@@ -109,28 +108,6 @@ namespace gml {
 	};
 
 	typedef vec2_t<double> vec2;
-
-	class instance {
-	public:
-
-		double getx(bool _synch_from_gm = false);
-		double gety(bool _synch_from_gm = false);
-		vec2 getpos(bool _synch_from_gm = false);
-		void getpos(double * xdest, double * ydest, bool _synch_from_gm = false);
-
-		void setx(bool _synch_to_gm = true);
-		void sety(bool _synch_to_gm = true);
-		void setpos(vec2 _vec2, bool _synch_to_gm = true);
-		void setpos(double x, double y, bool _synch_to_gm = true);
-
-		void move(vec2 _vec2, bool _synch_to_gm = true);
-		void move(double xadd, double yadd, bool _synch_to_gm = true);
-		
-	private:
-		
-		double m_x;
-		double m_y;
-	};
 
 	const int noone = -4;
 
