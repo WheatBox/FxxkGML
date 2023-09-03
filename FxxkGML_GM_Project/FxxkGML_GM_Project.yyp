@@ -37,6 +37,7 @@
   },
   "resources": [
     {"id":{"name":"spr_test","path":"sprites/spr_test/spr_test.yy",},},
+    {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
     {"id":{"name":"Object1","path":"objects/Object1/Object1.yy",},},
     {"id":{"name":"FxxkGML_GM_API","path":"scripts/FxxkGML_GM_API/FxxkGML_GM_API.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},

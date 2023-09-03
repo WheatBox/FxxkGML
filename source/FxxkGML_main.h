@@ -87,6 +87,16 @@ EXPORT void ReturnString(const char * val) {
 	gml::funcres.m_typeid = 1;
 }
 
+EXPORT void RetOtherReal(double index, double val) {
+	gml::otherress[static_cast<int>(index)].m_typeid = 0;
+	gml::otherress[static_cast<int>(index)].m_real = val;
+}
+
+EXPORT void RetOtherString(double index, const char * val) {
+	gml::otherress[static_cast<int>(index)].m_typeid = 1;
+	gml::otherress[static_cast<int>(index)].m_string = val;
+}
+
 /* ----------------------- */
 
 #define ____YIELDTEMP mco_yield(coGame);
