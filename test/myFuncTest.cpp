@@ -1,5 +1,3 @@
-#include "../source/FxxkGML_core.h"
-
 #include "myFuncTest.h"
 
 #include <iostream>

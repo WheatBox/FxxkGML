@@ -26,12 +26,30 @@ void gml::draw_sprite_ext(asset sprite, int subming, double x, double y, double 
 gml::instance gml::instance_create_depth(double x, double y, int depth, asset obj) {
 	__basic(__FuncId::instance_create_depth, x, y, depth, obj);
 	instance res(funcres.m_real);
-	// res.setpos(x, y, false);
-	// res.setdepth(depth, false);
+	res.setpos(x, y, false);
+	res.setdepth(depth, false);
 	return res;
 }
 
 /* class instance */
+
+gml::instance::instance(vec2 & pos, int depth, asset obj) {
+}
+
+gml::instance::instance(double x, double y, int depth, asset obj) {
+}
+
+gml::instance::instance(vec2 & pos, const char * layer, asset obj) {
+}
+
+gml::instance::instance(double x, double y, const char * layer, asset obj) {
+}
+
+gml::instance::instance(vec2 & pos, const std::string & layer, asset obj) {
+}
+
+gml::instance::instance(double x, double y, const std::string & layer, asset obj) {
+}
 
 int gml::instance::getdepth(bool _synch_from_gm) {
 	if(_synch_from_gm) {
