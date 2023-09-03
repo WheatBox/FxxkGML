@@ -1,3 +1,15 @@
+# 使用下列指令进行编译 | Use these commands to compile
+
+# cmake -S . -B build
+# cd build
+# make
+
+# 如果你安装了 VS 但依然想用 MinGW 的话 | If you installed VS but want to use MinGW
+
+# cmake -S . -B build -G "MinGW Makefiles"
+# cd build
+# make
+
 cmake_minimum_required (VERSION 3.15)
 
 project (MyGame)
@@ -18,10 +30,26 @@ message(${_outpath})
 	)
 endmacro(build)
 
+# ----------------------------------------------
+# 在此处追加你要编译的 dll
+# Add the dll you want to compile here
+# 
+# 格式：
+# build (目标文件名 目标输出路径
+#     *.cpp文件们
+# )
+# 
+# Format:
+# build (dest_filename dest_output_path
+#     *.cpp_files
+# )
+
 build (game.dll ../FxxkGML_GM_Project/datafiles
 	test/game.cpp
 	test/myFuncTest.cpp
 )
+
+# ----------------------------------------------
 
 add_compile_options (
 	PUBLIC "-Wall"
