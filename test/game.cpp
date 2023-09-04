@@ -15,9 +15,9 @@ void gmlinit() {
 	obj_test = gml::asset_get_index("obj_test");
 	val = gml::random_range(0, 100);
 
-	ins = gml::instance_create_depth(320, 320, -100, obj_test);
+	ins = gml::instance(320, 420, -100, obj_test);
 	
-	vec2_t_test();
+	// vec2_t_test();
 }
 
 int t = 0;

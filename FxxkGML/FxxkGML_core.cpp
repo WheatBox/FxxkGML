@@ -24,19 +24,21 @@ void gml::draw_sprite_ext(asset sprite, int subming, double x, double y, double 
 }
 
 gml::instance gml::instance_create_depth(double x, double y, int depth, asset obj) {
-	__basic(__FuncId::instance_create_depth, x, y, depth, obj);
-	instance res(funcres.m_real);
-	res.setpos(x, y, false);
-	res.setdepth(depth, false);
-	return res;
+	return instance(x, y, depth, obj);
 }
 
 /* class instance */
 
 gml::instance::instance(vec2 & pos, int depth, asset obj) {
+	instance(pos.m_x, pos.m_y, depth, obj);
 }
 
 gml::instance::instance(double x, double y, int depth, asset obj) {
+	__basic(__FuncId::instance_create_depth, x, y, depth, obj);
+	m_id = funcres.m_real;
+	m_obj = obj;
+	m_pos = {x, y};
+	m_depth = depth;
 }
 
 gml::instance::instance(vec2 & pos, const char * layer, asset obj) {
@@ -116,10 +118,7 @@ void gml::instance::sety(double y, bool _synch_to_gm) {
 }
 
 void gml::instance::setpos(const vec2 & _vec2, bool _synch_to_gm) {
-	m_pos = _vec2;
-	if(_synch_to_gm) {
-		__basic(__FuncId::__instance_setpos, m_id, _vec2.m_x, _vec2.m_y);
-	}
+	setpos(_vec2.m_x, _vec2.m_y, _synch_to_gm);
 }
 
 void gml::instance::setpos(double x, double y, bool _synch_to_gm) {
@@ -130,13 +129,15 @@ void gml::instance::setpos(double x, double y, bool _synch_to_gm) {
 	}
 }
 
-void gml::instance::move(const vec2 & _vec2, bool _synch_to_gm) {
-	m_pos += _vec2;
-	if(_synch_to_gm) {
-		__basic(__FuncId::__instance_setpos, m_id, m_pos.m_x, m_pos.m_y);
-	}
+void gml::instance::move(const vec2 & _vec2, bool _synch_from_gm, bool _synch_to_gm) {
+	move(_vec2.m_x, _vec2.m_y, _synch_from_gm, _synch_to_gm);
 }
-void gml::instance::move(double xadd, double yadd, bool _synch_to_gm) {
+void gml::instance::move(double xadd, double yadd, bool _synch_from_gm, bool _synch_to_gm) {
+	if(_synch_from_gm) {
+		__basic(__FuncId::__instance_getpos, m_id);
+		m_pos.m_x = otherress[0].m_real;
+		m_pos.m_y = otherress[1].m_real;
+	}
 	m_pos.m_x += xadd;
 	m_pos.m_y += yadd;
 	if(_synch_to_gm) {

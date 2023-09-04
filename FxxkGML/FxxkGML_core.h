@@ -1,5 +1,6 @@
 #pragma once
 
+#include "FxxkGML_funcid.h"
 #include "FxxkGML_vars.h"
 
 // 有啥 GML 的函数都往这塞
@@ -20,26 +21,6 @@ namespace gml {
 		std::string m_string;
 	};
 
-	enum class __FuncId {
-		nothing = 0,
-
-		__instance_getdepth = 1001,
-		__instance_setdepth = 1002,
-		__instance_getx = 1003,
-		__instance_gety = 1004,
-		__instance_getpos = 1005,
-		__instance_setx = 1006,
-		__instance_sety = 1007,
-		__instance_setpos = 1008,
-
-		draw_text = 2001,
-		random_range = 2002,
-		asset_get_index = 2003,
-		draw_sprite_ext = 2004,
-		instance_create_depth = 2005
-	};
-
-	static __FuncId funcid;
 	static __gmvar funcargs[16]; // GM 的函数最多只能使用 16 个参数 | functions in GM can only use 16 arguments
 	
 	extern __gmvar funcres;
@@ -49,8 +30,7 @@ namespace gml {
 
 	class instance {
 	public:
-		instance() { m_id = noone; };
-		instance(int id) { m_id = id; };
+		instance() { m_id = noone; m_obj = noone; };
 
 		instance(vec2 & pos, int depth, asset obj);
 		instance(double x, double y, int depth, asset obj);
@@ -77,12 +57,15 @@ namespace gml {
 		void setpos(const vec2 & _vec2, bool _synch_to_gm = true);
 		void setpos(double x, double y, bool _synch_to_gm = true);
 
-		void move(const vec2 & _vec2, bool _synch_to_gm = true);
-		void move(double xadd, double yadd, bool _synch_to_gm = true);
+		void move(const vec2 & _vec2, bool _synch_from_gm = false, bool _synch_to_gm = true);
+		void move(double xadd, double yadd, bool _synch_from_gm = false, bool _synch_to_gm = true);
 		
 	private:
 		
 		int m_id;
+		asset m_obj;
+		asset m_spr; // TODO
+		asset m_mask; // TODO
 
 		int m_depth;
 
@@ -90,7 +73,7 @@ namespace gml {
 		vec2 m_scale {1, 1};
 	};
 
-	// TODO - 把这些还有上面的__FuncId都拆分成一个个头文件（别忘了.cpp里的那些）
+	// TODO - 把这些都拆分成一个个头文件（别忘了.cpp里的那些）
 	void draw_text(double x, double y, const std::string & text);
 	double random_range(double x1, double x2);
 	asset asset_get_index(const std::string & name);
