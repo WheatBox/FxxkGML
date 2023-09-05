@@ -1,39 +1,39 @@
 #include "FxxkGML_core.h"
 
-namespace gml {
+namespace fgm {
 	__gmvar funcres = 0;
 	__gmvar otherress[16] = {};
 }
 
-void gml::draw_text(double x, double y, const std::string & text) {
+void fgm::draw_text(double x, double y, const std::string & text) {
 	__basic(__FuncId::draw_text, x, y, text);
 }
 
-double gml::random_range(double x1, double x2) {
+double fgm::random_range(double x1, double x2) {
 	__basic(__FuncId::random_range, x1, x2);
 	return funcres.m_real;
 }
 
-gml::asset gml::asset_get_index(const std::string & name) {
+fgm::asset fgm::asset_get_index(const std::string & name) {
 	__basic(__FuncId::asset_get_index, name);
 	return funcres.m_real;
 }
 
-void gml::draw_sprite_ext(asset sprite, int subming, double x, double y, double xscale, double yscale, double rot, int col, double alpha) {
+void fgm::draw_sprite_ext(asset sprite, int subming, double x, double y, double xscale, double yscale, double rot, int col, double alpha) {
 	__basic(__FuncId::draw_sprite_ext, sprite, subming, x, y, xscale, yscale, rot, col, alpha);
 }
 
-gml::instance gml::instance_create_depth(double x, double y, int depth, asset obj) {
+fgm::instance fgm::instance_create_depth(double x, double y, int depth, asset obj) {
 	return instance(x, y, depth, obj);
 }
 
 /* class instance */
 
-gml::instance::instance(vec2 & pos, int depth, asset obj) {
+fgm::instance::instance(vec2 & pos, int depth, asset obj) {
 	instance(pos.m_x, pos.m_y, depth, obj);
 }
 
-gml::instance::instance(double x, double y, int depth, asset obj) {
+fgm::instance::instance(double x, double y, int depth, asset obj) {
 	__basic(__FuncId::instance_create_depth, x, y, depth, obj);
 	m_id = funcres.m_real;
 	m_obj = obj;
@@ -41,19 +41,19 @@ gml::instance::instance(double x, double y, int depth, asset obj) {
 	m_depth = depth;
 }
 
-gml::instance::instance(vec2 & pos, const char * layer, asset obj) {
+fgm::instance::instance(vec2 & pos, const char * layer, asset obj) {
 }
 
-gml::instance::instance(double x, double y, const char * layer, asset obj) {
+fgm::instance::instance(double x, double y, const char * layer, asset obj) {
 }
 
-gml::instance::instance(vec2 & pos, const std::string & layer, asset obj) {
+fgm::instance::instance(vec2 & pos, const std::string & layer, asset obj) {
 }
 
-gml::instance::instance(double x, double y, const std::string & layer, asset obj) {
+fgm::instance::instance(double x, double y, const std::string & layer, asset obj) {
 }
 
-int gml::instance::getdepth(bool _synch_from_gm) {
+int fgm::instance::getdepth(bool _synch_from_gm) {
 	if(_synch_from_gm) {
 		__basic(__FuncId::__instance_getdepth, m_id);
 		m_depth = funcres.m_real;
@@ -61,14 +61,14 @@ int gml::instance::getdepth(bool _synch_from_gm) {
 	return m_depth;
 }
 
-void gml::instance::setdepth(int depth, bool _synch_to_gm) {
+void fgm::instance::setdepth(int depth, bool _synch_to_gm) {
 	m_depth = depth;
 	if(_synch_to_gm) {
 		__basic(__FuncId::__instance_setdepth, m_id, depth);
 	}
 }
 
-double gml::instance::getx(bool _synch_from_gm) {
+double fgm::instance::getx(bool _synch_from_gm) {
 	if(_synch_from_gm) {
 		__basic(__FuncId::__instance_getx, m_id);
 		m_pos.m_x = funcres.m_real;
@@ -76,7 +76,7 @@ double gml::instance::getx(bool _synch_from_gm) {
 	return m_pos.m_x;
 }
 
-double gml::instance::gety(bool _synch_from_gm) {
+double fgm::instance::gety(bool _synch_from_gm) {
 	if(_synch_from_gm) {
 		__basic(__FuncId::__instance_gety, m_id);
 		m_pos.m_y = funcres.m_real;
@@ -84,7 +84,7 @@ double gml::instance::gety(bool _synch_from_gm) {
 	return m_pos.m_y;
 }
 
-gml::vec2 gml::instance::getpos(bool _synch_from_gm) {
+fgm::vec2 fgm::instance::getpos(bool _synch_from_gm) {
 	if(_synch_from_gm) {
 		__basic(__FuncId::__instance_getpos, m_id);
 		m_pos.m_x = otherress[0].m_real;
@@ -93,7 +93,7 @@ gml::vec2 gml::instance::getpos(bool _synch_from_gm) {
 	return m_pos;
 }
 
-void gml::instance::getpos(double * xdest, double * ydest, bool _synch_from_gm) {
+void fgm::instance::getpos(double * xdest, double * ydest, bool _synch_from_gm) {
 	if(_synch_from_gm) {
 		__basic(__FuncId::__instance_getpos, m_id);
 		m_pos.m_x = otherress[0].m_real;
@@ -103,25 +103,25 @@ void gml::instance::getpos(double * xdest, double * ydest, bool _synch_from_gm) 
 	* ydest = m_pos.m_y;
 }
 
-void gml::instance::setx(double x, bool _synch_to_gm) {
+void fgm::instance::setx(double x, bool _synch_to_gm) {
 	m_pos.m_x = x;
 	if(_synch_to_gm) {
 		__basic(__FuncId::__instance_setx, m_id, x);
 	}
 }
 
-void gml::instance::sety(double y, bool _synch_to_gm) {
+void fgm::instance::sety(double y, bool _synch_to_gm) {
 	m_pos.m_y = y;
 	if(_synch_to_gm) {
 		__basic(__FuncId::__instance_sety, m_id, y);
 	}
 }
 
-void gml::instance::setpos(const vec2 & _vec2, bool _synch_to_gm) {
+void fgm::instance::setpos(const vec2 & _vec2, bool _synch_to_gm) {
 	setpos(_vec2.m_x, _vec2.m_y, _synch_to_gm);
 }
 
-void gml::instance::setpos(double x, double y, bool _synch_to_gm) {
+void fgm::instance::setpos(double x, double y, bool _synch_to_gm) {
 	m_pos.m_x = x;
 	m_pos.m_y = y;
 	if(_synch_to_gm) {
@@ -129,10 +129,10 @@ void gml::instance::setpos(double x, double y, bool _synch_to_gm) {
 	}
 }
 
-void gml::instance::move(const vec2 & _vec2, bool _synch_from_gm, bool _synch_to_gm) {
+void fgm::instance::move(const vec2 & _vec2, bool _synch_from_gm, bool _synch_to_gm) {
 	move(_vec2.m_x, _vec2.m_y, _synch_from_gm, _synch_to_gm);
 }
-void gml::instance::move(double xadd, double yadd, bool _synch_from_gm, bool _synch_to_gm) {
+void fgm::instance::move(double xadd, double yadd, bool _synch_from_gm, bool _synch_to_gm) {
 	if(_synch_from_gm) {
 		__basic(__FuncId::__instance_getpos, m_id);
 		m_pos.m_x = otherress[0].m_real;

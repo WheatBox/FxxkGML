@@ -5,7 +5,7 @@
 
 // 有啥 GML 的函数都往这塞
 // Put your GML functions here
-namespace gml {
+namespace fgm {
 
 	struct __gmvar {
 		__gmvar() { m_typeid = 0; m_real = 0; };

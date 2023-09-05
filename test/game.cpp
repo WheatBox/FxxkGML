@@ -4,18 +4,18 @@
 
 #include "myFuncTest.h"
 
-gml::asset spr_test = -1;
-gml::asset obj_test = gml::noone;
-gml::instance ins;
+fgm::asset spr_test = -1;
+fgm::asset obj_test = fgm::noone;
+fgm::instance ins;
 double val;
 int rot = 0;
 
 void gmlinit() {
-	spr_test = gml::asset_get_index("spr_test");
-	obj_test = gml::asset_get_index("obj_test");
-	val = gml::random_range(0, 100);
+	spr_test = fgm::asset_get_index("spr_test");
+	obj_test = fgm::asset_get_index("obj_test");
+	val = fgm::random_range(0, 100);
 
-	ins = gml::instance(320, 420, -100, obj_test);
+	ins = fgm::instance(320, 420, -100, obj_test);
 	
 	// vec2_t_test();
 }
@@ -27,20 +27,20 @@ void gmlmain() {
 		= "Hello, world!\n["
 		+ std::to_string(val)
 		+ "]\n["
-		+ std::to_string(gml::random_range(0, 1))
+		+ std::to_string(fgm::random_range(0, 1))
 		+ "]"
 	;
-	gml::draw_text(128, 64, str);
+	fgm::draw_text(128, 64, str);
 	
 	MyFuncTest(256, "~~~FLY~~~");
 	MyFuncTest(480, std::to_string(ins.getid()));
 
-	gml::draw_text(320, 560,
+	fgm::draw_text(320, 560,
 		std::to_string(ins.getpos(true).m_x) + ", " +
 		std::to_string(ins.getpos(true).m_y)
 	);
 
-	ins.move(gml::vec2(1, 0));
+	ins.move(fgm::vec2(1, 0));
 	if(ins.getx() > 640 + 128) {
 		ins.setx(-128);
 	}
@@ -54,6 +54,6 @@ void gmlmain() {
 		MyFuncTest(512, std::to_string(ins.getdepth(true)));
 	}
 
-	gml::draw_sprite_ext(spr_test, 0, 320, 320, 1.2, 1.2, rot++, 0x0000FF, 0.5);
-	gml::draw_sprite_ext(spr_test, 0, 400, 320, 1, 1, rot, gml::c_white, 1);
+	fgm::draw_sprite_ext(spr_test, 0, 320, 320, 1.2, 1.2, rot++, 0x0000FF, 0.5);
+	fgm::draw_sprite_ext(spr_test, 0, 400, 320, 1, 1, rot, fgm::c_white, 1);
 }

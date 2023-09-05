@@ -1,4 +1,4 @@
-namespace gml {
+namespace fgm {
 	enum class __FuncId {
 		nothing = 0,
 

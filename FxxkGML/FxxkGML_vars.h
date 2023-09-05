@@ -7,7 +7,7 @@
 #define DEG2RAD_RATIO 0.0174532925199433
 #define RAD2DEG_RATIO 57.295779513082321
 
-namespace gml {
+namespace fgm {
 
 	typedef double asset;
 
