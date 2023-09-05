@@ -19,8 +19,10 @@ include_directories (FxxkGML)
 macro(build _name _outpath)
 message(${_outpath})
 	add_library (${_name} SHARED
-		FxxkGML/FxxkGML_vars.cpp
-		FxxkGML/FxxkGML_core.cpp
+		FxxkGML/FxxkGML/math.cpp
+		FxxkGML/FxxkGML/basic.cpp
+		FxxkGML/FxxkGML/instance.cpp
+		FxxkGML/FxxkGML.cpp
 		${ARGN}
 	)
 	set_target_properties(${_name} PROPERTIES

@@ -10,11 +10,13 @@ enum EFxxkGMLFuncId {
 	__instance_sety = 1007,
 	__instance_setpos = 1008,
 	
-	_draw_text = 2001,
-	_random_range = 2002,
-	_asset_get_index = 2003,
-	_draw_sprite_ext = 2004,
-	_instance_create_depth = 2005,
+	_instance_create_layer = 2001,
+	_instance_create_depth = 2002,
+	
+	_draw_text = 10001,
+	_random_range = 10002,
+	_asset_get_index = 10003,
+	_draw_sprite_ext = 10004,
 };
 
 #macro ARG external_call
@@ -89,6 +91,10 @@ function FxxkGML(_dll_filename) constructor {
 				_vartmp.x = ARG(__R, 1);
 				_vartmp.y = ARG(__R, 2);
 				
+			CASE EFxxkGMLFuncId._instance_create_depth:
+				RET(__RetR,
+					instance_create_depth(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3)));
+				
 			CASE EFxxkGMLFuncId._draw_text:
 				draw_text(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2));
 				
@@ -102,10 +108,6 @@ function FxxkGML(_dll_filename) constructor {
 				
 			CASE EFxxkGMLFuncId._draw_sprite_ext:
 				draw_sprite_ext(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8));
-				
-			CASE EFxxkGMLFuncId._instance_create_depth:
-				RET(__RetR,
-					instance_create_depth(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3)));
 				
 		}
 		

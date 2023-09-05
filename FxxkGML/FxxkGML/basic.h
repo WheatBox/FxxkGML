@@ -1,32 +1,11 @@
 #pragma once
 
-#include "FxxkGML_funcid.h"
-#include "FxxkGML_vars.h"
+#include "funcid.h"
+#include "math.h"
 
-// 有啥 GML 的函数都往这塞
-// Put your GML functions here
 namespace fgm {
 
-	struct __gmvar {
-		__gmvar() { m_typeid = 0; m_real = 0; };
-		__gmvar(bool val) { m_typeid = 0; m_real = val; };
-		__gmvar(int val) { m_typeid = 0; m_real = val; };
-		__gmvar(double val) { m_typeid = 0; m_real = val; };
-		__gmvar(const char * val) { m_typeid = 1; m_string = val; };
-		__gmvar(const std::string & val) { m_typeid = 1; m_string = val; };
-
-		int m_typeid; // 0 = real, 1 = string
-
-		double m_real;
-		std::string m_string;
-	};
-
-	static __gmvar funcargs[16]; // GM 的函数最多只能使用 16 个参数 | functions in GM can only use 16 arguments
-	
-	extern __gmvar funcres;
-	extern __gmvar otherress[16]; // 有需要的话再去更改这个长度 | change this length if necessary
-
-	/* --------------------------- */
+	typedef double asset;
 
 	class instance {
 	public:
@@ -78,9 +57,27 @@ namespace fgm {
 	double random_range(double x1, double x2);
 	asset asset_get_index(const std::string & name);
 	void draw_sprite_ext(asset sprite, int subming, double x, double y, double xscale, double yscale, double rot, int col, double alpha);
-	instance instance_create_depth(double x, double y, int depth, asset obj);
 
 	/* --------------------------- */
+
+	struct __gmvar {
+		__gmvar() { m_typeid = 0; m_real = 0; };
+		__gmvar(bool val) { m_typeid = 0; m_real = val; };
+		__gmvar(int val) { m_typeid = 0; m_real = val; };
+		__gmvar(double val) { m_typeid = 0; m_real = val; };
+		__gmvar(const char * val) { m_typeid = 1; m_string = val; };
+		__gmvar(const std::string & val) { m_typeid = 1; m_string = val; };
+
+		int m_typeid; // 0 = real, 1 = string
+
+		double m_real;
+		std::string m_string;
+	};
+
+	static __gmvar funcargs[16]; // GM 的函数最多只能使用 16 个参数 | functions in GM can only use 16 arguments
+	
+	extern __gmvar funcres;
+	extern __gmvar otherress[16]; // 有需要的话再去更改这个长度 | change this length if necessary
 
 	void __basic(__FuncId _fid);
 	void __basic(__FuncId _fid, __gmvar _v0);

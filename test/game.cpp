@@ -1,6 +1,4 @@
-// g++ source/FxxkGML_vars.cpp source/FxxkGML_core.cpp test/myFuncTest.cpp test/game.cpp -o test/game.dll -shared
-
-#include "FxxkGML_main.h"
+#include <FxxkGML.h>
 
 #include "myFuncTest.h"
 
@@ -17,7 +15,7 @@ void gmlinit() {
 
 	ins = fgm::instance(320, 420, -100, obj_test);
 	
-	// vec2_t_test();
+	vec2_t_test();
 }
 
 int t = 0;
