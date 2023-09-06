@@ -7,15 +7,26 @@ fgm::asset obj_test = fgm::noone;
 fgm::instance ins;
 double val;
 int rot = 0;
-
+#include <iostream>
 void gmlinit() {
 	spr_test = fgm::asset_get_index("spr_test");
 	obj_test = fgm::asset_get_index("obj_test");
 	val = fgm::random_range(0, 100);
 
-	ins = fgm::instance(320, 420, -100, obj_test);
+	ins = fgm::instance(fgm::vec2(320, 420), -100, obj_test);
 	
 	vec2_t_test();
+
+	fgm::layer mylayer(-1145, "mylayer");
+	std::cout << mylayer.getid() << ", " << fgm::layer_get_depth(mylayer) << ", " << mylayer.getname() << std::endl;
+	mylayer = fgm::layer_get("Background");
+	std::cout << mylayer.getid() << ", " << mylayer.getdepth() << ", " << mylayer.getname() << std::endl;
+	mylayer = fgm::layer_get(0);
+	std::cout << mylayer.getid() << ", " << mylayer.getdepth() << ", " << mylayer.getname() << std::endl;
+	std::cout << fgm::layer_exists(mylayer.getid()) << std::endl;
+	fgm::layer_destroy(mylayer);
+	std::cout << fgm::layer_exists(mylayer.getid()) << std::endl;
+	fgm::layer_destroy(fgm::layer_get("Background"));
 }
 
 int t = 0;

@@ -1,5 +1,5 @@
 #include "basic.h"
-
+#include <iostream>
 namespace fgm {
 	__gmvar funcres = 0;
 	__gmvar otherress[16] = {};
@@ -25,11 +25,48 @@ namespace fgm {
 		__basic(__FuncId::draw_sprite_ext, sprite, subming, x, y, xscale, yscale, rot, col, alpha);
 	}
 
-	/* class instance */
+/* ------ class layer ------ */
+#pragma region __CLASSLAYER__
 
-	instance::instance(vec2 & pos, int depth, asset obj) {
-		instance(pos.m_x, pos.m_y, depth, obj);
+	layer::layer(int depth, const char * name)
+		: layer(depth, std::string(name)) {}
+
+	layer::layer(int depth, const std::string & name) {
+		__basic(__FuncId::layer_create, depth, name);
+		m_id = funcres.m_real;
+		m_name = name;
+		m_depth = depth;
 	}
+
+	void layer::destroy() {
+		__basic(__FuncId::layer_destroy, m_id);
+		m_id = -1;
+		m_name = "";
+		m_depth = 0;
+	}
+
+	int layer::getdepth(bool _synch_from_gm) {
+		if(_synch_from_gm) {
+			__basic(__FuncId::layer_get_depth, m_id);
+			m_depth = funcres.m_real;
+		}
+		return m_depth;
+	}
+
+	void layer::setdepth(int depth, bool _synch_to_gm) {
+		m_depth = depth;
+		if(_synch_to_gm) {
+			__basic(__FuncId::layer_depth, m_id, depth);
+		}
+	}
+
+#pragma endregion __CLASSLAYER__
+
+/* ------ class instance ------ */
+#pragma region __CLASSINSTANCE__
+
+	instance::instance(const vec2 & pos, int depth, asset obj)
+		: instance(pos.m_x, pos.m_y, depth, obj) {}
 
 	instance::instance(double x, double y, int depth, asset obj) {
 		__basic(__FuncId::instance_create_depth, x, y, depth, obj);
@@ -38,22 +75,11 @@ namespace fgm {
 		m_pos = {x, y};
 		m_depth = depth;
 	}
-
-	instance::instance(vec2 & pos, const char * layer, asset obj) {
-	}
-
-	instance::instance(double x, double y, const char * layer, asset obj) {
-	}
-
-	instance::instance(vec2 & pos, const std::string & layer, asset obj) {
-	}
-
-	instance::instance(double x, double y, const std::string & layer, asset obj) {
-	}
+	
 
 	int instance::getdepth(bool _synch_from_gm) {
 		if(_synch_from_gm) {
-			__basic(__FuncId::__instance_getdepth, m_id);
+			__basic(__FuncId::cinstance_getdepth, m_id);
 			m_depth = funcres.m_real;
 		}
 		return m_depth;
@@ -62,13 +88,13 @@ namespace fgm {
 	void instance::setdepth(int depth, bool _synch_to_gm) {
 		m_depth = depth;
 		if(_synch_to_gm) {
-			__basic(__FuncId::__instance_setdepth, m_id, depth);
+			__basic(__FuncId::cinstance_setdepth, m_id, depth);
 		}
 	}
 
 	double instance::getx(bool _synch_from_gm) {
 		if(_synch_from_gm) {
-			__basic(__FuncId::__instance_getx, m_id);
+			__basic(__FuncId::cinstance_getx, m_id);
 			m_pos.m_x = funcres.m_real;
 		}
 		return m_pos.m_x;
@@ -76,7 +102,7 @@ namespace fgm {
 
 	double instance::gety(bool _synch_from_gm) {
 		if(_synch_from_gm) {
-			__basic(__FuncId::__instance_gety, m_id);
+			__basic(__FuncId::cinstance_gety, m_id);
 			m_pos.m_y = funcres.m_real;
 		}
 		return m_pos.m_y;
@@ -84,7 +110,7 @@ namespace fgm {
 
 	vec2 instance::getpos(bool _synch_from_gm) {
 		if(_synch_from_gm) {
-			__basic(__FuncId::__instance_getpos, m_id);
+			__basic(__FuncId::cinstance_getpos, m_id);
 			m_pos.m_x = otherress[0].m_real;
 			m_pos.m_y = otherress[1].m_real;
 		}
@@ -93,7 +119,7 @@ namespace fgm {
 
 	void instance::getpos(double * xdest, double * ydest, bool _synch_from_gm) {
 		if(_synch_from_gm) {
-			__basic(__FuncId::__instance_getpos, m_id);
+			__basic(__FuncId::cinstance_getpos, m_id);
 			m_pos.m_x = otherress[0].m_real;
 			m_pos.m_y = otherress[1].m_real;
 		}
@@ -104,14 +130,14 @@ namespace fgm {
 	void instance::setx(double x, bool _synch_to_gm) {
 		m_pos.m_x = x;
 		if(_synch_to_gm) {
-			__basic(__FuncId::__instance_setx, m_id, x);
+			__basic(__FuncId::cinstance_setx, m_id, x);
 		}
 	}
 
 	void instance::sety(double y, bool _synch_to_gm) {
 		m_pos.m_y = y;
 		if(_synch_to_gm) {
-			__basic(__FuncId::__instance_sety, m_id, y);
+			__basic(__FuncId::cinstance_sety, m_id, y);
 		}
 	}
 
@@ -123,24 +149,27 @@ namespace fgm {
 		m_pos.m_x = x;
 		m_pos.m_y = y;
 		if(_synch_to_gm) {
-			__basic(__FuncId::__instance_setpos, m_id, x, y);
+			__basic(__FuncId::cinstance_setpos, m_id, x, y);
 		}
 	}
 
 	void instance::move(const vec2 & _vec2, bool _synch_from_gm, bool _synch_to_gm) {
 		move(_vec2.m_x, _vec2.m_y, _synch_from_gm, _synch_to_gm);
 	}
+	
 	void instance::move(double xadd, double yadd, bool _synch_from_gm, bool _synch_to_gm) {
 		if(_synch_from_gm) {
-			__basic(__FuncId::__instance_getpos, m_id);
+			__basic(__FuncId::cinstance_getpos, m_id);
 			m_pos.m_x = otherress[0].m_real;
 			m_pos.m_y = otherress[1].m_real;
 		}
 		m_pos.m_x += xadd;
 		m_pos.m_y += yadd;
 		if(_synch_to_gm) {
-			__basic(__FuncId::__instance_setpos, m_id, m_pos.m_x, m_pos.m_y);
+			__basic(__FuncId::cinstance_setpos, m_id, m_pos.m_x, m_pos.m_y);
 		}
 	}
+	
+#pragma endregion __CLASSINSTANCE__
 
 }

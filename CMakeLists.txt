@@ -22,6 +22,7 @@ message(${_outpath})
 		FxxkGML/FxxkGML/math.cpp
 		FxxkGML/FxxkGML/basic.cpp
 		FxxkGML/FxxkGML/instance.cpp
+		FxxkGML/FxxkGML/layer.cpp
 		FxxkGML/FxxkGML.cpp
 		${ARGN}
 	)

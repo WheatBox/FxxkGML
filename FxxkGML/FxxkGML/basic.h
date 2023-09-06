@@ -5,30 +5,67 @@
 
 namespace fgm {
 
-	typedef double asset;
+	typedef int asset;
+
+	/* ------- class layer -------- */
+
+	class layer {
+	public:
+		layer() { m_id = -1; m_name = ""; };
+
+		layer(int depth, const char * name = "");
+		layer(int depth, const std::string & name = "");
+
+		void change(int id, const std::string & name, int depth) { m_id = id; m_name = name; m_depth = depth; }
+
+		void destroy();
+
+		int getid() const { return m_id; }
+		std::string getname() const { return m_name; }
+
+		int getdepth() const { return m_depth; }
+		int getdepth(bool _synch_from_gm);
+		void setdepth(int depth, bool _synch_to_gm = true);
+
+	private:
+
+		int m_id;
+		std::string m_name;
+
+		int m_depth = 0;
+
+	};
+
+	/* ------ class instance ------ */
 
 	class instance {
 	public:
 		instance() { m_id = noone; m_obj = noone; };
 
-		instance(vec2 & pos, int depth, asset obj);
+		instance(const vec2 & pos, int depth, asset obj);
 		instance(double x, double y, int depth, asset obj);
-		instance(vec2 & pos, const char * layer, asset obj);
-		instance(double x, double y, const char * layer, asset obj);
-		instance(vec2 & pos, const std::string & layer, asset obj);
-		instance(double x, double y, const std::string & layer, asset obj);
+		instance(const vec2 & pos, layer & _layer, asset obj);
+		instance(double x, double y, const layer && _layer, asset obj);
 
-		int getid() { return m_id; }
+		int getid() const { return m_id; }
 
-		int getdepth(bool _synch_from_gm = false);
+		int getdepth() const { return m_depth; }
+		int getdepth(bool _synch_from_gm);
 		void setdepth(int depth, bool _synch_to_gm = true);
+
+		layer getlayer() const { return m_layer; };
+		layer getlayer(bool _synch_from_gm);
+		void setlayer(const layer & _layer, bool _synch_to_gm = true);
 
 		/* ---------- 关于方位 ---------- */
 		/* ------ About Position ------ */
 
-		double getx(bool _synch_from_gm = false);
-		double gety(bool _synch_from_gm = false);
-		vec2 getpos(bool _synch_from_gm = false);
+		double getx() const { return m_pos.m_x; }
+		double gety() const { return m_pos.m_y; }
+		vec2 getpos() const { return m_pos; }
+		double getx(bool _synch_from_gm);
+		double gety(bool _synch_from_gm);
+		vec2 getpos(bool _synch_from_gm);
 		void getpos(double * xdest, double * ydest, bool _synch_from_gm = false);
 
 		void setx(double x, bool _synch_to_gm = true);
@@ -46,7 +83,8 @@ namespace fgm {
 		asset m_spr; // TODO
 		asset m_mask; // TODO
 
-		int m_depth;
+		int m_depth = 0;
+		layer m_layer;
 
 		vec2 m_pos;
 		vec2 m_scale {1, 1};
@@ -58,7 +96,7 @@ namespace fgm {
 	asset asset_get_index(const std::string & name);
 	void draw_sprite_ext(asset sprite, int subming, double x, double y, double xscale, double yscale, double rot, int col, double alpha);
 
-	/* --------------------------- */
+	/* ---------------------------- */
 
 	struct __gmvar {
 		__gmvar() { m_typeid = 0; m_real = 0; };

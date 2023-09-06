@@ -1,17 +1,28 @@
 enum EFxxkGMLFuncId {
 	_nothing = 0,
 	
-	__instance_getdepth = 1001,
-	__instance_setdepth = 1002,
-	__instance_getx = 1003,
-	__instance_gety = 1004,
-	__instance_getpos = 1005,
-	__instance_setx = 1006,
-	__instance_sety = 1007,
-	__instance_setpos = 1008,
+	_cinstance_getdepth = -1001,
+	_cinstance_setdepth = -1002,
+	_cinstance_getx = -1003,
+	_cinstance_gety = -1004,
+	_cinstance_getpos = -1005,
+	_cinstance_setx = -1006,
+	_cinstance_sety = -1007,
+	_cinstance_setpos = -1008,
 	
 	_instance_create_layer = 2001,
 	_instance_create_depth = 2002,
+	
+	_layer_exists = 3001,
+	_layer_exists__id = 3002,
+	_layer_get = 3004,
+	_layer_get__id = 3005,
+	_layer_get_depth = 3006,
+	
+	_layer_create = 3017,
+	_layer_destroy = 3018,
+	
+	_layer_depth = 3029,
 	
 	_draw_text = 10001,
 	_random_range = 10002,
@@ -70,23 +81,23 @@ function FxxkGML(_dll_filename) constructor {
 			case EFxxkGMLFuncId._nothing:
 				return 0;
 				
-			CASE EFxxkGMLFuncId.__instance_getdepth:
+			CASE EFxxkGMLFuncId._cinstance_getdepth:
 				RET(__RetR, (ARG(__R, 0)).depth);
-			CASE EFxxkGMLFuncId.__instance_setdepth:
+			CASE EFxxkGMLFuncId._cinstance_setdepth:
 				(ARG(__R, 0)).depth = ARG(__R, 1);
-			CASE EFxxkGMLFuncId.__instance_getx:
+			CASE EFxxkGMLFuncId._cinstance_getx:
 				RET(__RetR, (ARG(__R, 0)).x);
-			CASE EFxxkGMLFuncId.__instance_gety:
+			CASE EFxxkGMLFuncId._cinstance_gety:
 				RET(__RetR, (ARG(__R, 0)).y);
-			CASE EFxxkGMLFuncId.__instance_getpos:
+			CASE EFxxkGMLFuncId._cinstance_getpos:
 				_vartmp = ARG(__R, 0);
 				RET(__OthR, 0, _vartmp.x);
 				RET(__OthR, 1, _vartmp.y);
-			CASE EFxxkGMLFuncId.__instance_setx:
+			CASE EFxxkGMLFuncId._cinstance_setx:
 				(ARG(__R, 0)).x = ARG(__R, 1);
-			CASE EFxxkGMLFuncId.__instance_sety:
+			CASE EFxxkGMLFuncId._cinstance_sety:
 				(ARG(__R, 0)).y = ARG(__R, 1);
-			CASE EFxxkGMLFuncId.__instance_setpos:
+			CASE EFxxkGMLFuncId._cinstance_setpos:
 				_vartmp = ARG(__R, 0);
 				_vartmp.x = ARG(__R, 1);
 				_vartmp.y = ARG(__R, 2);
@@ -94,6 +105,28 @@ function FxxkGML(_dll_filename) constructor {
 			CASE EFxxkGMLFuncId._instance_create_depth:
 				RET(__RetR,
 					instance_create_depth(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3)));
+					
+			CASE EFxxkGMLFuncId._layer_exists:
+				RET(__RetR, layer_exists(ARG(__S, 0)));
+			CASE EFxxkGMLFuncId._layer_exists__id:
+				RET(__RetR, layer_exists(ARG(__R, 0)));
+			CASE EFxxkGMLFuncId._layer_get:
+				_vartmp = ARG(__S, 0);
+				RET(__RetR, layer_get_id(_vartmp));
+				RET(__OthR, 0, layer_get_depth(_vartmp));
+			CASE EFxxkGMLFuncId._layer_get__id:
+				_vartmp = ARG(__R, 0);
+				RET(__RetS, layer_get_name(_vartmp));
+				RET(__OthR, 0, layer_get_depth(_vartmp));
+			CASE EFxxkGMLFuncId._layer_get_depth:
+				RET(__RetR, layer_get_depth(ARG(__R, 0)));
+			CASE EFxxkGMLFuncId._layer_depth:
+				layer_depth(ARG(__R, 0), ARG(__R, 1));
+				
+			CASE EFxxkGMLFuncId._layer_create:
+				RET(__RetR, layer_create(ARG(__R, 0), ARG(__S, 1)));
+			CASE EFxxkGMLFuncId._layer_destroy:
+				layer_destroy(ARG(__R, 0));
 				
 			CASE EFxxkGMLFuncId._draw_text:
 				draw_text(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2));
