@@ -19,7 +19,7 @@ namespace fgm {
 	layer layer_get(int layer_id) {
 		__basic(__FuncId::layer_get__id, layer_id);
 		layer res;
-		res.change(layer_id, funcres.m_string, otherress[0].m_real);
+		res.point(layer_id, funcres.m_string, otherress[0].m_real);
 		return res;
 	}
 
@@ -30,7 +30,7 @@ namespace fgm {
 	layer layer_get(const std::string & layer_name) {
 		__basic(__FuncId::layer_get, layer_name);
 		layer res;
-		res.change(funcres.m_real, layer_name, otherress[0].m_real);
+		res.point(funcres.m_real, layer_name, otherress[0].m_real);
 		return res;
 	}
 

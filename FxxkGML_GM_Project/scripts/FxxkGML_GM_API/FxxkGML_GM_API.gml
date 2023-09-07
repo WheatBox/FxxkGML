@@ -9,9 +9,12 @@ enum EFxxkGMLFuncId {
 	_cinstance_setx = -1006,
 	_cinstance_sety = -1007,
 	_cinstance_setpos = -1008,
+	_cinstance_getobj = -1009,
 	
 	_instance_create_layer = 2001,
 	_instance_create_depth = 2002,
+	_instance_destroy = 2003,
+	_instance_exists = 2004,
 	
 	_layer_exists = 3001,
 	_layer_exists__id = 3002,
@@ -101,10 +104,20 @@ function FxxkGML(_dll_filename) constructor {
 				_vartmp = ARG(__R, 0);
 				_vartmp.x = ARG(__R, 1);
 				_vartmp.y = ARG(__R, 2);
+			CASE EFxxkGMLFuncId._cinstance_getobj:
+				RET(__RetR, (ARG(__R, 0)).object_index);
 				
+			CASE EFxxkGMLFuncId._instance_create_layer:
+				RET(__RetR,
+					instance_create_layer(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3)));
 			CASE EFxxkGMLFuncId._instance_create_depth:
 				RET(__RetR,
 					instance_create_depth(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3)));
+			CASE EFxxkGMLFuncId._instance_destroy:
+				instance_destroy(ARG(__R, 0), ARG(__R, 1));
+			CASE EFxxkGMLFuncId._instance_exists:
+				RET(__RetR,
+					instance_exists(ARG(__R, 0)));
 					
 			CASE EFxxkGMLFuncId._layer_exists:
 				RET(__RetR, layer_exists(ARG(__S, 0)));

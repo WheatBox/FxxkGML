@@ -13,10 +13,9 @@ namespace fgm {
 	public:
 		layer() { m_id = -1; m_name = ""; };
 
-		layer(int depth, const char * name = "");
-		layer(int depth, const std::string & name = "");
-
-		void change(int id, const std::string & name, int depth) { m_id = id; m_name = name; m_depth = depth; }
+		layer(int depth);
+		layer(int depth, const char * name);
+		layer(int depth, const std::string & name);
 
 		void destroy();
 
@@ -34,6 +33,10 @@ namespace fgm {
 
 		int m_depth = 0;
 
+	public:
+
+		void point(int id, const std::string & name, int depth) { m_id = id; m_name = name; m_depth = depth; }
+
 	};
 
 	/* ------ class instance ------ */
@@ -44,10 +47,20 @@ namespace fgm {
 
 		instance(const vec2 & pos, int depth, asset obj);
 		instance(double x, double y, int depth, asset obj);
-		instance(const vec2 & pos, layer & _layer, asset obj);
-		instance(double x, double y, const layer && _layer, asset obj);
+		instance(const vec2 & pos, const layer & _layer, asset obj);
+		instance(double x, double y, const layer & _layer, asset obj);
+
+		// perf : Whether to perform that new object's Create and Destroy events (true) or not (false).
+		void change(asset obj, bool perf);
+
+		// execute_event_flag : Set to true or false to perform the Destroy event or not (optional, default is true)
+		void destroy(bool execute_event_flag = true);
 
 		int getid() const { return m_id; }
+		asset getobj() const { return m_obj; }
+		asset getobj(bool _synch_from_gm);
+
+		/* ------- Depth & Layer ------- */
 
 		int getdepth() const { return m_depth; }
 		int getdepth(bool _synch_from_gm);
@@ -75,6 +88,8 @@ namespace fgm {
 
 		void move(const vec2 & _vec2, bool _synch_from_gm = false, bool _synch_to_gm = true);
 		void move(double xadd, double yadd, bool _synch_from_gm = false, bool _synch_to_gm = true);
+
+		/* ------------------------------- */
 		
 	private:
 		

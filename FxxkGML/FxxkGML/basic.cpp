@@ -28,6 +28,9 @@ namespace fgm {
 /* ------ class layer ------ */
 #pragma region __CLASSLAYER__
 
+	layer::layer(int depth)
+		: layer(depth, std::string("")) {}
+
 	layer::layer(int depth, const char * name)
 		: layer(depth, std::string(name)) {}
 
@@ -76,6 +79,31 @@ namespace fgm {
 		m_depth = depth;
 	}
 	
+	instance::instance(const vec2 & pos, const layer & _layer, asset obj)
+		: instance(pos.m_x, pos.m_y, _layer, obj) {}
+	
+	instance::instance(double x, double y, const layer & _layer, asset obj) {
+		__basic(__FuncId::instance_create_layer, x, y, _layer.getid(), obj);
+		m_id = funcres.m_real;
+		m_obj = obj;
+		m_pos = {x, y};
+		m_layer = _layer;
+		m_depth = _layer.getdepth();
+	}
+
+	void instance::destroy(bool execute_event_flag) {
+		__basic(__FuncId::instance_destroy, m_id, execute_event_flag);
+		m_id = noone;
+		m_obj = noone;
+	}
+
+	asset instance::getobj(bool _synch_from_gm) {
+		if(_synch_from_gm) {
+			__basic(__FuncId::cinstance_getobj, m_id);
+			m_obj = funcres.m_real;
+		}
+		return m_obj;
+	}
 
 	int instance::getdepth(bool _synch_from_gm) {
 		if(_synch_from_gm) {

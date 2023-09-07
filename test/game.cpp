@@ -4,7 +4,7 @@
 
 fgm::asset spr_test = -1;
 fgm::asset obj_test = fgm::noone;
-fgm::instance ins;
+fgm::instance ins, ins2;
 double val;
 int rot = 0;
 #include <iostream>
@@ -23,10 +23,13 @@ void gmlinit() {
 	std::cout << mylayer.getid() << ", " << mylayer.getdepth() << ", " << mylayer.getname() << std::endl;
 	mylayer = fgm::layer_get(0);
 	std::cout << mylayer.getid() << ", " << mylayer.getdepth() << ", " << mylayer.getname() << std::endl;
+	mylayer = fgm::layer_get("mylayer");
 	std::cout << fgm::layer_exists(mylayer.getid()) << std::endl;
 	fgm::layer_destroy(mylayer);
-	std::cout << fgm::layer_exists(mylayer.getid()) << std::endl;
-	fgm::layer_destroy(fgm::layer_get("Background"));
+	std::cout << mylayer.getid() << std::endl;
+	fgm::layer_get("Background").destroy();
+	mylayer = fgm::layer(-10);
+	ins2 = fgm::instance_create_layer(100, 100, mylayer, obj_test);
 }
 
 int t = 0;
@@ -61,6 +64,9 @@ void gmlmain() {
 		MyFuncTest(512, std::to_string(ins.getdepth(false)));
 	} else {
 		MyFuncTest(512, std::to_string(ins.getdepth(true)));
+	}
+	if(t > 120) {
+		fgm::instance_destroy(ins2);
 	}
 
 	fgm::draw_sprite_ext(spr_test, 0, 320, 320, 1.2, 1.2, rot++, 0x0000FF, 0.5);
