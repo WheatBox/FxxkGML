@@ -15,24 +15,26 @@ namespace fgm {
 	const int all = -3;
 	const int noone = -4;
 
-	const int c_aqua     = 16776960;
-	const int c_black    = 0;
-	const int c_blue     = 16711680;
-	const int c_dkgray   = 4210752;
-	const int c_fuchsia  = 16711935;
-	const int c_gray     = 8421504;
-	const int c_green    = 32768;
-	const int c_lime     = 65280;
-	const int c_ltgray   = 12632256;
-	const int c_maroon   = 128;
-	const int c_navy     = 8388608;
-	const int c_olive    = 32896;
-	const int c_orange   = 4235519;
-	const int c_purple   = 8388736;
-	const int c_red      = 255;
-	const int c_silver   = 12632256;
-	const int c_teal     = 8421376;
-	const int c_white    = 16777215;
-	const int c_yellow   = 65535;
+	using color_t = unsigned int;
+
+	const color_t c_aqua     = 16776960;
+	const color_t c_black    = 0;
+	const color_t c_blue     = 16711680;
+	const color_t c_dkgray   = 4210752;
+	const color_t c_fuchsia  = 16711935;
+	const color_t c_gray     = 8421504;
+	const color_t c_green    = 32768;
+	const color_t c_lime     = 65280;
+	const color_t c_ltgray   = 12632256;
+	const color_t c_maroon   = 128;
+	const color_t c_navy     = 8388608;
+	const color_t c_olive    = 32896;
+	const color_t c_orange   = 4235519;
+	const color_t c_purple   = 8388736;
+	const color_t c_red      = 255;
+	const color_t c_silver   = 12632256;
+	const color_t c_teal     = 8421376;
+	const color_t c_white    = 16777215;
+	const color_t c_yellow   = 65535;
 
 }

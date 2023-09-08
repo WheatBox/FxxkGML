@@ -68,6 +68,19 @@ namespace fgm {
 /* ------ class instance ------ */
 #pragma region __CLASSINSTANCE__
 
+#define __GET_ONE_VALUE__(fid, dest) \
+	if(_synch_from_gm) { \
+		__basic(fid, m_id); \
+		dest = funcres.m_real; \
+	} \
+	return dest;
+
+#define __SET_ONE_VALUE__(fid, dest, val) \
+	dest = val; \
+	if(_synch_to_gm) { \
+		__basic(fid, m_id, val); \
+	}
+
 	instance::instance(const vec2 & pos, int depth, asset obj)
 		: instance(pos.m_x, pos.m_y, depth, obj) {}
 
@@ -77,6 +90,8 @@ namespace fgm {
 		m_obj = obj;
 		m_pos = {x, y};
 		m_depth = depth;
+
+		__init();
 	}
 	
 	instance::instance(const vec2 & pos, const layer & _layer, asset obj)
@@ -89,6 +104,17 @@ namespace fgm {
 		m_pos = {x, y};
 		m_layer = _layer;
 		m_depth = _layer.getdepth();
+		
+		__init();
+	}
+
+	void instance::__init() {
+		__basic(__FuncId::instance_create_layer, m_id);
+		int other0 = static_cast<int>(otherress[0].m_real);
+		m_visible = other0 & 0b1 == 0b1;
+		m_solid = other0 & 0b10 == 0b10;
+		m_persistent = other0 & 0b100 == 0b100;
+		// TODO
 	}
 
 	void instance::destroy(bool execute_event_flag) {
@@ -98,42 +124,23 @@ namespace fgm {
 	}
 
 	asset instance::getobj(bool _synch_from_gm) {
-		if(_synch_from_gm) {
-			__basic(__FuncId::cinstance_getobj, m_id);
-			m_obj = funcres.m_real;
-		}
-		return m_obj;
+		__GET_ONE_VALUE__(__FuncId::cinstance_getobj, m_obj);
 	}
 
 	int instance::getdepth(bool _synch_from_gm) {
-		if(_synch_from_gm) {
-			__basic(__FuncId::cinstance_getdepth, m_id);
-			m_depth = funcres.m_real;
-		}
-		return m_depth;
+		__GET_ONE_VALUE__(__FuncId::cinstance_getdepth, m_depth);
 	}
 
 	void instance::setdepth(int depth, bool _synch_to_gm) {
-		m_depth = depth;
-		if(_synch_to_gm) {
-			__basic(__FuncId::cinstance_setdepth, m_id, depth);
-		}
+		__SET_ONE_VALUE__(__FuncId::cinstance_setdepth, m_depth, depth);
 	}
 
 	double instance::getx(bool _synch_from_gm) {
-		if(_synch_from_gm) {
-			__basic(__FuncId::cinstance_getx, m_id);
-			m_pos.m_x = funcres.m_real;
-		}
-		return m_pos.m_x;
+		__GET_ONE_VALUE__(__FuncId::cinstance_getx, m_pos.m_x);
 	}
 
 	double instance::gety(bool _synch_from_gm) {
-		if(_synch_from_gm) {
-			__basic(__FuncId::cinstance_gety, m_id);
-			m_pos.m_y = funcres.m_real;
-		}
-		return m_pos.m_y;
+		__GET_ONE_VALUE__(__FuncId::cinstance_gety, m_pos.m_y);
 	}
 
 	vec2 instance::getpos(bool _synch_from_gm) {
@@ -156,17 +163,11 @@ namespace fgm {
 	}
 
 	void instance::setx(double x, bool _synch_to_gm) {
-		m_pos.m_x = x;
-		if(_synch_to_gm) {
-			__basic(__FuncId::cinstance_setx, m_id, x);
-		}
+		__SET_ONE_VALUE__(__FuncId::cinstance_setx, m_pos.m_x, x);
 	}
 
 	void instance::sety(double y, bool _synch_to_gm) {
-		m_pos.m_y = y;
-		if(_synch_to_gm) {
-			__basic(__FuncId::cinstance_sety, m_id, y);
-		}
+		__SET_ONE_VALUE__(__FuncId::cinstance_sety, m_pos.m_y, y);
 	}
 
 	void instance::setpos(const vec2 & _vec2, bool _synch_to_gm) {
@@ -196,6 +197,30 @@ namespace fgm {
 		if(_synch_to_gm) {
 			__basic(__FuncId::cinstance_setpos, m_id, m_pos.m_x, m_pos.m_y);
 		}
+	}
+
+	bool instance::getvisible(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getvisible, m_visible);
+	}
+
+	void instance::setvisible(bool visible, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setvisible, m_visible, visible);
+	}
+
+	bool instance::getsolid(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getsolid, m_solid);
+	}
+
+	void instance::setsolid(bool solid, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setsolid, m_solid, solid);
+	}
+
+	bool instance::getpersistent(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getpersistent, m_persistent);
+	}
+
+	void instance::setpersistent(bool persistent, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setpersistent, m_persistent, persistent);
 	}
 	
 #pragma endregion __CLASSINSTANCE__

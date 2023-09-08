@@ -36,6 +36,8 @@ void gmlinit() {
 	wini::wini w;
 	w.load("F:/CloudSleep2/FxxkGML/FxxkGML/wini/test/test.ini");
 	std::cout << w.get("section2", "key1", 0.0) << std::endl;
+	
+	rect_t_test();
 }
 
 int t = 0;
@@ -71,7 +73,10 @@ void gmlmain() {
 	} else {
 		MyFuncTest(512, std::to_string(ins.getdepth(true)));
 	}
-	if(t > 120) {
+	if(t == 60) {
+		ins2.setvisible(!ins2.getvisible());
+	}
+	if(t == 120) {
 		fgm::instance_destroy(ins2);
 	}
 

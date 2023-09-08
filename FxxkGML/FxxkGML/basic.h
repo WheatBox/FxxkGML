@@ -5,7 +5,7 @@
 
 namespace fgm {
 
-	typedef int asset;
+	using asset = int;
 
 	/* ------- class layer -------- */
 
@@ -50,6 +50,11 @@ namespace fgm {
 		instance(const vec2 & pos, const layer & _layer, asset obj);
 		instance(double x, double y, const layer & _layer, asset obj);
 
+	private:
+		void __init();
+
+	public:
+
 		bool operator ==(const instance & ins) { return m_id == ins.getid(); }
 		bool operator ==(const int & id) { return m_id == id; }
 
@@ -92,19 +97,51 @@ namespace fgm {
 		void move(double xadd, double yadd, bool _synch_from_gm = false, bool _synch_to_gm = true);
 
 		/* ------------------------------- */
+
+		bool getvisible() const { return m_visible; }
+		bool getvisible(bool _synch_from_gm);
+		void setvisible(bool visible, bool _synch_to_gm = true);
+
+		bool getsolid() const { return m_solid; }
+		bool getsolid(bool _synch_from_gm);
+		void setsolid(bool solid, bool _synch_to_gm = true);
+
+		bool getpersistent() const { return m_persistent; }
+		bool getpersistent(bool _synch_from_gm);
+		void setpersistent(bool persistent, bool _synch_to_gm = true);
 		
 	private:
 		
 		int m_id;
 		asset m_obj;
-		asset m_spr; // TODO
-		asset m_mask; // TODO
 
 		int m_depth = 0;
 		layer m_layer;
 
 		vec2 m_pos;
-		vec2 m_scale {1, 1};
+
+		bool m_visible = true;
+		bool m_solid = false;
+		bool m_persistent = false;
+
+		// TODO
+
+		asset m_spr = -1;
+		asset m_mask = -1;
+
+		double m_imgalpha = 1;
+		double m_imgangle = 0;
+		color_t m_imgblend = c_white;
+		unsigned int m_imgindex = 0;
+		unsigned int m_imgnumber = 0;
+		double m_imgspeed = 1;
+		vec2 m_imgscale { 1, 1 };
+
+		unsigned int m_sprwidth;
+		unsigned int m_sprheight;
+		vec2 m_sproffset;
+		
+		rect m_bbox;
 	};
 
 	// TODO - 把这些都拆分成一个个头文件（别忘了.cpp里的那些）
