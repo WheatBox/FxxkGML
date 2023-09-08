@@ -15,6 +15,14 @@ namespace fgm {
 		cinstance_sety = -1007,
 		cinstance_setpos = -1008,
 		cinstance_getobj = -1009,
+		cinstance_getvisible = -1010,
+		cinstance_setvisible = -1011,
+		cinstance_getsolid = -1012,
+		cinstance_setsolid = -1013,
+		cinstance_getpersistent = -1014,
+		cinstance_setpersistent = -1015,
+
+		cinstance___init = -1999,
 
 		/* draw.h 1000+ */
 

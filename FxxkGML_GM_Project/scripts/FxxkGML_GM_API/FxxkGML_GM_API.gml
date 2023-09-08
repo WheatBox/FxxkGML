@@ -10,6 +10,14 @@ enum EFxxkGMLFuncId {
 	_cinstance_sety = -1007,
 	_cinstance_setpos = -1008,
 	_cinstance_getobj = -1009,
+	_cinstance_getvisible = -1010,
+	_cinstance_setvisible = -1011,
+	_cinstance_getsolid = -1012,
+	_cinstance_setsolid = -1013,
+	_cinstance_getpersistent = -1014,
+	_cinstance_setpersistent = -1015,
+	
+	_cinstance___init = -1999,
 	
 	_instance_create_layer = 2001,
 	_instance_create_depth = 2002,
@@ -106,6 +114,21 @@ function FxxkGML(_dll_filename) constructor {
 				_vartmp.y = ARG(__R, 2);
 			CASE EFxxkGMLFuncId._cinstance_getobj:
 				RET(__RetR, (ARG(__R, 0)).object_index);
+			CASE EFxxkGMLFuncId._cinstance_getvisible:
+				RET(__RetR, (ARG(__R, 0)).visible);
+			CASE EFxxkGMLFuncId._cinstance_setvisible:
+				(ARG(__R, 0)).visible = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getsolid:
+				RET(__RetR, (ARG(__R, 0)).solid);
+			CASE EFxxkGMLFuncId._cinstance_setsolid:
+				(ARG(__R, 0)).solid = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getpersistent:
+				RET(__RetR, (ARG(__R, 0)).persistent);
+			CASE EFxxkGMLFuncId._cinstance_setpersistent:
+				(ARG(__R, 0)).persistent = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance___init:
+				_vartmp = ARG(__R, 0);
+				RET(__OthR, 0, _vartmp.visible | (_vartmp.solid << 1) | (_vartmp.persistent << 2));
 				
 			CASE EFxxkGMLFuncId._instance_create_layer:
 				RET(__RetR,
