@@ -10,6 +10,9 @@ namespace fgm {
 
 	const double pi = FXXKGML_PI;
 
+	const int self = -1;
+	const int other = -2;
+	const int all = -3;
 	const int noone = -4;
 
 	const int c_aqua     = 16776960;

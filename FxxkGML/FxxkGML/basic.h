@@ -50,8 +50,10 @@ namespace fgm {
 		instance(const vec2 & pos, const layer & _layer, asset obj);
 		instance(double x, double y, const layer & _layer, asset obj);
 
-		// perf : Whether to perform that new object's Create and Destroy events (true) or not (false).
-		void change(asset obj, bool perf);
+		bool operator ==(const instance & ins) { return m_id == ins.getid(); }
+		bool operator ==(const int & id) { return m_id == id; }
+
+		// void change(asset obj, bool perf);
 
 		// execute_event_flag : Set to true or false to perform the Destroy event or not (optional, default is true)
 		void destroy(bool execute_event_flag = true);

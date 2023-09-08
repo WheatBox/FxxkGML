@@ -1,4 +1,5 @@
 #include <FxxkGML.h>
+#include <wini/wini.h>
 
 #include "myFuncTest.h"
 
@@ -30,6 +31,11 @@ void gmlinit() {
 	fgm::layer_get("Background").destroy();
 	mylayer = fgm::layer(-10);
 	ins2 = fgm::instance_create_layer(100, 100, mylayer, obj_test);
+	std::cout << "isnoone: " << (ins2 == fgm::noone) << std::endl;
+
+	wini::wini w;
+	w.load("F:/CloudSleep2/FxxkGML/FxxkGML/wini/test/test.ini");
+	std::cout << w.get("section2", "key1", 0.0) << std::endl;
 }
 
 int t = 0;

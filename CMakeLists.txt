@@ -50,6 +50,8 @@ endmacro(build)
 build (game.dll ../FxxkGML_GM_Project/datafiles
 	test/game.cpp
 	test/myFuncTest.cpp
+
+	FxxkGML/wini/wini.cpp
 )
 
 # ----------------------------------------------

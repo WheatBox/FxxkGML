@@ -10,5 +10,6 @@ namespace fgm {
 	void instance_destroy(instance & ins, bool execute_event_flag = true);
 	void instance_destroy(const instance && ins, bool execute_event_flag = true);
 	bool instance_exists(int id_or_obj);
+	instance instance_find(asset obj, int n);
 
 }
