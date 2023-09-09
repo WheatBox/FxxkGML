@@ -56,6 +56,13 @@ void gmlinit() {
 	std::cout << "me.mask: " << me.getmask() << std::endl;
 	std::cout << "me.pos: " << me.getx() << ", " << me.gety() << std::endl;
 	std::cout << "me.imgnum: " << me.get_image_number() << std::endl;
+
+	fgm::color_rgb rgb1(240, 248, 255);
+	fgm::color_hsv hsv1 = rgb1.to_hsv();
+	std::cout << std::hex << rgb1.get() << std::dec << std::endl;
+	fgm::color_t rgb1hex = rgb1;
+	std::cout << std::hex << rgb1hex << std::dec << std::endl;
+	std::cout << "HSV: " << hsv1.geth() << ", " << hsv1.gets() << ", " << hsv1.getv() << std::endl;
 }
 
 int t = 0;

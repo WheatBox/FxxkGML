@@ -2,8 +2,6 @@
 
 #include "vars.h"
 
-#include <cmath>
-
 namespace fgm {
 
 	/* 角度转换为弧度
@@ -13,9 +11,6 @@ namespace fgm {
 	/* 弧度转换为角度
 	 * radian to degree */
 	double radtodeg(double rad);
-
-	bool abs(int val);
-	bool abs(double val);
 
 	template<typename T>
 	class vec2_t {
@@ -120,12 +115,12 @@ namespace fgm {
 			m_bottom = right_bottom.m_y;
 		}
 
-		rect_t<T> operator =(const rect_t<T> & r) { this->m_left = r.m_left; this->m_top = r.m_top; this->m_right = r.m_right; this->m_bottom = r.m_bottom; return * this; };
-		rect_t<T> operator +=(const rect_t<T> & r) { this->m_left += r.m_left; this->m_top += r.m_top; this->m_right += r.m_right; this->m_bottom += r.m_bottom; return * this; };
-		rect_t<T> operator -=(const rect_t<T> & r) { this->m_left -= r.m_left; this->m_top -= r.m_top; this->m_right -= r.m_right; this->m_bottom -= r.m_bottom; return * this; };
+		rect_t<T> & operator =(const rect_t<T> & r) { this->m_left = r.m_left; this->m_top = r.m_top; this->m_right = r.m_right; this->m_bottom = r.m_bottom; return * this; };
+		rect_t<T> & operator +=(const rect_t<T> & r) { this->m_left += r.m_left; this->m_top += r.m_top; this->m_right += r.m_right; this->m_bottom += r.m_bottom; return * this; };
+		rect_t<T> & operator -=(const rect_t<T> & r) { this->m_left -= r.m_left; this->m_top -= r.m_top; this->m_right -= r.m_right; this->m_bottom -= r.m_bottom; return * this; };
 
-		rect_t<T> operator +=(const vec2_t<T> & v) { this->m_left += v.m_x; this->m_top += v.m_y; this->m_right += v.m_x; this->m_bottom += v.m_y; return * this; };
-		rect_t<T> operator -=(const vec2_t<T> & v) { this->m_left -= v.m_x; this->m_top -= v.m_y; this->m_right -= v.m_x; this->m_bottom -= v.m_y; return * this; };
+		rect_t<T> & operator +=(const vec2_t<T> & v) { this->m_left += v.m_x; this->m_top += v.m_y; this->m_right += v.m_x; this->m_bottom += v.m_y; return * this; };
+		rect_t<T> & operator -=(const vec2_t<T> & v) { this->m_left -= v.m_x; this->m_top -= v.m_y; this->m_right -= v.m_x; this->m_bottom -= v.m_y; return * this; };
 		
 		rect_t<T> operator +(const rect_t<T> & r) { return { this->m_left + r.m_left, this->m_top + r.m_top, this->m_right + r.m_right, this->m_bottom + r.m_bottom }; };
 		rect_t<T> operator -(const rect_t<T> & r) { return { this->m_left - r.m_left, this->m_top - r.m_top, this->m_right - r.m_right, this->m_bottom - r.m_bottom }; };

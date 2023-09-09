@@ -1,13 +1,9 @@
 #include "basic.h"
-#include <iostream>
+
 namespace fgm {
 	__gmvar funcres = 0;
 	__gmvar otherress[16] = {};
 }
-
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunknown-pragmas"
 
 namespace fgm {
 
@@ -287,11 +283,9 @@ namespace fgm {
 
 	void instance::setsprite(asset sprindex, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setspr, m_sprite, sprindex);
-		if(_synch_to_gm) {
-			get_spr_size(true);
-			get_spr_offset(true);
-			get_image_number(true);
-		}
+		get_spr_size(true);
+		get_spr_offset(true);
+		get_image_number(true);
 	}
 
 	asset instance::getmask(bool _synch_from_gm) {
@@ -420,5 +414,3 @@ namespace fgm {
 #pragma endregion __CLASSINSTANCE__
 
 }
-
-#pragma GCC diagnostic pop

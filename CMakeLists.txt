@@ -21,6 +21,7 @@ add_compile_options(-Wall -Wno-unknown-pragmas)
 macro(build _name _outpath)
 message(${_outpath})
 	add_library (${_name} SHARED
+		FxxkGML/FxxkGML/vars.cpp
 		FxxkGML/FxxkGML/math.cpp
 		FxxkGML/FxxkGML/basic.cpp
 		FxxkGML/FxxkGML/instance.cpp
