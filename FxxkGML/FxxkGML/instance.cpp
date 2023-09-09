@@ -2,6 +2,14 @@
 
 namespace fgm {
 
+	instance instance_create_layer(double x, double y, const char * layername, asset obj) {
+		return instance(x, y, layername, obj);
+	}
+	
+	instance instance_create_layer(double x, double y, const std::string & layername, asset obj) {
+		return instance(x, y, layername, obj);
+	}
+
 	instance instance_create_layer(double x, double y, const layer & _layer, asset obj) {
 		return instance(x, y, _layer, obj);
 	}
@@ -25,6 +33,19 @@ namespace fgm {
 	bool instance_exists(int id_or_obj) {
 		__basic(__FuncId::instance_exists, id_or_obj);
 		return funcres.m_real;
+	}
+
+	instance instance_find(asset obj, int n) {
+		// TODO
+		return instance();
+	}
+
+	instance instance_get(int id) {
+		return instance(id);
+	}
+
+	instance instance_get_self() {
+		return instance(self);
 	}
 
 }

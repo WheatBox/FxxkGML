@@ -22,13 +22,13 @@ void gmlmainexport(mco_coro * co) {
 EXPORT void InitEntry() {
 	mco_desc desc = mco_desc_init(gmlinitexport, 0);
 	desc.user_data = NULL;
-	mco_result res = mco_create(& __coGame, & desc);
+	mco_create(& __coGame, & desc);
 }
 
 EXPORT void Entry() {
 	mco_desc desc = mco_desc_init(gmlmainexport, 0);
 	desc.user_data = NULL;
-	mco_result res = mco_create(& __coGame, & desc);
+	mco_create(& __coGame, & desc);
 }
 
 EXPORT void Resume() {

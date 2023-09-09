@@ -16,6 +16,33 @@ enum EFxxkGMLFuncId {
 	_cinstance_setsolid = -1013,
 	_cinstance_getpersistent = -1014,
 	_cinstance_setpersistent = -1015,
+	_cinstance_getspr = -1016,
+	_cinstance_setspr = -1017,
+	_cinstance_getmask = -1018,
+	_cinstance_setmask = -1019,
+	_cinstance_getsprwidth = -1020,
+	_cinstance_getsprheight = -1021,
+	_cinstance_getsprsize = -1022,
+	_cinstance_getsprxoff = -1023,
+	_cinstance_getspryoff = -1024,
+	_cinstance_getsproffset = -1025,
+	_cinstance_getimgalpha = -1026,
+	_cinstance_setimgalpha = -1027,
+	_cinstance_getimgangle = -1028,
+	_cinstance_setimgangle = -1029,
+	_cinstance_getimgblend = -1030,
+	_cinstance_setimgblend = -1031,
+	_cinstance_getimgxscale = -1032,
+	_cinstance_setimgxscale = -1033,
+	_cinstance_getimgyscale = -1034,
+	_cinstance_setimgyscale = -1035,
+	_cinstance_getimgscale = -1036,
+	_cinstance_setimgscale = -1037,
+	_cinstance_getimgindex = -1038,
+	_cinstance_setimgindex = -1039,
+	_cinstance_getimgspeed = -1040,
+	_cinstance_setimgspeed = -1041,
+	_cinstance_getimgnumber = -1042,
 	
 	_cinstance___init = -1999,
 	
@@ -23,6 +50,8 @@ enum EFxxkGMLFuncId {
 	_instance_create_depth = 2002,
 	_instance_destroy = 2003,
 	_instance_exists = 2004,
+	_instance_create_layer__str = 2025,
+	_instance_get = 2026,
 	
 	_layer_exists = 3001,
 	_layer_exists__id = 3002,
@@ -46,6 +75,10 @@ enum EFxxkGMLFuncId {
 #macro CASE break; case
 
 function FxxkGML(_dll_filename) constructor {
+	if(!file_exists(_dll_filename)) {
+		show_error("无法找到文件：" + _dll_filename + " | Can not find the file: " + _dll_filename, true);
+	}
+	
 	//__dllEntry = external_define(_dll_filename, "Entry", dll_cdecl, ty_real, 0);
 	__dllResume = external_define(_dll_filename, "Resume", dll_cdecl, ty_real, 0);
 	__dllOver = external_define(_dll_filename, "Over", dll_cdecl, ty_real, 0);
@@ -126,9 +159,78 @@ function FxxkGML(_dll_filename) constructor {
 				RET(__RetR, (ARG(__R, 0)).persistent);
 			CASE EFxxkGMLFuncId._cinstance_setpersistent:
 				(ARG(__R, 0)).persistent = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getspr:
+				RET(__RetR, (ARG(__R, 0)).sprite_index);
+			CASE EFxxkGMLFuncId._cinstance_setspr:
+				(ARG(__R, 0)).sprite_index = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getmask:
+				RET(__RetR, (ARG(__R, 0)).mask_index);
+			CASE EFxxkGMLFuncId._cinstance_setmask:
+				(ARG(__R, 0)).mask_index = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getsprwidth:
+				RET(__RetR, (ARG(__R, 0)).sprite_width);
+			CASE EFxxkGMLFuncId._cinstance_getsprheight:
+				RET(__RetR, (ARG(__R, 0)).sprite_height);
+			CASE EFxxkGMLFuncId._cinstance_getsprsize:
+				_vartmp = ARG(__R, 0);
+				RET(__OthR, 0, _vartmp.sprite_width);
+				RET(__OthR, 1, _vartmp.sprite_height);
+			CASE EFxxkGMLFuncId._cinstance_getsprxoff:
+				RET(__RetR, (ARG(__R, 0)).sprite_xoffset);
+			CASE EFxxkGMLFuncId._cinstance_getspryoff:
+				RET(__RetR, (ARG(__R, 0)).sprite_yoffset);
+			CASE EFxxkGMLFuncId._cinstance_getsproffset:
+				_vartmp = ARG(__R, 0);
+				RET(__OthR, 0, _vartmp.sprite_xoffset);
+				RET(__OthR, 1, _vartmp.sprite_yoffset);
+			CASE EFxxkGMLFuncId._cinstance_getimgalpha:
+				RET(__RetR, (ARG(__R, 0)).image_alpha);
+			CASE EFxxkGMLFuncId._cinstance_setimgalpha:
+				(ARG(__R, 0)).image_alpha = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getimgangle:
+				RET(__RetR, (ARG(__R, 0)).image_angle);
+			CASE EFxxkGMLFuncId._cinstance_setimgangle:
+				(ARG(__R, 0)).image_angle = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getimgblend:
+				RET(__RetR, (ARG(__R, 0)).image_blend);
+			CASE EFxxkGMLFuncId._cinstance_setimgblend:
+				(ARG(__R, 0)).image_blend = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getimgxscale:
+				RET(__RetR, (ARG(__R, 0)).image_xscale);
+			CASE EFxxkGMLFuncId._cinstance_setimgxscale:
+				(ARG(__R, 0)).image_xscale = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getimgyscale:
+				RET(__RetR, (ARG(__R, 0)).image_yscale);
+			CASE EFxxkGMLFuncId._cinstance_setimgyscale:
+				(ARG(__R, 0)).image_yscale = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getimgscale:
+				_vartmp = ARG(__R, 0);
+				RET(__OthR, 0, _vartmp.image_xscale);
+				RET(__OthR, 1, _vartmp.image_yscale);
+			CASE EFxxkGMLFuncId._cinstance_setimgscale:
+				_vartmp = ARG(__R, 0);
+				_vartmp.image_xscale = ARG(__R, 1);
+				_vartmp.image_yscale = ARG(__R, 2);
+			CASE EFxxkGMLFuncId._cinstance_getimgindex:
+				RET(__RetR, (ARG(__R, 0)).image_index);
+			CASE EFxxkGMLFuncId._cinstance_setimgindex:
+				(ARG(__R, 0)).image_index = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getimgspeed:
+				RET(__RetR, (ARG(__R, 0)).image_speed);
+			CASE EFxxkGMLFuncId._cinstance_setimgspeed:
+				(ARG(__R, 0)).image_speed = ARG(__R, 1);
+			CASE EFxxkGMLFuncId._cinstance_getimgnumber:
+				RET(__RetR, (ARG(__R, 0)).image_number);
 			CASE EFxxkGMLFuncId._cinstance___init:
 				_vartmp = ARG(__R, 0);
 				RET(__OthR, 0, _vartmp.visible | (_vartmp.solid << 1) | (_vartmp.persistent << 2));
+				RET(__OthR, 1, _vartmp.sprite_index);
+				RET(__OthR, 2, _vartmp.mask_index);
+				RET(__OthR, 3, _vartmp.sprite_width);
+				RET(__OthR, 4, _vartmp.sprite_height);
+				RET(__OthR, 5, _vartmp.sprite_xoffset);
+				RET(__OthR, 6, _vartmp.sprite_yoffset);
+				RET(__OthR, 7, _vartmp.image_number);
 				
 			CASE EFxxkGMLFuncId._instance_create_layer:
 				RET(__RetR,
@@ -141,6 +243,27 @@ function FxxkGML(_dll_filename) constructor {
 			CASE EFxxkGMLFuncId._instance_exists:
 				RET(__RetR,
 					instance_exists(ARG(__R, 0)));
+			CASE EFxxkGMLFuncId._instance_create_layer__str:
+				_vartmp = ARG(__S, 2);
+				RET(__RetR,
+					instance_create_layer(ARG(__R, 0), ARG(__R, 1), _vartmp, ARG(__R, 3)));
+				RET(__OthR, 0, layer_get_id(_vartmp));
+				RET(__OthR, 1, layer_get_depth(_vartmp));
+				
+			CASE EFxxkGMLFuncId._instance_get:
+				_vartmp = ARG(__R, 0);
+				with(other) {
+					_vartmp = _vartmp.id;
+				}
+				RET(__RetR, _vartmp);
+				RET(__OthR, 0, _vartmp.object_index);
+				RET(__OthR, 1, _vartmp.x);
+				RET(__OthR, 2, _vartmp.y);
+				RET(__OthR, 3, _vartmp.depth);
+				RET(__OthR, 4, _vartmp.layer);
+				if(_vartmp.layer != -1) {
+					RET(__OthR, 5, layer_get_name(_vartmp.layer));
+				}
 					
 			CASE EFxxkGMLFuncId._layer_exists:
 				RET(__RetR, layer_exists(ARG(__S, 0)));

@@ -15,6 +15,13 @@ namespace fgm {
 	const int all = -3;
 	const int noone = -4;
 
+}
+
+namespace fgm {
+
+	// TODO
+	// class color_t {};
+
 	using color_t = unsigned int;
 
 	const color_t c_aqua     = 16776960;

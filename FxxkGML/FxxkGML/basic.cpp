@@ -5,6 +5,10 @@ namespace fgm {
 	__gmvar otherress[16] = {};
 }
 
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+
 namespace fgm {
 
 	void draw_text(double x, double y, const std::string & text) {
@@ -81,6 +85,28 @@ namespace fgm {
 		__basic(fid, m_id, val); \
 	}
 
+	instance::instance()
+		: instance(noone) {}
+
+	instance::instance(int id_or_self) {
+		if(id_or_self == noone) {
+			m_id = noone;
+			m_obj = noone;
+		} else {
+			__basic(__FuncId::instance_get, id_or_self);
+			m_id = funcres.m_real;
+			m_obj = otherress[0].m_real;
+			m_pos = { otherress[1].m_real, otherress[2].m_real };
+			m_depth = otherress[3].m_real;
+
+			if(otherress[4].m_real != -1) {
+				m_layer.point(otherress[4].m_real, otherress[5].m_string, m_depth);
+			}
+
+			__init();
+		}
+	}
+
 	instance::instance(const vec2 & pos, int depth, asset obj)
 		: instance(pos.m_x, pos.m_y, depth, obj) {}
 
@@ -108,13 +134,39 @@ namespace fgm {
 		__init();
 	}
 
+	instance::instance(const vec2 & pos, const char * layername, asset obj)
+		: instance(pos.m_x, pos.m_y, std::string(layername), obj) {}
+	
+	instance::instance(const vec2 & pos, const std::string & layername, asset obj)
+		: instance(pos.m_x, pos.m_y, layername, obj) {}
+	
+	instance::instance(double x, double y, const char * layername, asset obj)
+		: instance(x, y, std::string(layername), obj) {}
+	
+	instance::instance(double x, double y, const std::string & layername, asset obj) {
+		__basic(__FuncId::instance_create_layer__str, x, y, layername, obj);
+		m_id = funcres.m_real;
+		m_obj = obj;
+		m_pos = {x, y};
+		m_layer.point(otherress[0].m_real, layername, otherress[1].m_real);
+		m_depth = m_layer.getdepth();
+		
+		__init();
+	}
+
 	void instance::__init() {
-		__basic(__FuncId::instance_create_layer, m_id);
+		__basic(__FuncId::cinstance___init, m_id);
 		int other0 = static_cast<int>(otherress[0].m_real);
-		m_visible = other0 & 0b1 == 0b1;
-		m_solid = other0 & 0b10 == 0b10;
-		m_persistent = other0 & 0b100 == 0b100;
-		// TODO
+		m_visible = (other0 & 0b1) == 0b1;
+		m_solid = (other0 & 0b10) == 0b10;
+		m_persistent = (other0 & 0b100) == 0b100;
+
+		m_sprite = otherress[1].m_real;
+		m_mask = otherress[2].m_real;
+		m_sprsize.m_x = otherress[3].m_real;
+		m_sprsize.m_y = otherress[4].m_real;
+		m_sproffset = { otherress[5].m_real, otherress[6].m_real };
+		m_imgnumber = otherress[7].m_real;
 	}
 
 	void instance::destroy(bool execute_event_flag) {
@@ -123,7 +175,7 @@ namespace fgm {
 		m_obj = noone;
 	}
 
-	asset instance::getobj(bool _synch_from_gm) {
+	asset instance::getobject(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_getobj, m_obj);
 	}
 
@@ -222,7 +274,151 @@ namespace fgm {
 	void instance::setpersistent(bool persistent, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setpersistent, m_persistent, persistent);
 	}
+
+	asset instance::getsprite(bool _synch_from_gm) {
+		asset beforespr = m_sprite;
+		__GET_ONE_VALUE__(__FuncId::cinstance_getspr, m_sprite);
+		if(_synch_from_gm && m_sprite != beforespr) {
+			get_spr_size(true);
+			get_spr_offset(true);
+			get_image_number(true);
+		}
+	}
+
+	void instance::setsprite(asset sprindex, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setspr, m_sprite, sprindex);
+		if(_synch_to_gm) {
+			get_spr_size(true);
+			get_spr_offset(true);
+			get_image_number(true);
+		}
+	}
+
+	asset instance::getmask(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getmask, m_mask);
+	}
+
+	void instance::setmask(asset sprindex, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setmask, m_mask, sprindex);
+	}
+
+	double instance::get_spr_width(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getsprwidth, m_sprsize.m_x);
+	}
+
+	double instance::get_spr_height(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getsprheight, m_sprsize.m_y);
+	}
+
+	vec2 instance::get_spr_size(bool _synch_from_gm) {
+		if(_synch_from_gm) {
+			__basic(__FuncId::cinstance_getsprsize, m_id);
+			m_sprsize.m_x = otherress[0].m_real;
+			m_sprsize.m_y = otherress[1].m_real;
+		}
+		return m_sprsize;
+	}
+
+	double instance::get_spr_xoff(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getsprxoff, m_sproffset.m_x);
+	}
+
+	double instance::get_spr_yoff(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getspryoff, m_sproffset.m_y);
+	}
+	
+	vec2 instance::get_spr_offset(bool _synch_from_gm) {
+		if(_synch_from_gm) {
+			__basic(__FuncId::cinstance_getsproffset, m_id);
+			m_sproffset.m_x = otherress[0].m_real;
+			m_sproffset.m_y = otherress[1].m_real;
+		}
+		return m_sproffset;
+	}
+
+	double instance::get_image_alpha(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getimgalpha, m_imgalpha);
+	}
+
+	void instance::set_image_alpha(double alpha, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setimgalpha, m_imgalpha, alpha);
+	}
+
+	double instance::get_image_angle(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getimgangle, m_imgangle);
+	}
+
+	void instance::set_image_angle(double angle, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setimgangle, m_imgangle, angle);
+	}
+
+	color_t instance::get_image_blend(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getimgblend, m_imgblend);
+	}
+
+	void instance::set_image_blend(color_t col, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setimgblend, m_imgblend, col);
+	}
+
+	double instance::get_image_xscale(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getimgxscale, m_imgscale.m_x);
+	}
+
+	void instance::set_image_xscale(double xscale, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setimgxscale, m_imgscale.m_x, xscale);
+	}
+
+	double instance::get_image_yscale(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getimgyscale, m_imgscale.m_y);
+	}
+
+	void instance::set_image_yscale(double yscale, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setimgyscale, m_imgscale.m_y, yscale);
+	}
+
+	vec2 instance::get_image_scale(bool _synch_from_gm) {
+		if(_synch_from_gm) {
+			__basic(__FuncId::cinstance_getimgscale, m_id);
+			m_imgscale.m_x = otherress[0].m_real;
+			m_imgscale.m_y = otherress[1].m_real;
+		}
+		return m_imgscale;
+	}
+
+	void instance::set_image_scale(vec2 scale, bool _synch_to_gm) {
+		set_image_scale(scale.m_x, scale.m_y, _synch_to_gm);
+	}
+	
+	void instance::set_image_scale(double xscale, double yscale, bool _synch_to_gm) {
+		m_imgscale.m_x = xscale;
+		m_imgscale.m_y = yscale;
+		if(_synch_to_gm) {
+			__basic(__FuncId::cinstance_setimgscale, m_id, xscale, yscale);
+		}
+	}
+
+	unsigned int instance::get_image_index(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getimgindex, m_imgindex);
+	}
+
+	void instance::set_image_index(unsigned int imgindex, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setimgindex, m_imgindex, imgindex);
+	}
+
+	double instance::get_image_speed(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getimgspeed, m_imgspeed);
+	}
+
+	void instance::set_image_speed(double imgspeed, bool _synch_to_gm) {
+		__SET_ONE_VALUE__(__FuncId::cinstance_setimgspeed, m_imgspeed, imgspeed);
+	}
+
+	unsigned int instance::get_image_number(bool _synch_from_gm) {
+		__GET_ONE_VALUE__(__FuncId::cinstance_getimgnumber, m_imgnumber);
+	}
 	
 #pragma endregion __CLASSINSTANCE__
 
 }
+
+#pragma GCC diagnostic pop

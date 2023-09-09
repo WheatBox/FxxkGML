@@ -16,6 +16,8 @@ project (MyGame)
 
 include_directories (FxxkGML)
 
+add_compile_options(-Wall -Wno-unknown-pragmas)
+
 macro(build _name _outpath)
 message(${_outpath})
 	add_library (${_name} SHARED
@@ -55,7 +57,3 @@ build (game.dll ../FxxkGML_GM_Project/datafiles
 )
 
 # ----------------------------------------------
-
-add_compile_options (
-	PUBLIC "-Wall"
-)
