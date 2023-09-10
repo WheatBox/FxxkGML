@@ -43,6 +43,9 @@ enum EFxxkGMLFuncId {
 	_cinstance_getimgspeed = -1040,
 	_cinstance_setimgspeed = -1041,
 	_cinstance_getimgnumber = -1042,
+	_cinstance_getbboxlocal = -1043,
+	_cinstance_getlayer = -1044,
+	_cinstance_setlayer = -1045,
 	
 	_cinstance___init = -1999,
 	
@@ -221,16 +224,37 @@ function FxxkGML(_dll_filename) constructor {
 				(ARG(__R, 0)).image_speed = ARG(__R, 1);
 			CASE EFxxkGMLFuncId._cinstance_getimgnumber:
 				RET(__RetR, (ARG(__R, 0)).image_number);
+			CASE EFxxkGMLFuncId._cinstance_getbboxlocal:
+				_vartmp = ARG(__R, 0);
+				RET(__OthR, 0, _vartmp.bbox_left - _vartmp.x);
+				RET(__OthR, 1, _vartmp.bbox_top - _vartmp.y);
+				RET(__OthR, 2, _vartmp.bbox_right - _vartmp.x);
+				RET(__OthR, 3, _vartmp.bbox_bottom - _vartmp.y);
+			CASE EFxxkGMLFuncId._cinstance_getlayer:
+				_vartmp = ARG(__R, 0);
+				RET(__OthR, 0, layer_get_id(_vartmp.layer));
+				RET(__OthS, 1, layer_get_name(_vartmp.layer));
+				RET(__OthR, 2, layer_get_depth(_vartmp.layer));
+			CASE EFxxkGMLFuncId._cinstance_setlayer:
+				(ARG(__R, 0)).layer = ARG(__R, 1);
 			CASE EFxxkGMLFuncId._cinstance___init:
 				_vartmp = ARG(__R, 0);
 				RET(__OthR, 0, _vartmp.visible | (_vartmp.solid << 1) | (_vartmp.persistent << 2));
+				
 				RET(__OthR, 1, _vartmp.sprite_index);
 				RET(__OthR, 2, _vartmp.mask_index);
+				
 				RET(__OthR, 3, _vartmp.sprite_width);
 				RET(__OthR, 4, _vartmp.sprite_height);
 				RET(__OthR, 5, _vartmp.sprite_xoffset);
 				RET(__OthR, 6, _vartmp.sprite_yoffset);
+				
 				RET(__OthR, 7, _vartmp.image_number);
+				
+				RET(__OthR, 8, _vartmp.bbox_left - _vartmp.x);
+				RET(__OthR, 9, _vartmp.bbox_top - _vartmp.y);
+				RET(__OthR, 10, _vartmp.bbox_right - _vartmp.x);
+				RET(__OthR, 11, _vartmp.bbox_bottom - _vartmp.y);
 				
 			CASE EFxxkGMLFuncId._instance_create_layer:
 				RET(__RetR,
@@ -260,8 +284,8 @@ function FxxkGML(_dll_filename) constructor {
 				RET(__OthR, 1, _vartmp.x);
 				RET(__OthR, 2, _vartmp.y);
 				RET(__OthR, 3, _vartmp.depth);
-				RET(__OthR, 4, _vartmp.layer);
-				if(_vartmp.layer != -1) {
+				RET(__OthR, 4, layer_get_id(_vartmp.layer));
+				if(_vartmp.layer != -1 && _vartmp.layer != "") {
 					RET(__OthR, 5, layer_get_name(_vartmp.layer));
 				}
 					

@@ -48,6 +48,9 @@ namespace fgm {
 		cinstance_getimgspeed = -1040,
 		cinstance_setimgspeed = -1041,
 		cinstance_getimgnumber = -1042,
+		cinstance_getbboxlocal = -1043,
+		cinstance_getlayer = -1044,
+		cinstance_setlayer = -1045,
 
 		cinstance___init = -1999,
 

@@ -68,6 +68,12 @@ namespace fgm {
 /* ------ class instance ------ */
 #pragma region __CLASSINSTANCE__
 
+#define __GET_ONE_VALUE__NORETURN__(fid, dest) \
+	if(_synch_from_gm) { \
+		__basic(fid, m_id); \
+		dest = funcres.m_real; \
+	}
+
 #define __GET_ONE_VALUE__(fid, dest) \
 	if(_synch_from_gm) { \
 		__basic(fid, m_id); \
@@ -159,10 +165,17 @@ namespace fgm {
 
 		m_sprite = otherress[1].m_real;
 		m_mask = otherress[2].m_real;
+		
 		m_sprsize.m_x = otherress[3].m_real;
 		m_sprsize.m_y = otherress[4].m_real;
 		m_sproffset = { otherress[5].m_real, otherress[6].m_real };
+		
 		m_imgnumber = otherress[7].m_real;
+
+		m_bboxlocal.m_left = otherress[8].m_real;
+		m_bboxlocal.m_top = otherress[9].m_real;
+		m_bboxlocal.m_right = otherress[10].m_real;
+		m_bboxlocal.m_bottom = otherress[11].m_real;
 	}
 
 	void instance::destroy(bool execute_event_flag) {
@@ -181,6 +194,21 @@ namespace fgm {
 
 	void instance::setdepth(int depth, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setdepth, m_depth, depth);
+	}
+
+	layer instance::getlayer(bool _synch_from_gm) {
+		if(_synch_from_gm) {
+			__basic(__FuncId::cinstance_getpos, m_id);
+			m_layer.point(otherress[0].m_real, otherress[1].m_string, otherress[2].m_real);
+		}
+		return m_layer;
+	}
+
+	void instance::setlayer(const layer & _layer, bool _synch_to_gm) {
+		m_layer = _layer;
+		if(_synch_to_gm) {
+			__basic(__FuncId::cinstance_setlayer, m_id, _layer.getid());
+		}
 	}
 
 	double instance::getx(bool _synch_from_gm) {
@@ -271,29 +299,43 @@ namespace fgm {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setpersistent, m_persistent, persistent);
 	}
 
-	asset instance::getsprite(bool _synch_from_gm) {
+	asset instance::getsprite(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
 		asset beforespr = m_sprite;
-		__GET_ONE_VALUE__(__FuncId::cinstance_getspr, m_sprite);
+		__GET_ONE_VALUE__NORETURN__(__FuncId::cinstance_getspr, m_sprite);
 		if(_synch_from_gm && m_sprite != beforespr) {
 			get_spr_size(true);
 			get_spr_offset(true);
 			get_image_number(true);
 		}
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
+		return m_sprite;
 	}
 
-	void instance::setsprite(asset sprindex, bool _synch_to_gm) {
+	void instance::setsprite(asset sprindex, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setspr, m_sprite, sprindex);
 		get_spr_size(true);
 		get_spr_offset(true);
 		get_image_number(true);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
 	}
 
-	asset instance::getmask(bool _synch_from_gm) {
-		__GET_ONE_VALUE__(__FuncId::cinstance_getmask, m_mask);
+	asset instance::getmask(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
+		__GET_ONE_VALUE__NORETURN__(__FuncId::cinstance_getmask, m_mask);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
+		return m_mask;
 	}
 
-	void instance::setmask(asset sprindex, bool _synch_to_gm) {
+	void instance::setmask(asset sprindex, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setmask, m_mask, sprindex);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
 	}
 
 	double instance::get_spr_width(bool _synch_from_gm) {
@@ -338,12 +380,19 @@ namespace fgm {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setimgalpha, m_imgalpha, alpha);
 	}
 
-	double instance::get_image_angle(bool _synch_from_gm) {
-		__GET_ONE_VALUE__(__FuncId::cinstance_getimgangle, m_imgangle);
+	double instance::get_image_angle(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
+		__GET_ONE_VALUE__NORETURN__(__FuncId::cinstance_getimgangle, m_imgangle);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
+		return m_imgangle;
 	}
 
-	void instance::set_image_angle(double angle, bool _synch_to_gm) {
+	void instance::set_image_angle(double angle, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setimgangle, m_imgangle, angle);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
 	}
 
 	color_t instance::get_image_blend(bool _synch_from_gm) {
@@ -354,40 +403,60 @@ namespace fgm {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setimgblend, m_imgblend, col);
 	}
 
-	double instance::get_image_xscale(bool _synch_from_gm) {
-		__GET_ONE_VALUE__(__FuncId::cinstance_getimgxscale, m_imgscale.m_x);
+	double instance::get_image_xscale(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
+		__GET_ONE_VALUE__NORETURN__(__FuncId::cinstance_getimgxscale, m_imgscale.m_x);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
+		return m_imgscale.m_x;
 	}
 
-	void instance::set_image_xscale(double xscale, bool _synch_to_gm) {
+	void instance::set_image_xscale(double xscale, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setimgxscale, m_imgscale.m_x, xscale);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
 	}
 
-	double instance::get_image_yscale(bool _synch_from_gm) {
-		__GET_ONE_VALUE__(__FuncId::cinstance_getimgyscale, m_imgscale.m_y);
+	double instance::get_image_yscale(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
+		__GET_ONE_VALUE__NORETURN__(__FuncId::cinstance_getimgyscale, m_imgscale.m_y);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
+		return m_imgscale.m_y;
 	}
 
-	void instance::set_image_yscale(double yscale, bool _synch_to_gm) {
+	void instance::set_image_yscale(double yscale, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setimgyscale, m_imgscale.m_y, yscale);
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
 	}
 
-	vec2 instance::get_image_scale(bool _synch_from_gm) {
+	vec2 instance::get_image_scale(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
 		if(_synch_from_gm) {
 			__basic(__FuncId::cinstance_getimgscale, m_id);
 			m_imgscale.m_x = otherress[0].m_real;
 			m_imgscale.m_y = otherress[1].m_real;
 		}
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
+		}
 		return m_imgscale;
 	}
 
-	void instance::set_image_scale(vec2 scale, bool _synch_to_gm) {
-		set_image_scale(scale.m_x, scale.m_y, _synch_to_gm);
+	void instance::set_image_scale(vec2 scale, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
+		set_image_scale(scale.m_x, scale.m_y, _synch_to_gm, _synch_bbox_local_from_gm);
 	}
 	
-	void instance::set_image_scale(double xscale, double yscale, bool _synch_to_gm) {
+	void instance::set_image_scale(double xscale, double yscale, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		m_imgscale.m_x = xscale;
 		m_imgscale.m_y = yscale;
 		if(_synch_to_gm) {
 			__basic(__FuncId::cinstance_setimgscale, m_id, xscale, yscale);
+		}
+		if(_synch_bbox_local_from_gm) {
+			get_bbox_local(true);
 		}
 	}
 
@@ -409,6 +478,17 @@ namespace fgm {
 
 	unsigned int instance::get_image_number(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_getimgnumber, m_imgnumber);
+	}
+
+	rect instance::get_bbox_local(bool _synch_from_gm) {
+		if(_synch_from_gm) {
+			__basic(__FuncId::cinstance_getbboxlocal, m_id);
+			m_bboxlocal.m_left = otherress[0].m_real;
+			m_bboxlocal.m_top = otherress[1].m_real;
+			m_bboxlocal.m_right = otherress[2].m_real;
+			m_bboxlocal.m_bottom = otherress[3].m_real;
+		}
+		return m_bboxlocal;
 	}
 	
 #pragma endregion __CLASSINSTANCE__

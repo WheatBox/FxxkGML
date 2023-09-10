@@ -82,8 +82,8 @@ namespace fgm {
 		void setdepth(int depth, bool _synch_to_gm = true);
 
 		layer getlayer() const { return m_layer; };
-		layer getlayer(bool _synch_from_gm); // TODO
-		void setlayer(const layer & _layer, bool _synch_to_gm = true); // TODO
+		layer getlayer(bool _synch_from_gm);
+		void setlayer(const layer & _layer, bool _synch_to_gm = true);
 
 		/* ---------- Position ---------- */
 
@@ -120,12 +120,12 @@ namespace fgm {
 		/* -------- Sprite & Image -------- */
 
 		asset getsprite() const { return m_sprite; }
-		asset getsprite(bool _synch_from_gm);
-		void setsprite(asset sprindex, bool _synch_to_gm = true);
+		asset getsprite(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
+		void setsprite(asset sprindex, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
 		asset getmask() const { return m_mask; }
-		asset getmask(bool _synch_from_gm);
-		void setmask(asset sprindex, bool _synch_to_gm = true);
+		asset getmask(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
+		void setmask(asset sprindex, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
 		double get_spr_width() const { return m_sprsize.m_x; }
 		double get_spr_width(bool _synch_from_gm);
@@ -146,25 +146,25 @@ namespace fgm {
 		void set_image_alpha(double alpha, bool _synch_to_gm = true);
 
 		double get_image_angle() const { return m_imgangle; }
-		double get_image_angle(bool _synch_from_gm);
-		void set_image_angle(double angle, bool _synch_to_gm = true);
+		double get_image_angle(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
+		void set_image_angle(double angle, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
 		color_t get_image_blend() const { return m_imgblend; }
 		color_t get_image_blend(bool _synch_from_gm);
 		void set_image_blend(color_t col, bool _synch_to_gm = true);
 
 		double get_image_xscale() const { return m_imgscale.m_x; }
-		double get_image_xscale(bool _synch_from_gm);
-		void set_image_xscale(double xscale, bool _synch_to_gm = true);
+		double get_image_xscale(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
+		void set_image_xscale(double xscale, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
 		double get_image_yscale() const { return m_imgscale.m_y; }
-		double get_image_yscale(bool _synch_from_gm);
-		void set_image_yscale(double yscale, bool _synch_to_gm = true);
+		double get_image_yscale(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
+		void set_image_yscale(double yscale, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
 		vec2 get_image_scale() const { return m_imgscale; }
-		vec2 get_image_scale(bool _synch_from_gm);
-		void set_image_scale(vec2 scale, bool _synch_to_gm = true);
-		void set_image_scale(double xscale, double yscale, bool _synch_to_gm = true);
+		vec2 get_image_scale(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
+		void set_image_scale(vec2 scale, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
+		void set_image_scale(double xscale, double yscale, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
 		unsigned int get_image_index() const { return m_imgindex; }
 		unsigned int get_image_index(bool _synch_from_gm);
@@ -176,6 +176,12 @@ namespace fgm {
 		double get_image_speed() const { return m_imgspeed; }
 		double get_image_speed(bool _synch_from_gm);
 		void set_image_speed(double imgspeed, bool _synch_to_gm = true);
+
+		rect get_bbox_local() const { return m_bboxlocal; }
+		rect get_bbox_local(bool _synch_from_gm);
+
+		rect get_bbox() const { return get_bbox_local() + m_pos; }
+		rect get_bbox(bool _synch_from_gm) { return get_bbox_local(true) + m_pos; };
 		
 	private:
 		
@@ -206,8 +212,22 @@ namespace fgm {
 
 		unsigned int m_imgnumber = 0;
 
+		// bbox_left/top/right/bottom，但在这里是相对坐标
+		// bbox_left/top/right/bottom, but it's relative coordinates here
+		rect m_bboxlocal;
+
 		/* TODO */
-		rect m_bbox;
+
+		// path_index
+		// path_position
+		// path_positionprevious
+		// path_speed
+		// path_scale
+		// path_orientation
+		// path_endaction
+
+		// in_sequence
+		// sequence_instance
 	};
 
 	// TODO - 把这些都拆分成一个个头文件（别忘了.cpp里的那些）
