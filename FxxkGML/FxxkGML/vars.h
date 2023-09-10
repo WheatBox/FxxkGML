@@ -49,6 +49,8 @@ namespace fgm {
 
 		operator int() const { return m_rgb; }
 		operator color_t() const { return m_rgb; }
+		operator color_bgr() const;
+		operator color_hsv() const;
 
 		int getr() const { return m_r; }
 		int getg() const { return m_g; }
@@ -94,7 +96,7 @@ namespace fgm {
 		color_bgr(int b, int g, int r) { m_b = b; m_g = g; m_r = r; unite(); }
 		color_bgr(int bgrhex) { set(bgrhex); }
 		color_bgr(color_t bgrhex) { set(bgrhex); }
-		color_bgr(const color_rgb & bgr);
+		color_bgr(const color_rgb & rgb);
 		color_bgr(const color_hsv & hsv);
 
 		color_bgr & operator =(const int & bgrhex) { set(bgrhex); return * this; }
@@ -104,6 +106,8 @@ namespace fgm {
 		
 		operator int() const { return m_bgr; }
 		operator color_t() const { return m_bgr; }
+		operator color_rgb() const;
+		operator color_hsv() const;
 
 		int getb() const { return m_b; }
 		int getg() const { return m_g; }
@@ -119,7 +123,7 @@ namespace fgm {
 		void set(const color_rgb & rgb);
 		void set(const color_hsv & hsv);
 
-		color_bgr to_bgr() const;
+		color_rgb to_rgb() const;
 		color_hsv to_hsv() const;
 
 	private:
@@ -153,6 +157,9 @@ namespace fgm {
 		color_hsv & operator =(const color_rgb & rgb) { set(rgb); return * this; }
 		color_hsv & operator =(const color_bgr & bgr) { set(bgr); return * this; }
 
+		operator color_rgb() const;
+		operator color_bgr() const;
+
 		int geth() const { return m_h; }
 		int gets() const { return m_s; }
 		int getv() const { return m_v; }
@@ -174,6 +181,8 @@ namespace fgm {
 		int m_v; // 0 ~ 100
 	};
 
+	// 在 GameMaker 中，颜色默认都是以 BGR 的形式存在的
+	// In GameMaker, colors default to exist in the form of BGR
 	const color_bgr c_aqua     = 16776960;
 	const color_bgr c_black    = 0;
 	const color_bgr c_blue     = 16711680;
