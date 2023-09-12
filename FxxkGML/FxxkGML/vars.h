@@ -10,12 +10,15 @@
 
 namespace fgm {
 
+	using asset = int;
+	using ins_id = int;
+
 	const double pi = FXXKGML_PI;
 
-	const int self = -1;
-	const int other = -2;
-	const int all = -3;
-	const int noone = -4;
+	const ins_id self = -1;
+	const ins_id other = -2;
+	const ins_id all = -3;
+	const ins_id noone = -4;
 
 }
 

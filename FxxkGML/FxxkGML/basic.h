@@ -3,9 +3,9 @@
 #include "funcid.h"
 #include "math.h"
 
-namespace fgm {
+#include <vector>
 
-	using asset = int;
+namespace fgm {
 
 	/* ------- class layer -------- */
 
@@ -46,7 +46,7 @@ namespace fgm {
 		instance();
 
 		// get an existing instance
-		instance(int id_or_self);
+		instance(ins_id id_or_self);
 
 		// create a new instance
 		instance(const vec2 & pos, int depth, asset obj);
@@ -64,14 +64,14 @@ namespace fgm {
 	public:
 
 		bool operator ==(const instance & ins) { return m_id == ins.getid(); }
-		bool operator ==(const int & id) { return m_id == id; }
+		bool operator ==(const ins_id & id) { return m_id == id; }
 
 		// void change(asset obj, bool perf);
 
 		// execute_event_flag : Set to true or false to perform the Destroy event or not (optional, default is true)
 		void destroy(bool execute_event_flag = true);
 
-		int getid() const { return m_id; }
+		ins_id getid() const { return m_id; }
 		asset getobject() const { return m_obj; }
 		asset getobject(bool _synch_from_gm);
 
@@ -185,7 +185,7 @@ namespace fgm {
 		
 	private:
 		
-		int m_id;
+		ins_id m_id;
 		asset m_obj;
 
 		int m_depth = 0;
@@ -256,8 +256,9 @@ namespace fgm {
 
 	static __gmvar funcargs[16]; // GM 的函数最多只能使用 16 个参数 | functions in GM can only use 16 arguments
 	
-	extern __gmvar funcres;
-	extern __gmvar otherress[16]; // 有需要的话再去更改这个长度 | change this length if necessary
+	extern __gmvar g_funcres;
+	extern __gmvar g_otherress[16]; // 有需要的话再去更改这个长度 | change this length if necessary
+	extern std::vector<double> g_funcres_dvec;
 
 	void __basic(__FuncId _fid);
 	void __basic(__FuncId _fid, __gmvar _v0);

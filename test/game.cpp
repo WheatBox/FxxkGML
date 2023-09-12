@@ -7,15 +7,17 @@
 
 fgm::asset spr_test = -1, spr_block = -1;
 fgm::asset obj_test = fgm::noone;
+fgm::asset obj_collision_list_test = fgm::noone;
 fgm::instance me;
 fgm::instance ins, ins2, instest2;
 double val;
 int rot = 0;
 
-void gmlinit() {
+void fgm_init() {
 	spr_test = fgm::asset_get_index("spr_test");
 	spr_block = fgm::asset_get_index("spr_block");
 	obj_test = fgm::asset_get_index("obj_test");
+	obj_collision_list_test = fgm::asset_get_index("obj_collision_list_test");
 	val = fgm::random_range(0, 100);
 
 	ins = fgm::instance(fgm::vec2(320, 420), -100, obj_test);
@@ -48,7 +50,6 @@ void gmlinit() {
 	std::cout << "MASK: " << instest2.getmask() << std::endl;
 
 	me = fgm::instance(fgm::self);
-	std::cout << "me.spr: " << me.getsprite() << std::endl;
 	me.setsprite(spr_block);
 	me.set_image_speed(2);
 	me.set_image_index(5);
@@ -75,23 +76,7 @@ void gmlinit() {
 
 int t = 0;
 
-void gmlmain() {
-	std::string str
-		= "Hello, world!\n["
-		+ std::to_string(val)
-		+ "]\n["
-		+ std::to_string(fgm::random_range(0, 1))
-		+ "]"
-	;
-	fgm::draw_text(128, 64, str);
-	
-	MyFuncTest(256, "~~~FLY~~~");
-	MyFuncTest(480, std::to_string(ins.getid()));
-
-	fgm::draw_text(320, 560,
-		std::to_string(ins.getpos(true).m_x) + ", " +
-		std::to_string(ins.getpos(true).m_y)
-	);
+void fgm_main() {
 
 	ins.move(fgm::vec2(1, 0));
 	if(ins.getx() > 640 + 128) {
@@ -101,11 +86,7 @@ void gmlmain() {
 	if(t++ == 180) {
 		ins.setdepth(-1919);
 	}
-	if(t >= 180) {
-		MyFuncTest(512, std::to_string(ins.getdepth(false)));
-	} else {
-		MyFuncTest(512, std::to_string(ins.getdepth(true)));
-	}
+	
 	if(t == 60) {
 		ins2.setvisible(!ins2.getvisible());
 		instest2.setmask(spr_block);
@@ -120,6 +101,50 @@ void gmlmain() {
 	me.set_image_angle(t / 2);
 	me.set_image_scale((std::sin(fgm::degtorad(t)) + 1) * 0.3 + 0.5, (std::sin(fgm::degtorad(t + 180)) + 1) * 0.3 + 0.5);
 
+	for(int i = 0; i < fgm::instance_number(obj_collision_list_test); i++) {
+		fgm::instance(fgm::instance_find(obj_collision_list_test, i)).set_image_blend(fgm::c_white);
+	}
+	std::vector<fgm::ins_id> vins;
+	fgm::instance_position_list(250, 285, obj_collision_list_test, & vins, false);
+	for(auto & it : vins) {
+		fgm::instance(it).set_image_blend(fgm::c_teal);
+	}
+	fgm::instance(fgm::instance_furthest(me.getx(), me.gety(), obj_collision_list_test)).set_image_blend(fgm::c_red);
+	
+}
+
+void DrawEvent() {
+	MyFuncTest(256, "~~~FLY~~~");
+	MyFuncTest(480, std::to_string(ins.getid()));
+	
+	std::string str
+		= "Hello, world!\n["
+		+ std::to_string(val)
+		+ "]\n["
+		+ std::to_string(fgm::random_range(0, 1))
+		+ "]"
+	;
+	fgm::draw_text(128, 64, str);
+
+	fgm::draw_text(320, 560,
+		std::to_string(ins.getpos(true).m_x) + ", " +
+		std::to_string(ins.getpos(true).m_y)
+	);
+
 	fgm::draw_sprite_ext(spr_test, 0, 320, 320, 1.2, 1.2, rot++, 0x0000FF, 0.5);
 	fgm::draw_sprite_ext(spr_test, 0, 400, 320, 1, 1, rot, fgm::c_white, 1);
+
+	if(t >= 180) {
+		MyFuncTest(512, std::to_string(ins.getdepth(false)));
+	} else {
+		MyFuncTest(512, std::to_string(ins.getdepth(true)));
+	}
+}
+
+void fgm_assistant(int assistant_index) {
+	switch(assistant_index) {
+		case 114514:
+			DrawEvent();
+			break;
+	}
 }

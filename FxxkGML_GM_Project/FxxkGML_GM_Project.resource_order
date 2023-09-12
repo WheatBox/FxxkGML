@@ -18,7 +18,9 @@
   ],
   "ResourceOrderSettings": [
     {"name":"obj_test2","order":2,"path":"objects/obj_test2/obj_test2.yy",},
+    {"name":"spr_collision_list_test","order":2,"path":"sprites/spr_collision_list_test/spr_collision_list_test.yy",},
     {"name":"obj_test","order":1,"path":"objects/obj_test/obj_test.yy",},
+    {"name":"obj_collision_list_test","order":3,"path":"objects/obj_collision_list_test/obj_collision_list_test.yy",},
     {"name":"spr_block","order":1,"path":"sprites/spr_block/spr_block.yy",},
   ],
 }

@@ -8,25 +8,38 @@
 
 mco_coro * __coGame;
 fgm::__FuncId __funcid = fgm::__FuncId::nothing;
+int __assistant_index = 0;
 
-void gmlinitexport(mco_coro * co) {
-	gmlinit();
+void fgm_init_export(mco_coro * co) {
+	fgm_init();
 	__funcid = fgm::__FuncId::nothing;
 }
 
-void gmlmainexport(mco_coro * co) {
-	gmlmain();
+void fgm_main_export(mco_coro * co) {
+	fgm_main();
+	__funcid = fgm::__FuncId::nothing;
+}
+
+void fgm_assistant_export(mco_coro * co) {
+	fgm_assistant(__assistant_index);
 	__funcid = fgm::__FuncId::nothing;
 }
 
 EXPORT void InitEntry() {
-	mco_desc desc = mco_desc_init(gmlinitexport, 0);
+	mco_desc desc = mco_desc_init(fgm_init_export, 0);
 	desc.user_data = NULL;
 	mco_create(& __coGame, & desc);
 }
 
 EXPORT void Entry() {
-	mco_desc desc = mco_desc_init(gmlmainexport, 0);
+	mco_desc desc = mco_desc_init(fgm_main_export, 0);
+	desc.user_data = NULL;
+	mco_create(& __coGame, & desc);
+}
+
+EXPORT void AssistantEntry(double assistantIndex) {
+	__assistant_index = assistantIndex;
+	mco_desc desc = mco_desc_init(fgm_assistant_export, 0);
 	desc.user_data = NULL;
 	mco_create(& __coGame, & desc);
 }
@@ -52,23 +65,34 @@ EXPORT const char * GetArgString(double index) {
 }
 
 EXPORT void ReturnReal(double val) {
-	fgm::funcres.m_real = val;
-	fgm::funcres.m_typeid = 0;
+	fgm::g_funcres.m_real = val;
+	fgm::g_funcres.m_typeid = 0;
 }
 
 EXPORT void ReturnString(const char * val) {
-	fgm::funcres.m_string = val;
-	fgm::funcres.m_typeid = 1;
+	fgm::g_funcres.m_string = val;
+	fgm::g_funcres.m_typeid = 1;
 }
 
 EXPORT void RetOtherReal(double index, double val) {
-	fgm::otherress[static_cast<int>(index)].m_typeid = 0;
-	fgm::otherress[static_cast<int>(index)].m_real = val;
+	fgm::g_otherress[static_cast<int>(index)].m_typeid = 0;
+	fgm::g_otherress[static_cast<int>(index)].m_real = val;
 }
 
 EXPORT void RetOtherString(double index, const char * val) {
-	fgm::otherress[static_cast<int>(index)].m_typeid = 1;
-	fgm::otherress[static_cast<int>(index)].m_string = val;
+	fgm::g_otherress[static_cast<int>(index)].m_typeid = 1;
+	fgm::g_otherress[static_cast<int>(index)].m_string = val;
+}
+
+EXPORT void RetArrayReal(double len, const char * ccparr) {
+	double * parr = (double *)ccparr;
+
+	std::size_t ilen = static_cast<int>(len);
+
+	fgm::g_funcres_dvec.resize(ilen);
+	for(std::size_t i = 0; i < ilen; i++) {
+		fgm::g_funcres_dvec[i] = parr[i];
+	}
 }
 
 /* ----------------------- */

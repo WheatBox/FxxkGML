@@ -59,9 +59,10 @@ namespace fgm {
 		/* instance.h 2000+ */
 
 		instance_create_layer = 2001,
-		instance_create_depth = 2002,
-		instance_destroy = 2003,
-		instance_exists = 2004,
+		instance_create_layer__str = 2002,
+		instance_create_depth = 2003,
+		instance_destroy = 2004,
+		instance_exists = 2005,
 		// instance_change = 2005,
 		// instance_copy = 2006,
 		instance_find = 2007,
@@ -78,12 +79,13 @@ namespace fgm {
 		instance_activate_object = 2018,
 		instance_activate_region = 2019,
 		instance_activate_layer = 2020,
-		instance_deactivate_all = 2021,
-		instance_deactivate_object = 2022,
-		instance_deactivate_region = 2023,
-		instance_deactivate_layer = 2024,
-		instance_create_layer__str = 2025,
-		instance_get = 2026,
+		instance_activate_layer__str = 2021,
+		instance_deactivate_all = 2022,
+		instance_deactivate_object = 2023,
+		instance_deactivate_region = 2024,
+		instance_deactivate_layer = 2025,
+		instance_deactivate_layer__str = 2026,
+		instance_get = 2027,
 
 		/* layer.h 3000+ */
 
