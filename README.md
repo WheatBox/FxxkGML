@@ -1,8 +1,14 @@
-# FxxkGML
+# FxxkGML (or FGM)
 
 ### 什么是 FxxkGML ？| What is FxxkGML?
 
 ~~C++ Fxxk GML~~
+
+FxxkGML = 凡心侠客 的 GML
+
+FxxkGML = Fan Xin Xia Ke's GML
+
+(Fan Xin Xia Ke means "a knight-errant with an ordinary heart")
 
 ---
 
