@@ -41,9 +41,61 @@ namespace fgm {
 	instance instance_get(int id);
 	instance instance_get_self();
 
-	/* TODO */
+	/* instance variables */
+	
 	asset instance_get_object(ins_id id);
 	int instance_get_depth(ins_id id);
-	// ...
+	void instance_set_depth(ins_id id, int depth);
+	layer instance_get_layer(ins_id id);
+	void instance_set_layer(ins_id id, const layer & _layer);
+	double instance_get_x(ins_id id);
+	double instance_get_y(ins_id id);
+	vec2 instance_get_pos(ins_id id);
+	void instance_get_pos(ins_id id, double * xdest, double * ydest);
+	void instance_set_x(ins_id id, double x);
+	void instance_set_y(ins_id id, double y);
+	void instance_set_pos(ins_id id, const vec2 & _vec2);
+	void instance_set_pos(ins_id id, double x, double y);
+
+	bool instance_get_visible(ins_id id);
+	void instance_set_visible(ins_id id, bool visible);
+	bool instance_get_solid(ins_id id);
+	void instance_set_solid(ins_id id, bool solid);
+	bool instance_get_persistent(ins_id id);
+	void instance_set_persistent(ins_id id, bool persistent);
+
+	asset instance_get_sprite(ins_id id);
+	void instance_set_sprite(ins_id id, asset sprindex);
+	asset instance_get_mask(ins_id id);
+	void instance_set_mask(ins_id id, asset sprindex);
+	double instance_get_spr_width(ins_id id);
+	double instance_get_spr_height(ins_id id);
+	vec2 instance_get_spr_size(ins_id id);
+	double instance_get_spr_xoff(ins_id id);
+	double instance_get_spr_yoff(ins_id id);
+	vec2 instance_get_spr_offset(ins_id id);
+
+	double instance_get_image_alpha(ins_id id);
+	void instance_set_image_alpha(ins_id id, double alpha);
+	double instance_get_image_angle(ins_id id);
+	void instance_set_image_angle(ins_id id, double angle);
+	color_t instance_get_image_blend(ins_id id);
+	void instance_set_image_blend(ins_id id, color_t col);
+	double instance_get_image_xscale(ins_id id);
+	void instance_set_image_xscale(ins_id id, double xscale);
+	double instance_get_image_yscale(ins_id id);
+	void instance_set_image_yscale(ins_id id, double yscale);
+	vec2 instance_get_image_scale(ins_id id);
+	void instance_set_image_scale(ins_id id, vec2 scale);
+	void instance_set_image_scale(ins_id id, double xscale, double yscale);
+
+	unsigned int instance_get_image_index(ins_id id);
+	void instance_set_image_index(ins_id id, unsigned int imgindex);
+	unsigned int instance_get_image_number(ins_id id);
+	double instance_get_image_speed(ins_id id);
+	void instance_set_image_speed(ins_id id, double imgspeed);
+	
+	rect instance_get_bbox_local(ins_id id);
+	rect instance_get_bbox(ins_id id);
 
 }

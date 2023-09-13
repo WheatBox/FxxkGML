@@ -19,12 +19,12 @@ namespace fgm {
 
 		void destroy();
 
-		int getid() const { return m_id; }
-		std::string getname() const { return m_name; }
+		int get_id() const { return m_id; }
+		std::string get_name() const { return m_name; }
 
-		int getdepth() const { return m_depth; }
-		int getdepth(bool _synch_from_gm);
-		void setdepth(int depth, bool _synch_to_gm = true);
+		int get_depth() const { return m_depth; }
+		int get_depth(bool _synch_from_gm);
+		void set_depth(int depth, bool _synch_to_gm = true);
 
 	private:
 
@@ -63,7 +63,7 @@ namespace fgm {
 
 	public:
 
-		bool operator ==(const instance & ins) { return m_id == ins.getid(); }
+		bool operator ==(const instance & ins) { return m_id == ins.get_id(); }
 		bool operator ==(const ins_id & id) { return m_id == id; }
 
 		// void change(asset obj, bool perf);
@@ -71,61 +71,61 @@ namespace fgm {
 		// execute_event_flag : Set to true or false to perform the Destroy event or not (optional, default is true)
 		void destroy(bool execute_event_flag = true);
 
-		ins_id getid() const { return m_id; }
-		asset getobject() const { return m_obj; }
-		asset getobject(bool _synch_from_gm);
+		ins_id get_id() const { return m_id; }
+		asset get_object() const { return m_obj; }
+		asset get_object(bool _synch_from_gm);
 
 		/* ------- Depth & Layer ------- */
 
-		int getdepth() const { return m_depth; }
-		int getdepth(bool _synch_from_gm);
-		void setdepth(int depth, bool _synch_to_gm = true);
+		int get_depth() const { return m_depth; }
+		int get_depth(bool _synch_from_gm);
+		void set_depth(int depth, bool _synch_to_gm = true);
 
-		layer getlayer() const { return m_layer; };
-		layer getlayer(bool _synch_from_gm);
-		void setlayer(const layer & _layer, bool _synch_to_gm = true);
+		layer get_layer() const { return m_layer; };
+		layer get_layer(bool _synch_from_gm);
+		void set_layer(const layer & _layer, bool _synch_to_gm = true);
 
 		/* ---------- Position ---------- */
 
-		double getx() const { return m_pos.m_x; }
-		double gety() const { return m_pos.m_y; }
-		vec2 getpos() const { return m_pos; }
-		double getx(bool _synch_from_gm);
-		double gety(bool _synch_from_gm);
-		vec2 getpos(bool _synch_from_gm);
-		void getpos(double * xdest, double * ydest, bool _synch_from_gm = false);
+		double get_x() const { return m_pos.m_x; }
+		double get_y() const { return m_pos.m_y; }
+		vec2 get_pos() const { return m_pos; }
+		double get_x(bool _synch_from_gm);
+		double get_y(bool _synch_from_gm);
+		vec2 get_pos(bool _synch_from_gm);
+		void get_pos(double * xdest, double * ydest, bool _synch_from_gm = false);
 
-		void setx(double x, bool _synch_to_gm = true);
-		void sety(double y, bool _synch_to_gm = true);
-		void setpos(const vec2 & _vec2, bool _synch_to_gm = true);
-		void setpos(double x, double y, bool _synch_to_gm = true);
+		void set_x(double x, bool _synch_to_gm = true);
+		void set_y(double y, bool _synch_to_gm = true);
+		void set_pos(const vec2 & _vec2, bool _synch_to_gm = true);
+		void set_pos(double x, double y, bool _synch_to_gm = true);
 
 		void move(const vec2 & _vec2, bool _synch_from_gm = false, bool _synch_to_gm = true);
 		void move(double xadd, double yadd, bool _synch_from_gm = false, bool _synch_to_gm = true);
 
 		/* ------------------------------- */
 
-		bool getvisible() const { return m_visible; }
-		bool getvisible(bool _synch_from_gm);
-		void setvisible(bool visible, bool _synch_to_gm = true);
+		bool get_visible() const { return m_visible; }
+		bool get_visible(bool _synch_from_gm);
+		void set_visible(bool visible, bool _synch_to_gm = true);
 
-		bool getsolid() const { return m_solid; }
-		bool getsolid(bool _synch_from_gm);
-		void setsolid(bool solid, bool _synch_to_gm = true);
+		bool get_solid() const { return m_solid; }
+		bool get_solid(bool _synch_from_gm);
+		void set_solid(bool solid, bool _synch_to_gm = true);
 
-		bool getpersistent() const { return m_persistent; }
-		bool getpersistent(bool _synch_from_gm);
-		void setpersistent(bool persistent, bool _synch_to_gm = true);
+		bool get_persistent() const { return m_persistent; }
+		bool get_persistent(bool _synch_from_gm);
+		void set_persistent(bool persistent, bool _synch_to_gm = true);
 
 		/* -------- Sprite & Image -------- */
 
-		asset getsprite() const { return m_sprite; }
-		asset getsprite(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
-		void setsprite(asset sprindex, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
+		asset get_sprite() const { return m_sprite; }
+		asset get_sprite(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
+		void set_sprite(asset sprindex, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
-		asset getmask() const { return m_mask; }
-		asset getmask(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
-		void setmask(asset sprindex, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
+		asset get_mask() const { return m_mask; }
+		asset get_mask(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
+		void set_mask(asset sprindex, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
 		double get_spr_width() const { return m_sprsize.m_x; }
 		double get_spr_width(bool _synch_from_gm);
@@ -183,9 +183,12 @@ namespace fgm {
 		rect get_bbox() const { return get_bbox_local() + m_pos; }
 		rect get_bbox(bool _synch_from_gm) { return get_bbox_local(true) + m_pos; };
 		
-	private:
+	protected:
 		
 		ins_id m_id;
+
+	private:
+
 		asset m_obj;
 
 		int m_depth = 0;

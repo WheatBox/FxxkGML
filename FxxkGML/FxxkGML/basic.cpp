@@ -49,7 +49,7 @@ namespace fgm {
 		m_depth = 0;
 	}
 
-	int layer::getdepth(bool _synch_from_gm) {
+	int layer::get_depth(bool _synch_from_gm) {
 		if(_synch_from_gm) {
 			__basic(__FuncId::layer_get_depth, m_id);
 			m_depth = g_funcres.m_real;
@@ -57,7 +57,7 @@ namespace fgm {
 		return m_depth;
 	}
 
-	void layer::setdepth(int depth, bool _synch_to_gm) {
+	void layer::set_depth(int depth, bool _synch_to_gm) {
 		m_depth = depth;
 		if(_synch_to_gm) {
 			__basic(__FuncId::layer_depth, m_id, depth);
@@ -127,12 +127,12 @@ namespace fgm {
 		: instance(pos.m_x, pos.m_y, _layer, obj) {}
 	
 	instance::instance(double x, double y, const layer & _layer, asset obj) {
-		__basic(__FuncId::instance_create_layer, x, y, _layer.getid(), obj);
+		__basic(__FuncId::instance_create_layer, x, y, _layer.get_id(), obj);
 		m_id = g_funcres.m_real;
 		m_obj = obj;
 		m_pos = {x, y};
 		m_layer = _layer;
-		m_depth = _layer.getdepth();
+		m_depth = _layer.get_depth();
 		
 		__init();
 	}
@@ -152,7 +152,7 @@ namespace fgm {
 		m_obj = obj;
 		m_pos = {x, y};
 		m_layer.point(g_otherress[0].m_real, layername, g_otherress[1].m_real);
-		m_depth = m_layer.getdepth();
+		m_depth = m_layer.get_depth();
 		
 		__init();
 	}
@@ -185,42 +185,42 @@ namespace fgm {
 		m_obj = noone;
 	}
 
-	asset instance::getobject(bool _synch_from_gm) {
+	asset instance::get_object(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_getobj, m_obj);
 	}
 
-	int instance::getdepth(bool _synch_from_gm) {
+	int instance::get_depth(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_getdepth, m_depth);
 	}
 
-	void instance::setdepth(int depth, bool _synch_to_gm) {
+	void instance::set_depth(int depth, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setdepth, m_depth, depth);
 	}
 
-	layer instance::getlayer(bool _synch_from_gm) {
+	layer instance::get_layer(bool _synch_from_gm) {
 		if(_synch_from_gm) {
-			__basic(__FuncId::cinstance_getpos, m_id);
+			__basic(__FuncId::cinstance_getlayer, m_id);
 			m_layer.point(g_otherress[0].m_real, g_otherress[1].m_string, g_otherress[2].m_real);
 		}
 		return m_layer;
 	}
 
-	void instance::setlayer(const layer & _layer, bool _synch_to_gm) {
+	void instance::set_layer(const layer & _layer, bool _synch_to_gm) {
 		m_layer = _layer;
 		if(_synch_to_gm) {
-			__basic(__FuncId::cinstance_setlayer, m_id, _layer.getid());
+			__basic(__FuncId::cinstance_setlayer, m_id, _layer.get_id());
 		}
 	}
 
-	double instance::getx(bool _synch_from_gm) {
+	double instance::get_x(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_getx, m_pos.m_x);
 	}
 
-	double instance::gety(bool _synch_from_gm) {
+	double instance::get_y(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_gety, m_pos.m_y);
 	}
 
-	vec2 instance::getpos(bool _synch_from_gm) {
+	vec2 instance::get_pos(bool _synch_from_gm) {
 		if(_synch_from_gm) {
 			__basic(__FuncId::cinstance_getpos, m_id);
 			m_pos.m_x = g_otherress[0].m_real;
@@ -229,7 +229,7 @@ namespace fgm {
 		return m_pos;
 	}
 
-	void instance::getpos(double * xdest, double * ydest, bool _synch_from_gm) {
+	void instance::get_pos(double * xdest, double * ydest, bool _synch_from_gm) {
 		if(_synch_from_gm) {
 			__basic(__FuncId::cinstance_getpos, m_id);
 			m_pos.m_x = g_otherress[0].m_real;
@@ -239,19 +239,19 @@ namespace fgm {
 		* ydest = m_pos.m_y;
 	}
 
-	void instance::setx(double x, bool _synch_to_gm) {
+	void instance::set_x(double x, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setx, m_pos.m_x, x);
 	}
 
-	void instance::sety(double y, bool _synch_to_gm) {
+	void instance::set_y(double y, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_sety, m_pos.m_y, y);
 	}
 
-	void instance::setpos(const vec2 & _vec2, bool _synch_to_gm) {
-		setpos(_vec2.m_x, _vec2.m_y, _synch_to_gm);
+	void instance::set_pos(const vec2 & _vec2, bool _synch_to_gm) {
+		set_pos(_vec2.m_x, _vec2.m_y, _synch_to_gm);
 	}
 
-	void instance::setpos(double x, double y, bool _synch_to_gm) {
+	void instance::set_pos(double x, double y, bool _synch_to_gm) {
 		m_pos.m_x = x;
 		m_pos.m_y = y;
 		if(_synch_to_gm) {
@@ -276,31 +276,31 @@ namespace fgm {
 		}
 	}
 
-	bool instance::getvisible(bool _synch_from_gm) {
+	bool instance::get_visible(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_getvisible, m_visible);
 	}
 
-	void instance::setvisible(bool visible, bool _synch_to_gm) {
+	void instance::set_visible(bool visible, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setvisible, m_visible, visible);
 	}
 
-	bool instance::getsolid(bool _synch_from_gm) {
+	bool instance::get_solid(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_getsolid, m_solid);
 	}
 
-	void instance::setsolid(bool solid, bool _synch_to_gm) {
+	void instance::set_solid(bool solid, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setsolid, m_solid, solid);
 	}
 
-	bool instance::getpersistent(bool _synch_from_gm) {
+	bool instance::get_persistent(bool _synch_from_gm) {
 		__GET_ONE_VALUE__(__FuncId::cinstance_getpersistent, m_persistent);
 	}
 
-	void instance::setpersistent(bool persistent, bool _synch_to_gm) {
+	void instance::set_persistent(bool persistent, bool _synch_to_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setpersistent, m_persistent, persistent);
 	}
 
-	asset instance::getsprite(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
+	asset instance::get_sprite(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
 		asset beforespr = m_sprite;
 		__GET_ONE_VALUE__NORETURN__(__FuncId::cinstance_getspr, m_sprite);
 		if(_synch_from_gm && m_sprite != beforespr) {
@@ -314,7 +314,7 @@ namespace fgm {
 		return m_sprite;
 	}
 
-	void instance::setsprite(asset sprindex, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
+	void instance::set_sprite(asset sprindex, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setspr, m_sprite, sprindex);
 		get_spr_size(true);
 		get_spr_offset(true);
@@ -324,7 +324,7 @@ namespace fgm {
 		}
 	}
 
-	asset instance::getmask(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
+	asset instance::get_mask(bool _synch_from_gm, bool _synch_bbox_local_from_gm) {
 		__GET_ONE_VALUE__NORETURN__(__FuncId::cinstance_getmask, m_mask);
 		if(_synch_bbox_local_from_gm) {
 			get_bbox_local(true);
@@ -332,7 +332,7 @@ namespace fgm {
 		return m_mask;
 	}
 
-	void instance::setmask(asset sprindex, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
+	void instance::set_mask(asset sprindex, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		__SET_ONE_VALUE__(__FuncId::cinstance_setmask, m_mask, sprindex);
 		if(_synch_bbox_local_from_gm) {
 			get_bbox_local(true);

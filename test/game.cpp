@@ -25,15 +25,15 @@ void fgm_init() {
 	vec2_t_test();
 
 	fgm::layer mylayer(-1145, "mylayer");
-	std::cout << mylayer.getid() << ", " << fgm::layer_get_depth(mylayer) << ", " << mylayer.getname() << std::endl;
+	std::cout << mylayer.get_id() << ", " << fgm::layer_get_depth(mylayer) << ", " << mylayer.get_name() << std::endl;
 	mylayer = fgm::layer_get("Background");
-	std::cout << mylayer.getid() << ", " << mylayer.getdepth() << ", " << mylayer.getname() << std::endl;
+	std::cout << mylayer.get_id() << ", " << mylayer.get_depth() << ", " << mylayer.get_name() << std::endl;
 	mylayer = fgm::layer_get(0);
-	std::cout << mylayer.getid() << ", " << mylayer.getdepth() << ", " << mylayer.getname() << std::endl;
+	std::cout << mylayer.get_id() << ", " << mylayer.get_depth() << ", " << mylayer.get_name() << std::endl;
 	mylayer = fgm::layer_get("mylayer");
-	std::cout << fgm::layer_exists(mylayer.getid()) << std::endl;
+	std::cout << fgm::layer_exists(mylayer.get_id()) << std::endl;
 	fgm::layer_destroy(mylayer);
-	std::cout << mylayer.getid() << std::endl;
+	std::cout << mylayer.get_id() << std::endl;
 	fgm::layer_get("Background").destroy();
 	mylayer = fgm::layer(-10);
 	ins2 = fgm::instance_create_layer(100, 100, mylayer, obj_test);
@@ -46,16 +46,16 @@ void fgm_init() {
 	rect_t_test();
 
 	instest2 = fgm::instance_create_layer(320, 96, "Instances", fgm::asset_get_index("obj_test2"));
-	std::cout << "SPR: " << instest2.getsprite() << std::endl;
-	std::cout << "MASK: " << instest2.getmask() << std::endl;
+	std::cout << "SPR: " << instest2.get_sprite() << std::endl;
+	std::cout << "MASK: " << instest2.get_mask() << std::endl;
 
 	me = fgm::instance(fgm::self);
-	me.setsprite(spr_block);
+	me.set_sprite(spr_block);
 	me.set_image_speed(2);
 	me.set_image_index(5);
-	std::cout << "me.spr: " << me.getsprite() << std::endl;
-	std::cout << "me.mask: " << me.getmask() << std::endl;
-	std::cout << "me.pos: " << me.getx() << ", " << me.gety() << std::endl;
+	std::cout << "me.spr: " << me.get_sprite() << std::endl;
+	std::cout << "me.mask: " << me.get_mask() << std::endl;
+	std::cout << "me.pos: " << me.get_x() << ", " << me.get_y() << std::endl;
 	std::cout << "me.imgnum: " << me.get_image_number() << std::endl;
 
 	fgm::color_rgb rgb1(240, 248, 255);
@@ -79,24 +79,26 @@ int t = 0;
 void fgm_main() {
 
 	ins.move(fgm::vec2(1, 0));
-	if(ins.getx() > 640 + 128) {
-		ins.setx(-128);
+	if(ins.get_x() > 640 + 128) {
+		ins.set_x(-128);
 	}
 
 	if(t++ == 180) {
-		ins.setdepth(-1919);
+		ins.set_depth(-1919);
 	}
 	
 	if(t == 60) {
-		ins2.setvisible(!ins2.getvisible());
-		instest2.setmask(spr_block);
+		ins2.set_visible(!ins2.get_visible());
+		instest2.set_mask(spr_block);
 	}
 	if(t == 120) {
 		fgm::instance_destroy(ins2);
-		instest2.setsprite(spr_test);
+		instest2.set_sprite(spr_test);
 	}
 
-	me.setpos(320 + me.get_spr_width() * std::cos(fgm::degtorad(t)), 320 + me.get_spr_height() * std::sin(fgm::degtorad(t)));
+	// me.setpos(320 + me.get_spr_width() * std::cos(fgm::degtorad(t)), 320 + me.get_spr_height() * std::sin(fgm::degtorad(t)));
+	fgm::instance_set_pos(me.get_id(), 320 + me.get_spr_width() * std::cos(fgm::degtorad(t)), 320 + me.get_spr_height() * std::sin(fgm::degtorad(t)));
+	
 	me.set_image_blend((std::sin(fgm::degtorad(t)) + 1) * 0.5 * 255);
 	me.set_image_angle(t / 2);
 	me.set_image_scale((std::sin(fgm::degtorad(t)) + 1) * 0.3 + 0.5, (std::sin(fgm::degtorad(t + 180)) + 1) * 0.3 + 0.5);
@@ -109,13 +111,13 @@ void fgm_main() {
 	for(auto & it : vins) {
 		fgm::instance(it).set_image_blend(fgm::c_teal);
 	}
-	fgm::instance(fgm::instance_furthest(me.getx(), me.gety(), obj_collision_list_test)).set_image_blend(fgm::c_red);
+	fgm::instance(fgm::instance_furthest(me.get_x(), me.get_y(), obj_collision_list_test)).set_image_blend(fgm::c_red);
 	
 }
 
 void DrawEvent() {
 	MyFuncTest(256, "~~~FLY~~~");
-	MyFuncTest(480, std::to_string(ins.getid()));
+	MyFuncTest(480, std::to_string(ins.get_id()));
 	
 	std::string str
 		= "Hello, world!\n["
@@ -127,17 +129,17 @@ void DrawEvent() {
 	fgm::draw_text(128, 64, str);
 
 	fgm::draw_text(320, 560,
-		std::to_string(ins.getpos(true).m_x) + ", " +
-		std::to_string(ins.getpos(true).m_y)
+		std::to_string(ins.get_pos(true).m_x) + ", " +
+		std::to_string(ins.get_pos(true).m_y)
 	);
 
 	fgm::draw_sprite_ext(spr_test, 0, 320, 320, 1.2, 1.2, rot++, 0x0000FF, 0.5);
 	fgm::draw_sprite_ext(spr_test, 0, 400, 320, 1, 1, rot, fgm::c_white, 1);
 
 	if(t >= 180) {
-		MyFuncTest(512, std::to_string(ins.getdepth(false)));
+		MyFuncTest(512, std::to_string(ins.get_depth(false)));
 	} else {
-		MyFuncTest(512, std::to_string(ins.getdepth(true)));
+		MyFuncTest(512, std::to_string(ins.get_depth(true)));
 	}
 }
 

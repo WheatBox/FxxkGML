@@ -35,7 +35,7 @@ namespace fgm {
 	}
 
 	int layer_get_depth(const layer & layer) {
-		return layer.getdepth();
+		return layer.get_depth();
 	}
 
 	layer layer_create(int depth, const char * name) {
@@ -51,7 +51,7 @@ namespace fgm {
 	}
 
 	void layer_destroy(const layer && layer) {
-		__basic(__FuncId::layer_destroy, layer.getid());
+		__basic(__FuncId::layer_destroy, layer.get_id());
 	}
 
 }
