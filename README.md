@@ -1,5 +1,7 @@
 # FxxkGML (or FGM)
 
+![FxxkGML](./FxxkGML_icon.png)
+
 ### 什么是 FxxkGML ？| What is FxxkGML?
 
 ~~C++ Fxxk GML~~
