@@ -4,7 +4,7 @@ namespace fgm {
 	enum class __FuncId {
 		nothing = 0,
 
-		/* class instance -1000+ */
+	/* class instance -1000+ */
 
 		cinstance_getdepth = -1001,
 		cinstance_setdepth = -1002,
@@ -54,9 +54,90 @@ namespace fgm {
 
 		cinstance___init = -1999,
 
-		/* draw.h 1000+ */
+	/* draw.h 1000+ */
 
-		/* instance.h 2000+ */
+		draw_enable_drawevent = 1998,
+		draw_flush = 1999,
+
+		// Colour And Alpha
+
+		draw_getpixel = 1001,
+		// draw_getpixel_ext = 1002,
+		draw_get_colour = 1003,
+		draw_get_alpha = 1004,
+		draw_clear = 1005,
+		draw_clear_alpha = 1006,
+		draw_set_alpha = 1007,
+		draw_set_colour = 1008,
+
+		// Basic Forms
+		
+		draw_arrow = 1009,
+		draw_circle = 1010,
+		draw_circle_colour = 1011,
+		draw_ellipse = 1012,
+		draw_ellipse_colour = 1013,
+		draw_line = 1014,
+		draw_line_colour = 1015,
+		draw_line_width = 1016,
+		draw_line_width_colour = 1017,
+		draw_point = 1018,
+		draw_point_colour = 1019,
+		draw_rectangle = 1020,
+		draw_rectangle_colour = 1021,
+		draw_roundrect = 1022,
+		draw_roundrect_colour = 1023,
+		draw_roundrect_ext = 1024,
+		draw_roundrect_colour_ext = 1025,
+		draw_triangle = 1026,
+		draw_triangle_colour = 1027,
+		draw_set_circle_precision = 1028,
+		// draw_button = 1029,
+		// draw_healthbar = 1030,
+		draw_path = 1031,
+
+		// Sprites And Tiles
+
+		draw_self = 1032,
+		draw_sprite = 1033,
+		draw_sprite_ext = 1034,
+		draw_sprite_general = 1035,
+		draw_sprite_part = 1036,
+		draw_sprite_part_ext = 1037,
+		draw_sprite_stretched = 1038,
+		draw_sprite_stretched_ext = 1039,
+		draw_sprite_pos = 1040,
+		draw_sprite_tiled = 1041,
+		draw_sprite_tiled_ext = 1042,
+		draw_enable_swf_aa = 1043,
+		draw_set_swf_aa_level = 1044,
+		draw_get_swf_aa_level = 1045,
+		draw_skeleton = 1046,
+		draw_skeleton_instance = 1047,
+		draw_skeleton_collision = 1048,
+		draw_skeleton_time = 1049,
+		draw_tile = 1050,
+		draw_tilemap = 1051,
+
+		// Text
+
+		draw_set_font = 1052,
+		draw_set_halign = 1053,
+		draw_set_valign = 1054,
+		draw_get_font = 1055,
+		draw_get_halign = 1056,
+		draw_get_valign = 1057,
+		draw_text = 1058,
+		draw_text_ext = 1059,
+		draw_text_colour = 1060,
+		draw_text_transformed = 1061,
+		draw_text_ext_colour = 1062,
+		draw_text_ext_transformed = 1063,
+		draw_text_transformed_colour = 1064,
+		draw_text_ext_transformed_colour = 1065,
+		draw_highscore = 1066,
+
+	/* instance.h 2000+ */
 
 		instance_create_layer = 2001,
 		instance_create_layer__str = 2002,
@@ -87,7 +168,7 @@ namespace fgm {
 		instance_deactivate_layer__str = 2026,
 		instance_get = 2027,
 
-		/* layer.h 3000+ */
+	/* layer.h 3000+ */
 
 		layer_exists = 3001,
 		layer_exists__id = 3002,
@@ -132,9 +213,7 @@ namespace fgm {
 		layer_get_target_room = 3040,
 		layer_reset_target_room = 3041,
 
-		draw_text = 10001,
 		random_range = 10002,
 		asset_get_index = 10003,
-		draw_sprite_ext = 10004,
 	};
 }

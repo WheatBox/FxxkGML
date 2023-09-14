@@ -96,8 +96,8 @@ void fgm_main() {
 		instest2.set_sprite(spr_test);
 	}
 
-	// me.setpos(320 + me.get_spr_width() * std::cos(fgm::degtorad(t)), 320 + me.get_spr_height() * std::sin(fgm::degtorad(t)));
-	fgm::instance_set_pos(me.get_id(), 320 + me.get_spr_width() * std::cos(fgm::degtorad(t)), 320 + me.get_spr_height() * std::sin(fgm::degtorad(t)));
+	me.set_pos(320 + me.get_spr_width() * std::cos(fgm::degtorad(t)), 320 + me.get_spr_height() * std::sin(fgm::degtorad(t)));
+	// fgm::instance_set_pos(me.get_id(), 320 + me.get_spr_width() * std::cos(fgm::degtorad(t)), 320 + me.get_spr_height() * std::sin(fgm::degtorad(t)));
 	
 	me.set_image_blend((std::sin(fgm::degtorad(t)) + 1) * 0.5 * 255);
 	me.set_image_angle(t / 2);

@@ -20,6 +20,14 @@ namespace fgm {
 	const ins_id all = -3;
 	const ins_id noone = -4;
 
+	const int fa_left = 0;
+	const int fa_center = 1;
+	const int fa_right = 2;
+	
+	const int fa_top = 0;
+	const int fa_middle = 1;
+	const int fa_bottom = 2;
+
 }
 
 /* ------------ color things ------------ */
@@ -33,6 +41,8 @@ namespace fgm {
 	class color_rgb;
 	class color_bgr;
 	class color_hsv;
+	
+	// TODO - merge_color();
 
 	/* ------ class color_rgb ------ */
 

@@ -1,6 +1,8 @@
 enum EFxxkGMLFuncId {
 	_nothing = 0,
 	
+/* class instance -1000+ */
+	
 	_cinstance_getdepth = -1001,
 	_cinstance_setdepth = -1002,
 	_cinstance_getx = -1003,
@@ -49,6 +51,91 @@ enum EFxxkGMLFuncId {
 	
 	_cinstance___init = -1999,
 	
+/* draw.h 1000+ */
+
+	_draw_enable_drawevent = 1998,
+	_draw_flush = 1999,
+
+	// Colour And Alpha
+	
+	_draw_getpixel = 1001,
+	// _draw_getpixel_ext = 1002,
+	_draw_get_colour = 1003,
+	_draw_get_alpha = 1004,
+	_draw_clear = 1005,
+	_draw_clear_alpha = 1006,
+	_draw_set_alpha = 1007,
+	_draw_set_colour = 1008,
+	
+	// Basic Forms
+		
+	_draw_arrow = 1009,
+	_draw_circle = 1010,
+	_draw_circle_colour = 1011,
+	_draw_ellipse = 1012,
+	_draw_ellipse_colour = 1013,
+	_draw_line = 1014,
+	_draw_line_colour = 1015,
+	_draw_line_width = 1016,
+	_draw_line_width_colour = 1017,
+	_draw_point = 1018,
+	_draw_point_colour = 1019,
+	_draw_rectangle = 1020,
+	_draw_rectangle_colour = 1021,
+	_draw_roundrect = 1022,
+	_draw_roundrect_colour = 1023,
+	_draw_roundrect_ext = 1024,
+	_draw_roundrect_colour_ext = 1025,
+	_draw_triangle = 1026,
+	_draw_triangle_colour = 1027,
+	_draw_set_circle_precision = 1028,
+	// _draw_button = 1029,
+	// _draw_healthbar = 1030,
+	_draw_path = 1031,
+	
+	// Sprites And Tiles
+	
+	_draw_self = 1032,
+	_draw_sprite = 1033,
+	_draw_sprite_ext = 1034,
+	_draw_sprite_general = 1035,
+	_draw_sprite_part = 1036,
+	_draw_sprite_part_ext = 1037,
+	_draw_sprite_stretched = 1038,
+	_draw_sprite_stretched_ext = 1039,
+	_draw_sprite_pos = 1040,
+	_draw_sprite_tiled = 1041,
+	_draw_sprite_tiled_ext = 1042,
+	_draw_enable_swf_aa = 1043,
+	_draw_set_swf_aa_level = 1044,
+	_draw_get_swf_aa_level = 1045,
+	_draw_skeleton = 1046,
+	_draw_skeleton_instance = 1047,
+	_draw_skeleton_collision = 1048,
+	_draw_skeleton_time = 1049,
+	_draw_tile = 1050,
+	_draw_tilemap = 1051,
+	
+	// Text
+	
+	_draw_set_font = 1052,
+	_draw_set_halign = 1053,
+	_draw_set_valign = 1054,
+	_draw_get_font = 1055,
+	_draw_get_halign = 1056,
+	_draw_get_valign = 1057,
+	_draw_text = 1058,
+	_draw_text_ext = 1059,
+	_draw_text_colour = 1060,
+	_draw_text_transformed = 1061,
+	_draw_text_ext_colour = 1062,
+	_draw_text_ext_transformed = 1063,
+	_draw_text_transformed_colour = 1064,
+	_draw_text_ext_transformed_colour = 1065,
+	_draw_highscore = 1066,
+	
+/* instance.h 2000+ */
+	
 	_instance_create_layer = 2001,
 	_instance_create_layer__str = 2002,
 	_instance_create_depth = 2003,
@@ -76,6 +163,8 @@ enum EFxxkGMLFuncId {
 	_instance_deactivate_layer__str = 2026,
 	_instance_get = 2027,
 	
+/* layer.h 3000+ */
+	
 	_layer_exists = 3001,
 	_layer_exists__id = 3002,
 	_layer_get = 3004,
@@ -87,15 +176,30 @@ enum EFxxkGMLFuncId {
 	
 	_layer_depth = 3029,
 	
-	_draw_text = 10001,
 	_random_range = 10002,
 	_asset_get_index = 10003,
-	_draw_sprite_ext = 10004,
 };
 
 #macro ARG external_call
 #macro RET external_call
 #macro CASE break; case
+
+#macro ARG_R_0to0 ARG(__R, 0)
+#macro ARG_R_0to1 ARG(__R, 0), ARG(__R, 1)
+#macro ARG_R_0to2 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2)
+#macro ARG_R_0to3 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3)
+#macro ARG_R_0to4 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4)
+#macro ARG_R_0to5 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5)
+#macro ARG_R_0to6 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6)
+#macro ARG_R_0to7 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7)
+#macro ARG_R_0to8 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8)
+#macro ARG_R_0to9 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9)
+#macro ARG_R_0to10 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10)
+#macro ARG_R_0to11 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10), ARG(__R, 11)
+#macro ARG_R_0to12 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10), ARG(__R, 11), ARG(__R, 12)
+#macro ARG_R_0to13 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10), ARG(__R, 11), ARG(__R, 12), ARG(__R, 13)
+#macro ARG_R_0to14 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10), ARG(__R, 11), ARG(__R, 12), ARG(__R, 13), ARG(__R, 14)
+#macro ARG_R_0to15 ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10), ARG(__R, 11), ARG(__R, 12), ARG(__R, 13), ARG(__R, 14), ARG(__R, 15)
 
 function FxxkGML_Init(_dll_filename) {
 	
@@ -301,6 +405,138 @@ function __FxxkGML_RunFunc() {
 			RET(__OthR, 10, ___vartmp.bbox_right - ___vartmp.x);
 			RET(__OthR, 11, ___vartmp.bbox_bottom - ___vartmp.y);
 			
+		CASE EFxxkGMLFuncId._draw_enable_drawevent:
+			draw_enable_drawevent(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_flush:
+			draw_flush();
+		CASE EFxxkGMLFuncId._draw_getpixel:
+			RET(__RetR,
+				draw_getpixel(ARG_R_0to1));
+		CASE EFxxkGMLFuncId._draw_get_colour:
+			RET(__RetR, draw_get_color());
+		CASE EFxxkGMLFuncId._draw_get_alpha:
+			RET(__RetR, draw_get_alpha());
+		CASE EFxxkGMLFuncId._draw_clear:
+			draw_clear(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_clear_alpha:
+			draw_clear_alpha(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._draw_set_alpha:
+			draw_set_alpha(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_set_colour:
+			draw_set_color(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_arrow:
+			draw_arrow(ARG_R_0to4);
+		CASE EFxxkGMLFuncId._draw_circle:
+			draw_circle(ARG_R_0to3);
+		CASE EFxxkGMLFuncId._draw_circle_colour:
+			draw_circle_color(ARG_R_0to5);
+		CASE EFxxkGMLFuncId._draw_ellipse:
+			draw_ellipse(ARG_R_0to4);
+		CASE EFxxkGMLFuncId._draw_ellipse_colour:
+			draw_ellipse_color(ARG_R_0to6);
+		CASE EFxxkGMLFuncId._draw_line:
+			draw_line(ARG_R_0to3);
+		CASE EFxxkGMLFuncId._draw_line_colour:
+			draw_line_color(ARG_R_0to5);
+		CASE EFxxkGMLFuncId._draw_line_width:
+			draw_line_width(ARG_R_0to4);
+		CASE EFxxkGMLFuncId._draw_line_width_colour:
+			draw_line_width_color(ARG_R_0to6);
+		CASE EFxxkGMLFuncId._draw_point:
+			draw_point(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._draw_point_colour:
+			draw_point_color(ARG_R_0to2);
+		CASE EFxxkGMLFuncId._draw_rectangle:
+			draw_rectangle(ARG_R_0to4);
+		CASE EFxxkGMLFuncId._draw_rectangle_colour:
+			draw_rectangle_color(ARG_R_0to8);
+		CASE EFxxkGMLFuncId._draw_roundrect:
+			draw_roundrect(ARG_R_0to4);
+		CASE EFxxkGMLFuncId._draw_roundrect_colour:
+			draw_roundrect_color(ARG_R_0to6);
+		CASE EFxxkGMLFuncId._draw_roundrect_ext:
+			draw_roundrect_ext(ARG_R_0to6);
+		CASE EFxxkGMLFuncId._draw_roundrect_colour_ext:
+			draw_roundrect_color_ext(ARG_R_0to8);
+		CASE EFxxkGMLFuncId._draw_triangle:
+			draw_triangle(ARG_R_0to6);
+		CASE EFxxkGMLFuncId._draw_triangle_colour:
+			draw_triangle_color(ARG_R_0to9);
+		CASE EFxxkGMLFuncId._draw_set_circle_precision:
+			draw_set_circle_precision(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_path:
+			draw_path(ARG_R_0to3);
+		CASE EFxxkGMLFuncId._draw_self:
+			draw_self();
+		CASE EFxxkGMLFuncId._draw_sprite:
+			draw_sprite(ARG_R_0to3);
+		CASE EFxxkGMLFuncId._draw_sprite_ext:
+			draw_sprite_ext(ARG_R_0to8);
+		CASE EFxxkGMLFuncId._draw_sprite_general:
+			draw_sprite_general(ARG_R_0to15);
+		CASE EFxxkGMLFuncId._draw_sprite_part:
+			draw_sprite_part(ARG_R_0to7);
+		CASE EFxxkGMLFuncId._draw_sprite_part_ext:
+			draw_sprite_part_ext(ARG_R_0to11);
+		CASE EFxxkGMLFuncId._draw_sprite_stretched:
+			draw_sprite_stretched(ARG_R_0to5);
+		CASE EFxxkGMLFuncId._draw_sprite_stretched_ext:
+			draw_sprite_stretched_ext(ARG_R_0to7);
+		CASE EFxxkGMLFuncId._draw_sprite_pos:
+			draw_sprite_pos(ARG_R_0to10);
+		CASE EFxxkGMLFuncId._draw_sprite_tiled:
+			draw_sprite_tiled(ARG_R_0to3);
+		CASE EFxxkGMLFuncId._draw_sprite_tiled_ext:
+			draw_sprite_tiled_ext(ARG_R_0to7);
+		CASE EFxxkGMLFuncId._draw_enable_swf_aa:
+			draw_enable_swf_aa(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_set_swf_aa_level:
+			draw_set_swf_aa_level(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_get_swf_aa_level:
+			RET(__RetR, draw_get_swf_aa_level());
+		CASE EFxxkGMLFuncId._draw_skeleton:
+			draw_skeleton(ARG(__R, 0), ARG(__S, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10));
+		CASE EFxxkGMLFuncId._draw_skeleton_instance:
+			draw_skeleton_instance(ARG(__R, 0), ARG(__S, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10));
+		CASE EFxxkGMLFuncId._draw_skeleton_collision:
+			draw_skeleton_collision(ARG(__R, 0), ARG(__S, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8));
+		CASE EFxxkGMLFuncId._draw_skeleton_time:
+			draw_skeleton_time(ARG(__R, 0), ARG(__S, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10));
+		CASE EFxxkGMLFuncId._draw_tile:
+			draw_tile(ARG_R_0to4);
+		CASE EFxxkGMLFuncId._draw_tilemap:
+			draw_tilemap(ARG_R_0to2);
+		CASE EFxxkGMLFuncId._draw_set_font:
+			draw_set_font(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_set_halign:
+			draw_set_halign(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_set_valign:
+			draw_set_valign(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._draw_get_font:
+			RET(__RetR, draw_get_font());
+		CASE EFxxkGMLFuncId._draw_get_halign:
+			RET(__RetR, draw_get_halign());
+		CASE EFxxkGMLFuncId._draw_get_valign:
+			RET(__RetR, draw_get_valign());
+		CASE EFxxkGMLFuncId._draw_text:
+			draw_text(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2));
+		CASE EFxxkGMLFuncId._draw_text_ext:
+			draw_text_ext(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4));
+		CASE EFxxkGMLFuncId._draw_text_colour:
+			draw_text_colour(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7));
+		CASE EFxxkGMLFuncId._draw_text_transformed:
+			draw_text_transformed(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5));
+		CASE EFxxkGMLFuncId._draw_text_ext_colour:
+			draw_text_ext_colour(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9));
+		CASE EFxxkGMLFuncId._draw_text_ext_transformed:
+			draw_text_ext_transformed(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7));
+		CASE EFxxkGMLFuncId._draw_text_transformed_colour:
+			draw_text_transformed_colour(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10));
+		CASE EFxxkGMLFuncId._draw_text_ext_transformed_colour:
+			draw_text_ext_transformed_colour(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8), ARG(__R, 9), ARG(__R, 10), ARG(__R, 11), ARG(__R, 12));
+		CASE EFxxkGMLFuncId._draw_highscore:
+			draw_highscore(ARG_R_0to3);
+			
 		CASE EFxxkGMLFuncId._instance_create_layer:
 			RET(__RetR,
 				instance_create_layer(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3)));
@@ -409,9 +645,6 @@ function __FxxkGML_RunFunc() {
 		CASE EFxxkGMLFuncId._layer_destroy:
 			layer_destroy(ARG(__R, 0));
 			
-		CASE EFxxkGMLFuncId._draw_text:
-			draw_text(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2));
-			
 		CASE EFxxkGMLFuncId._random_range:
 			RET(__RetR,
 				random_range(ARG(__R, 0), ARG(__R, 1)));
@@ -419,10 +652,7 @@ function __FxxkGML_RunFunc() {
 		CASE EFxxkGMLFuncId._asset_get_index:
 			RET(__RetR,
 				asset_get_index(ARG(__S, 0)));
-			
-		CASE EFxxkGMLFuncId._draw_sprite_ext:
-			draw_sprite_ext(ARG(__R, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6), ARG(__R, 7), ARG(__R, 8));
-			
+						
 	}
 	
 	return 1;

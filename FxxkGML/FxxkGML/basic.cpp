@@ -8,10 +8,6 @@ namespace fgm {
 
 namespace fgm {
 
-	void draw_text(double x, double y, const std::string & text) {
-		__basic(__FuncId::draw_text, x, y, text);
-	}
-
 	double random_range(double x1, double x2) {
 		__basic(__FuncId::random_range, x1, x2);
 		return g_funcres.m_real;
@@ -20,10 +16,6 @@ namespace fgm {
 	asset asset_get_index(const std::string & name) {
 		__basic(__FuncId::asset_get_index, name);
 		return g_funcres.m_real;
-	}
-
-	void draw_sprite_ext(asset sprite, int subming, double x, double y, double xscale, double yscale, double rot, int col, double alpha) {
-		__basic(__FuncId::draw_sprite_ext, sprite, subming, x, y, xscale, yscale, rot, col, alpha);
 	}
 
 /* ------ class layer ------ */

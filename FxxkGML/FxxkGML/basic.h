@@ -234,10 +234,8 @@ namespace fgm {
 	};
 
 	// TODO - 把这些都拆分成一个个头文件（别忘了.cpp里的那些）
-	void draw_text(double x, double y, const std::string & text);
 	double random_range(double x1, double x2);
 	asset asset_get_index(const std::string & name);
-	void draw_sprite_ext(asset sprite, int subming, double x, double y, double xscale, double yscale, double rot, int col, double alpha);
 
 	/* ---------------------------- */
 

@@ -4,3 +4,4 @@
 
 #include "FxxkGML/instance.h"
 #include "FxxkGML/layer.h"
+#include "FxxkGML/draw.h"

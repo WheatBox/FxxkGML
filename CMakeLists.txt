@@ -26,6 +26,7 @@ message(${_outpath})
 		FxxkGML/FxxkGML/basic.cpp
 		FxxkGML/FxxkGML/instance.cpp
 		FxxkGML/FxxkGML/layer.cpp
+		FxxkGML/FxxkGML/draw.cpp
 		FxxkGML/FxxkGML.cpp
 		${ARGN}
 	)
