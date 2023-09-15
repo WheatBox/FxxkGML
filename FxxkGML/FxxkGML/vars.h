@@ -28,6 +28,82 @@ namespace fgm {
 	const int fa_middle = 1;
 	const int fa_bottom = 2;
 
+	const int gamespeed_fps = 0;
+	const int gamespeed_microseconds = 1;
+
+	/* Virtual Key Constant (vk_*) */
+
+	using vkey_t = unsigned char;
+	
+	const vkey_t vk_nokey = 0;
+	const vkey_t vk_anykey = 1;
+	const vkey_t vk_left = 37;
+	const vkey_t vk_right = 39;
+	const vkey_t vk_up = 38;
+	const vkey_t vk_down = 40;
+	const vkey_t vk_enter = 13;
+	const vkey_t vk_escape = 27;
+	const vkey_t vk_space = 32;
+	const vkey_t vk_shift = 16;
+	const vkey_t vk_control = 17;
+	const vkey_t vk_alt = 18;
+	const vkey_t vk_backspace = 8;
+	const vkey_t vk_tab = 9;
+	const vkey_t vk_home = 36;
+	const vkey_t vk_end = 35;
+	const vkey_t vk_delete = 46;
+	const vkey_t vk_insert = 45;
+	const vkey_t vk_pageup = 33;
+	const vkey_t vk_pagedown = 34;
+	const vkey_t vk_pause = 19;
+	const vkey_t vk_printscreen = 44;
+	const vkey_t vk_f1 = 112;
+	const vkey_t vk_f2 = 113;
+	const vkey_t vk_f3 = 114;
+	const vkey_t vk_f4 = 115;
+	const vkey_t vk_f5 = 116;
+	const vkey_t vk_f6 = 117;
+	const vkey_t vk_f7 = 118;
+	const vkey_t vk_f8 = 119;
+	const vkey_t vk_f9 = 120;
+	const vkey_t vk_f10 = 121;
+	const vkey_t vk_f11 = 122;
+	const vkey_t vk_f12 = 123;
+	const vkey_t vk_numpad0 = 96;
+	const vkey_t vk_numpad1 = 97;
+	const vkey_t vk_numpad2 = 98;
+	const vkey_t vk_numpad3 = 99;
+	const vkey_t vk_numpad4 = 100;
+	const vkey_t vk_numpad5 = 101;
+	const vkey_t vk_numpad6 = 102;
+	const vkey_t vk_numpad7 = 103;
+	const vkey_t vk_numpad8 = 104;
+	const vkey_t vk_numpad9 = 105;
+	const vkey_t vk_multiply = 106;
+	const vkey_t vk_divide = 111;
+	const vkey_t vk_add = 107;
+	const vkey_t vk_subtract = 109;
+	const vkey_t vk_decimal = 110;
+
+	/* Virtual Key Constant (vk_*) (keyboard_check_direct only) */
+
+	const vkey_t vk_lshift = 160;
+	const vkey_t vk_lcontrol = 162;
+	const vkey_t vk_lalt = 164;
+	const vkey_t vk_rshift = 161;
+	const vkey_t vk_rcontrol = 163;
+	const vkey_t vk_ralt = 165;
+
+	/* Mouse Button Constant */
+
+	const int mb_left = 1;
+	const int mb_middle = 3;
+	const int mb_right = 2;
+	const int mb_side1 = 4;
+	const int mb_side2 = 5;
+	const int mb_any = -1;
+	const int mb_none = 0;
+
 }
 
 /* ------------ color things ------------ */

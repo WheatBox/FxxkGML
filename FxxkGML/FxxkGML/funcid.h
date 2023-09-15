@@ -4,6 +4,29 @@ namespace fgm {
 	enum class __FuncId {
 		nothing = 0,
 
+	/* miscellaneous.h 100 ~ 999 */
+
+		delta_time_get = 101,
+
+		game_save_id_get = 102,
+		game_display_name_get = 103,
+		game_project_name_get = 104,
+		game_end = 105,
+		game_restart = 106,
+		game_change = 107,
+		game_load_buffer = 108,
+		game_save_buffer = 109,
+		game_set_speed = 110,
+		game_get_speed = 111,
+
+		highscore_add = 112,
+		highscore_name = 113,
+		highscore_value = 114,
+		highscore_clear = 115,
+
+		cursor_sprite_get = 116,
+		cursor_sprite_set = 117,
+
 	/* class instance -1000+ */
 
 		cinstance_getdepth = -1001,
@@ -169,7 +192,7 @@ namespace fgm {
 		instance_get = 2027,
 
 	/* layer.h 3000+ */
-
+	// TODO
 		layer_exists = 3001,
 		layer_exists__id = 3002,
 		// layer_get_id = 3003,
@@ -212,6 +235,82 @@ namespace fgm {
 		layer_set_target_room = 3039,
 		layer_get_target_room = 3040,
 		layer_reset_target_room = 3041,
+
+	/* game_input.h 4000+ */
+
+		// Keyboard Input
+
+		io_clear = 4001,
+		keyboard_check = 4002,
+		keyboard_check_pressed = 4003,
+		keyboard_check_released = 4004,
+		keyboard_check_direct = 4005,
+		keyboard_clear = 4006,
+		keyboard_set_map = 4007,
+		keyboard_get_map = 4008,
+		keyboard_unset_map = 4009,
+		keyboard_set_numlock = 4010,
+		keyboard_get_numlock = 4011,
+		keyboard_key_press = 4012,
+		keyboard_key_release = 4013,
+
+		keyboard_key_get = 4014,
+		keyboard_lastkey_get = 4015,
+		keyboard_lastchar_get = 4016,
+		keyboard_string_get = 4017,
+		keyboard_key_set = 4018,
+		keyboard_lastkey_set = 4019,
+		keyboard_lastchar_set = 4020,
+		keyboard_string_set = 4021,
+
+		// Mouse Input
+
+		mouse_button_get = 4022,
+		mouse_button_set = 4023,
+		mouse_check_button = 4024,
+		mouse_check_button_pressed = 4025,
+		mouse_check_button_released = 4026,
+		mouse_clear = 4027,
+		mouse_lastbutton_get = 4028,
+		mouse_lastbutton_set = 4029,
+		mouse_wheel_up = 4030,
+		mouse_wheel_down = 4031,
+		mouse_x_get = 4032,
+		mouse_y_get = 4033,
+		mouse_pos_get = 4034,
+
+		window_mouse_get_x = 4035,
+		window_mouse_get_y = 4036,
+		window_mouse_get_pos = 4037,
+		window_mouse_set = 4038,
+		window_view_mouse_get_x = 4039,
+		window_view_mouse_get_y = 4040,
+		window_view_mouse_get_pos = 4041,
+		window_views_mouse_get_x = 4042,
+		window_views_mouse_get_y = 4043,
+		window_views_mouse_get_pos = 4044,
+
+		// Device Input
+
+		device_mouse_check_button = 4045,
+		device_mouse_check_button_pressed = 4046,
+		device_mouse_check_button_released = 4047,
+		device_mouse_dbclick_enable = 4048,
+		device_mouse_x = 4049,
+		device_mouse_y = 4050,
+		device_mouse_pos = 4051,
+		device_mouse_raw_x = 4052,
+		device_mouse_raw_y = 4053,
+		device_mouse_raw_pos = 4054,
+		device_mouse_x_to_gui = 4055,
+		device_mouse_y_to_gui = 4056,
+		device_mouse_pos_to_gui = 4057,
+		device_is_keypad_open = 4058,
+		device_get_tilt_x = 4059,
+		device_get_tilt_y = 4060,
+		device_get_tilt_z = 4061,
+
+	/* */
 
 		random_range = 10002,
 		asset_get_index = 10003,

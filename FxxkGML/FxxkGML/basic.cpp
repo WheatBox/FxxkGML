@@ -438,7 +438,7 @@ namespace fgm {
 		return m_imgscale;
 	}
 
-	void instance::set_image_scale(vec2 scale, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
+	void instance::set_image_scale(const vec2 & scale, bool _synch_to_gm, bool _synch_bbox_local_from_gm) {
 		set_image_scale(scale.m_x, scale.m_y, _synch_to_gm, _synch_bbox_local_from_gm);
 	}
 	

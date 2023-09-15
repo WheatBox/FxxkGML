@@ -1,7 +1,9 @@
 #pragma once
 
-#include "FxxkGML/basic.h"
+#include "basic.h"
 
-#include "FxxkGML/instance.h"
-#include "FxxkGML/layer.h"
-#include "FxxkGML/draw.h"
+#include "miscellaneous.h"
+#include "draw.h"
+#include "instance.h"
+#include "layer.h"
+#include "game_input.h"

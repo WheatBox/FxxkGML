@@ -104,14 +104,21 @@ void fgm_main() {
 	me.set_image_scale((std::sin(fgm::degtorad(t)) + 1) * 0.3 + 0.5, (std::sin(fgm::degtorad(t + 180)) + 1) * 0.3 + 0.5);
 
 	for(int i = 0; i < fgm::instance_number(obj_collision_list_test); i++) {
-		fgm::instance(fgm::instance_find(obj_collision_list_test, i)).set_image_blend(fgm::c_white);
+		fgm::instance_set_image_blend(fgm::instance_find(obj_collision_list_test, i), fgm::c_white);
 	}
 	std::vector<fgm::ins_id> vins;
 	fgm::instance_position_list(250, 285, obj_collision_list_test, & vins, false);
-	for(auto & it : vins) {
-		fgm::instance(it).set_image_blend(fgm::c_teal);
+	if(fgm::keyboard_check('W')) {
+		for(auto & it : vins) {
+			fgm::instance_set_image_blend(it, fgm::c_maroon);
+		}
+	} else {
+		for(auto & it : vins) {
+			fgm::instance_set_image_blend(it, fgm::c_teal);
+		}
 	}
-	fgm::instance(fgm::instance_furthest(me.get_x(), me.get_y(), obj_collision_list_test)).set_image_blend(fgm::c_red);
+
+	fgm::instance_set_image_blend(fgm::instance_furthest(me.get_x(), me.get_y(), obj_collision_list_test), fgm::c_red);
 	
 }
 

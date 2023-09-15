@@ -1,6 +1,29 @@
 enum EFxxkGMLFuncId {
 	_nothing = 0,
 	
+/* miscellaneous.h 100 ~ 999 */
+
+	_delta_time_get = 101,
+
+	_game_save_id_get = 102,
+	_game_display_name_get = 103,
+	_game_project_name_get = 104,
+	_game_end = 105,
+	_game_restart = 106,
+	_game_change = 107,
+	_game_load_buffer = 108,
+	_game_save_buffer = 109,
+	_game_set_speed = 110,
+	_game_get_speed = 111,
+
+	_highscore_add = 112,
+	_highscore_name = 113,
+	_highscore_value = 114,
+	_highscore_clear = 115,
+
+	_cursor_sprite_get = 116,
+	_cursor_sprite_set = 117,
+	
 /* class instance -1000+ */
 	
 	_cinstance_getdepth = -1001,
@@ -176,6 +199,71 @@ enum EFxxkGMLFuncId {
 	
 	_layer_depth = 3029,
 	
+	_io_clear = 4001,
+	_keyboard_check = 4002,
+	_keyboard_check_pressed = 4003,
+	_keyboard_check_released = 4004,
+	_keyboard_check_direct = 4005,
+	_keyboard_clear = 4006,
+	_keyboard_set_map = 4007,
+	_keyboard_get_map = 4008,
+	_keyboard_unset_map = 4009,
+	_keyboard_set_numlock = 4010,
+	_keyboard_get_numlock = 4011,
+	_keyboard_key_press = 4012,
+	_keyboard_key_release = 4013,
+	_keyboard_key_get = 4014,
+	_keyboard_lastkey_get = 4015,
+	_keyboard_lastchar_get = 4016,
+	_keyboard_string_get = 4017,
+	_keyboard_key_set = 4018,
+	_keyboard_lastkey_set = 4019,
+	_keyboard_lastchar_set = 4020,
+	_keyboard_string_set = 4021,
+	
+	_mouse_button_get = 4022,
+	_mouse_button_set = 4023,
+	_mouse_check_button = 4024,
+	_mouse_check_button_pressed = 4025,
+	_mouse_check_button_released = 4026,
+	_mouse_clear = 4027,
+	_mouse_lastbutton_get = 4028,
+	_mouse_lastbutton_set = 4029,
+	_mouse_wheel_up = 4030,
+	_mouse_wheel_down = 4031,
+	_mouse_x_get = 4032,
+	_mouse_y_get = 4033,
+	_mouse_pos_get = 4034,
+
+	_window_mouse_get_x = 4035,
+	_window_mouse_get_y = 4036,
+	_window_mouse_get_pos = 4037,
+	_window_mouse_set = 4038,
+	_window_view_mouse_get_x = 4039,
+	_window_view_mouse_get_y = 4040,
+	_window_view_mouse_get_pos = 4041,
+	_window_views_mouse_get_x = 4042,
+	_window_views_mouse_get_y = 4043,
+	_window_views_mouse_get_pos = 4044,
+	
+	_device_mouse_check_button = 4045,
+	_device_mouse_check_button_pressed = 4046,
+	_device_mouse_check_button_released = 4047,
+	_device_mouse_dbclick_enable = 4048,
+	_device_mouse_x = 4049,
+	_device_mouse_y = 4050,
+	_device_mouse_pos = 4051,
+	_device_mouse_raw_x = 4052,
+	_device_mouse_raw_y = 4053,
+	_device_mouse_raw_pos = 4054,
+	_device_mouse_x_to_gui = 4055,
+	_device_mouse_y_to_gui = 4056,
+	_device_mouse_pos_to_gui = 4057,
+	_device_is_keypad_open = 4058,
+	_device_get_tilt_x = 4059,
+	_device_get_tilt_y = 4060,
+	_device_get_tilt_z = 4061,
+	
 	_random_range = 10002,
 	_asset_get_index = 10003,
 };
@@ -276,6 +364,44 @@ function __FxxkGML_RunFunc() {
 		
 		case EFxxkGMLFuncId._nothing:
 			return 0;
+			
+		CASE EFxxkGMLFuncId._delta_time_get:
+			RET(__RetR, delta_time);
+
+		CASE EFxxkGMLFuncId._game_save_id_get:
+			RET(__RetS, game_save_id);
+		CASE EFxxkGMLFuncId._game_display_name_get:
+			RET(__RetS, game_display_name);
+		CASE EFxxkGMLFuncId._game_project_name_get:
+			RET(__RetS, game_project_name);
+		CASE EFxxkGMLFuncId._game_end:
+			game_end(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._game_restart:
+			game_restart();
+		CASE EFxxkGMLFuncId._game_change:
+			game_change(ARG(__S, 0), ARG(__S, 1));
+		CASE EFxxkGMLFuncId._game_load_buffer:
+			game_load_buffer(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._game_save_buffer:
+			game_save_buffer(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._game_set_speed:
+			game_set_speed(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._game_get_speed:
+			RET(__RetR, game_get_speed(ARG_R_0to0));
+
+		CASE EFxxkGMLFuncId._highscore_add:
+			highscore_add(ARG(__S, 0), ARG(__R, 1));
+		CASE EFxxkGMLFuncId._highscore_name:
+			RET(__RetS, highscore_name(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._highscore_value:
+			RET(__RetR, highscore_value(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._highscore_clear:
+			highscore_clear();
+
+		CASE EFxxkGMLFuncId._cursor_sprite_get:
+			RET(__RetR, cursor_sprite);
+		CASE EFxxkGMLFuncId._cursor_sprite_set:
+			cursor_sprite = ARG(__R, 0);
 			
 		CASE EFxxkGMLFuncId._cinstance_getdepth:
 			RET(__RetR, (ARG(__R, 0)).depth);
@@ -644,6 +770,138 @@ function __FxxkGML_RunFunc() {
 			RET(__RetR, layer_create(ARG(__R, 0), ARG(__S, 1)));
 		CASE EFxxkGMLFuncId._layer_destroy:
 			layer_destroy(ARG(__R, 0));
+			
+		CASE EFxxkGMLFuncId._io_clear:
+			io_clear();
+		CASE EFxxkGMLFuncId._keyboard_check:
+			RET(__RetR, keyboard_check(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._keyboard_check_pressed:
+			RET(__RetR, keyboard_check_pressed(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._keyboard_check_released:
+			RET(__RetR, keyboard_check_released(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._keyboard_check_direct:
+			RET(__RetR, keyboard_check_direct(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._keyboard_clear:
+			keyboard_clear(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._keyboard_set_map:
+			keyboard_set_map(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._keyboard_get_map:
+			RET(__RetR, keyboard_get_map(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._keyboard_unset_map:
+			keyboard_unset_map();
+		CASE EFxxkGMLFuncId._keyboard_set_numlock:
+			keyboard_set_numlock(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._keyboard_get_numlock:
+			RET(__RetR, keyboard_get_numlock());
+		CASE EFxxkGMLFuncId._keyboard_key_press:
+			keyboard_key_press(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._keyboard_key_release:
+			keyboard_key_release(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._keyboard_key_get:
+			RET(__RetR, keyboard_key);
+		CASE EFxxkGMLFuncId._keyboard_lastkey_get:
+			RET(__RetR, keyboard_lastkey);
+		CASE EFxxkGMLFuncId._keyboard_lastchar_get:
+			RET(__RetS, keyboard_lastchar);
+		CASE EFxxkGMLFuncId._keyboard_string_get:
+			RET(__RetS, keyboard_string);
+		CASE EFxxkGMLFuncId._keyboard_key_set:
+			keyboard_key = ARG(__R, 0);
+		CASE EFxxkGMLFuncId._keyboard_lastkey_set:
+			keyboard_lastkey = ARG(__R, 0);
+		CASE EFxxkGMLFuncId._keyboard_lastchar_set:
+			keyboard_lastchar = ARG(__S, 0);
+		CASE EFxxkGMLFuncId._keyboard_string_set:
+			keyboard_string = ARG(__S, 0);
+			
+		CASE EFxxkGMLFuncId._mouse_button_get:
+			RET(__RetR, mouse_button);
+		CASE EFxxkGMLFuncId._mouse_button_set:
+			mouse_button = ARG(__R, 0);
+		CASE EFxxkGMLFuncId._mouse_check_button:
+			RET(__RetR, mouse_check_button(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._mouse_check_button_pressed:
+			RET(__RetR, mouse_check_button_pressed(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._mouse_check_button_released:
+			RET(__RetR, mouse_check_button_released(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._mouse_clear:
+			RET(__RetR, mouse_clear(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._mouse_lastbutton_get:
+			RET(__RetR, mouse_lastbutton);
+		CASE EFxxkGMLFuncId._mouse_lastbutton_set:
+			mouse_lastbutton = ARG(__R, 0);
+		CASE EFxxkGMLFuncId._mouse_wheel_up:
+			RET(__RetR, mouse_wheel_up());
+		CASE EFxxkGMLFuncId._mouse_wheel_down:
+			RET(__RetR, mouse_wheel_down());
+		CASE EFxxkGMLFuncId._mouse_x_get:
+			RET(__RetR, mouse_x);
+		CASE EFxxkGMLFuncId._mouse_y_get:
+			RET(__RetR, mouse_y);
+		CASE EFxxkGMLFuncId._mouse_pos_get:
+			RET(__OthR, 0, mouse_x);
+			RET(__OthR, 1, mouse_y);
+		CASE EFxxkGMLFuncId._window_mouse_get_x:
+			RET(__RetR, window_mouse_get_x());
+		CASE EFxxkGMLFuncId._window_mouse_get_y:
+			RET(__RetR, window_mouse_get_y());
+		CASE EFxxkGMLFuncId._window_mouse_get_pos:
+			RET(__OthR, 0, window_mouse_get_x());
+			RET(__OthR, 1, window_mouse_get_y());
+		CASE EFxxkGMLFuncId._window_mouse_set:
+			window_mouse_set(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._window_view_mouse_get_x:
+			RET(__RetR, window_view_mouse_get_x(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._window_view_mouse_get_y:
+			RET(__RetR, window_view_mouse_get_y(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._window_view_mouse_get_pos:
+			RET(__OthR, 0, window_view_mouse_get_x(ARG_R_0to0));
+			RET(__OthR, 1, window_view_mouse_get_y(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._window_views_mouse_get_x:
+			RET(__RetR, window_views_mouse_get_x());
+		CASE EFxxkGMLFuncId._window_views_mouse_get_y:
+			RET(__RetR, window_views_mouse_get_y());
+		CASE EFxxkGMLFuncId._window_views_mouse_get_pos:
+			RET(__OthR, 0, window_views_mouse_get_x());
+			RET(__OthR, 1, window_views_mouse_get_y());
+			
+		CASE EFxxkGMLFuncId._device_mouse_check_button:
+			RET(__RetR, device_mouse_check_button(ARG_R_0to1));
+		CASE EFxxkGMLFuncId._device_mouse_check_button_pressed:
+			RET(__RetR, device_mouse_check_button_pressed(ARG_R_0to1));
+		CASE EFxxkGMLFuncId._device_mouse_check_button_released:
+			RET(__RetR, device_mouse_check_button_released(ARG_R_0to1));
+		CASE EFxxkGMLFuncId._device_mouse_dbclick_enable:
+			RET(__RetR, device_mouse_dbclick_enable(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_x:
+			RET(__RetR, device_mouse_x(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_y:
+			RET(__RetR, device_mouse_y(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_pos:
+			RET(__OthR, 0, device_mouse_x(ARG_R_0to0));
+			RET(__OthR, 1, device_mouse_y(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_raw_x:
+			RET(__RetR, device_mouse_raw_x(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_raw_y:
+			RET(__RetR, device_mouse_raw_y(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_raw_pos:
+			RET(__OthR, 0, device_mouse_raw_x(ARG_R_0to0));
+			RET(__OthR, 1, device_mouse_raw_y(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_x_to_gui:
+			RET(__RetR, device_mouse_x_to_gui(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_y_to_gui:
+			RET(__RetR, device_mouse_y_to_gui(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_mouse_pos_to_gui:
+			RET(__OthR, 0, device_mouse_x_to_gui(ARG_R_0to0));
+			RET(__OthR, 1, device_mouse_y_to_gui(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._device_is_keypad_open:
+			RET(__RetR, device_is_keypad_open());
+		CASE EFxxkGMLFuncId._device_get_tilt_x:
+			RET(__RetR, device_get_tilt_x());
+		CASE EFxxkGMLFuncId._device_get_tilt_y:
+			RET(__RetR, device_get_tilt_y());
+		CASE EFxxkGMLFuncId._device_get_tilt_z:
+			RET(__RetR, device_get_tilt_z());
 			
 		CASE EFxxkGMLFuncId._random_range:
 			RET(__RetR,

@@ -35,6 +35,7 @@ namespace fgm {
 
 	public:
 
+		void point(int id, const char * name, int depth) { m_id = id; m_name = name; m_depth = depth; }
 		void point(int id, const std::string & name, int depth) { m_id = id; m_name = name; m_depth = depth; }
 
 	};
@@ -163,7 +164,7 @@ namespace fgm {
 
 		vec2 get_image_scale() const { return m_imgscale; }
 		vec2 get_image_scale(bool _synch_from_gm, bool _synch_bbox_local_from_gm = true);
-		void set_image_scale(vec2 scale, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
+		void set_image_scale(const vec2 & scale, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 		void set_image_scale(double xscale, double yscale, bool _synch_to_gm = true, bool _synch_bbox_local_from_gm = true);
 
 		unsigned int get_image_index() const { return m_imgindex; }
@@ -242,12 +243,14 @@ namespace fgm {
 	struct __gmvar {
 		__gmvar() { m_typeid = 0; m_real = 0; };
 		__gmvar(bool val) { m_typeid = 0; m_real = val; };
+		__gmvar(char val) { m_typeid = 0; m_real = val; };
+		__gmvar(unsigned char val) { m_typeid = 0; m_real = val; };
 		__gmvar(int val) { m_typeid = 0; m_real = val; };
 		__gmvar(unsigned int val) { m_typeid = 0; m_real = val; };
 		__gmvar(float val) { m_typeid = 0; m_real = val; };
 		__gmvar(double val) { m_typeid = 0; m_real = val; };
 		__gmvar(const char * val) { m_typeid = 1; m_string = val; };
-		__gmvar(const std::string & val) { m_typeid = 1; m_string = val; };
+		__gmvar(const std::string & val) { m_typeid = 1; m_string = val.c_str(); };
 
 		int m_typeid; // 0 = real, 1 = string
 
