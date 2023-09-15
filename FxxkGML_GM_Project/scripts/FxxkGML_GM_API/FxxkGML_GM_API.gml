@@ -199,6 +199,10 @@ enum EFxxkGMLFuncId {
 	
 	_layer_depth = 3029,
 	
+/* game_input.h 4000+ */
+
+	// Keyboard Input
+	
 	_io_clear = 4001,
 	_keyboard_check = 4002,
 	_keyboard_check_pressed = 4003,
@@ -220,6 +224,8 @@ enum EFxxkGMLFuncId {
 	_keyboard_lastkey_set = 4019,
 	_keyboard_lastchar_set = 4020,
 	_keyboard_string_set = 4021,
+	
+	// Mouse Input
 	
 	_mouse_button_get = 4022,
 	_mouse_button_set = 4023,
@@ -246,6 +252,8 @@ enum EFxxkGMLFuncId {
 	_window_views_mouse_get_y = 4043,
 	_window_views_mouse_get_pos = 4044,
 	
+	// Device Input
+	
 	_device_mouse_check_button = 4045,
 	_device_mouse_check_button_pressed = 4046,
 	_device_mouse_check_button_released = 4047,
@@ -263,6 +271,51 @@ enum EFxxkGMLFuncId {
 	_device_get_tilt_x = 4059,
 	_device_get_tilt_y = 4060,
 	_device_get_tilt_z = 4061,
+	
+/* debug.h 5000+ */
+
+	// debug_mode = 5001,
+	// debug_event = 5002,
+	// debug_get_callstack = 5003,
+	// exception_unhandled_handler = 5004,
+	// get_integer = 5005,
+	// get_string = 5006,
+	_show_error = 5007,
+	_show_message = 5008,
+	_show_question = 5009,
+	_show_debug_message = 5010,
+	// show_debug_message_ext = 5011,
+	_code_is_compiled = 5012,
+	_fps_get = 5013,
+	_fps_real_get = 5014,
+	
+	// Toggling
+
+	_show_debug_overlay = 5015,
+	_show_debug_log = 5016,
+	_is_debug_overlay_open = 5017,
+
+	// Views
+
+	_dbg_view = 5018,
+	_dbg_view_delete = 5019,
+	_dbg_section = 5020,
+	_dbg_section_delete = 5021,
+
+	// Controls
+
+	_dbg_button = 5022,
+	_dbg_checkbox = 5023,
+	_dbg_colour = 5024,
+	_dbg_drop_down = 5025,
+	_dbg_same_line = 5026,
+	_dbg_slider = 5027,
+	_dbg_sprite = 5028,
+	_dbg_text = 5029,
+	_dbg_text_input = 5030,
+	_dbg_watch = 5031,
+	
+/* */
 	
 	_random_range = 10002,
 	_asset_get_index = 10003,
@@ -902,6 +955,31 @@ function __FxxkGML_RunFunc() {
 			RET(__RetR, device_get_tilt_y());
 		CASE EFxxkGMLFuncId._device_get_tilt_z:
 			RET(__RetR, device_get_tilt_z());
+			
+		CASE EFxxkGMLFuncId._show_error:
+			show_error(ARG(__S, 0), ARG(__R, 1));
+		CASE EFxxkGMLFuncId._show_message:
+			show_message(ARG(__S, 0));
+		CASE EFxxkGMLFuncId._show_question:
+			RET(__RetR, show_question(ARG(__S, 0)));
+		CASE EFxxkGMLFuncId._show_debug_message:
+			show_debug_message(ARG(__S, 0));
+		CASE EFxxkGMLFuncId._code_is_compiled:
+			RET(__RetR, code_is_compiled());
+		CASE EFxxkGMLFuncId._fps_get:
+			RET(__RetR, fps);
+		CASE EFxxkGMLFuncId._fps_real_get:
+			RET(__RetR, fps_real);
+		CASE EFxxkGMLFuncId._show_debug_overlay:
+			show_debug_overlay(ARG_R_0to3);
+		CASE EFxxkGMLFuncId._show_debug_log:
+			show_debug_log(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._is_debug_overlay_open:
+			RET(__RetR, is_debug_overlay_open());
+		CASE EFxxkGMLFuncId._dbg_view: // TODO
+		CASE EFxxkGMLFuncId._dbg_view_delete:
+		CASE EFxxkGMLFuncId._dbg_section:
+		CASE EFxxkGMLFuncId._dbg_section_delete:
 			
 		CASE EFxxkGMLFuncId._random_range:
 			RET(__RetR,

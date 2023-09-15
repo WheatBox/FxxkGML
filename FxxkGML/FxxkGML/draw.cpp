@@ -1,5 +1,12 @@
 #include "draw.h"
 
+#define FUNC_COLOR_COLOUR(func, after) \
+	func##colour after \
+	func##color after
+#define FUNC_COLOR_COLOUR_EXT(func, ext, after) \
+	func##colour##ext after \
+	func##color##ext after
+
 namespace fgm {
 	
 	void draw_enable_drawevent(bool enable) {
@@ -15,10 +22,10 @@ namespace fgm {
 		return { static_cast<color_t>(g_funcres.m_real) };
 	}
 
-	color_bgr draw_get_colour() {
+	FUNC_COLOR_COLOUR(color_bgr draw_get_, () {
 		__basic(__FuncId::draw_get_colour);
 		return { static_cast<color_t>(g_funcres.m_real) };
-	}
+	});
 
 	double draw_get_alpha() {
 		__basic(__FuncId::draw_get_alpha);
@@ -37,9 +44,9 @@ namespace fgm {
 		__basic(__FuncId::draw_set_alpha, alpha);
 	}
 
-	void draw_set_colour(const color_bgr & col) {
+	FUNC_COLOR_COLOUR(void draw_set_, (const color_bgr & col) {
 		__basic(__FuncId::draw_set_colour, col.get());
-	}
+	});
 
 	void draw_arrow(const vec2 & xy1, const vec2 & xy2, double size) {
 		draw_arrow(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y, size);
@@ -57,13 +64,13 @@ namespace fgm {
 		__basic(__FuncId::draw_circle, x, y, r, outline);
 	}
 
-	void draw_circle_colour(const vec2 & xy, double r, const color_bgr & col1, const color_bgr & col2, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_circle_, (const vec2 & xy, double r, const color_bgr & col1, const color_bgr & col2, bool outline) {
 		draw_circle_colour(xy.m_x, xy.m_y, r, col1, col2, outline);
-	}
+	});
 
-	void draw_circle_colour(double x, double y, double r, const color_bgr & col1, const color_bgr & col2, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_circle_, (double x, double y, double r, const color_bgr & col1, const color_bgr & col2, bool outline) {
 		__basic(__FuncId::draw_circle_colour, x, y, r, col1.get(), col2.get(), outline);
-	}
+	});
 
 	void draw_ellipse(const vec2 & xy1, const vec2 & xy2, bool outline) {
 		draw_ellipse(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y, outline);
@@ -73,13 +80,13 @@ namespace fgm {
 		__basic(__FuncId::draw_ellipse, x1, y1, x2, y2, outline);
 	}
 
-	void draw_ellipse_colour(const vec2 & xy1, const vec2 & xy2, const color_bgr & col1, const color_bgr & col2, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_ellipse_, (const vec2 & xy1, const vec2 & xy2, const color_bgr & col1, const color_bgr & col2, bool outline) {
 		draw_ellipse_colour(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y, col1, col2, outline);
-	}
+	});
 
-	void draw_ellipse_colour(double x1, double y1, double x2, double y2, const color_bgr & col1, const color_bgr & col2, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_ellipse_, (double x1, double y1, double x2, double y2, const color_bgr & col1, const color_bgr & col2, bool outline) {
 		__basic(__FuncId::draw_ellipse_colour, x1, y1, x2, y2, col1.get(), col2.get(), outline);
-	}
+	});
 	
 	void draw_line(const vec2 & xy1, const vec2 & xy2) {
 		draw_line(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y);
@@ -89,13 +96,13 @@ namespace fgm {
 		__basic(__FuncId::draw_line, x1, y1, x2, y2);
 	}
 	
-	void draw_line_colour(const vec2 & xy1, const vec2 & xy2, const color_bgr & col1, const color_bgr & col2) {
+	FUNC_COLOR_COLOUR(void draw_line_, (const vec2 & xy1, const vec2 & xy2, const color_bgr & col1, const color_bgr & col2) {
 		draw_line_colour(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y, col1, col2);
-	}
+	});
 
-	void draw_line_colour(double x1, double y1, double x2, double y2, const color_bgr & col1, const color_bgr & col2) {
+	FUNC_COLOR_COLOUR(void draw_line_, (double x1, double y1, double x2, double y2, const color_bgr & col1, const color_bgr & col2) {
 		__basic(__FuncId::draw_line_colour, x1, y1, x2, y2, col1.get(), col2.get());
-	}
+	});
 
 	void draw_line_width(const vec2 & xy1, const vec2 & xy2, double w) {
 		draw_line_width(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y, w);
@@ -105,13 +112,13 @@ namespace fgm {
 		__basic(__FuncId::draw_line_width, x1, y1, x2, y2, w);
 	}
 	
-	void draw_line_width_colour(const vec2 & xy1, const vec2 & xy2, double w, const color_bgr & col1, const color_bgr & col2) {
+	FUNC_COLOR_COLOUR(void draw_line_width_, (const vec2 & xy1, const vec2 & xy2, double w, const color_bgr & col1, const color_bgr & col2) {
 		draw_line_width_colour(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y, w, col1, col2);
-	}
+	});
 	
-	void draw_line_width_colour(double x1, double y1, double x2, double y2, double w, const color_bgr & col1, const color_bgr & col2) {
+	FUNC_COLOR_COLOUR(void draw_line_width_, (double x1, double y1, double x2, double y2, double w, const color_bgr & col1, const color_bgr & col2) {
 		__basic(__FuncId::draw_line_width_colour, x1, y1, x2, y2, w, col1.get(), col2.get());
-	}
+	});
 	
 	void draw_point(const vec2 & xy) {
 		draw_point(xy.m_x, xy.m_y);
@@ -121,13 +128,13 @@ namespace fgm {
 		__basic(__FuncId::draw_point, x, y);
 	}
 
-	void draw_point_colour(const vec2 & xy, const color_bgr & col) {
+	FUNC_COLOR_COLOUR(void draw_point_, (const vec2 & xy, const color_bgr & col) {
 		draw_point_colour(xy.m_x, xy.m_y, col);
-	}
+	});
 
-	void draw_point_colour(double x, double y, const color_bgr & col) {
+	FUNC_COLOR_COLOUR(void draw_point_, (double x, double y, const color_bgr & col) {
 		__basic(__FuncId::draw_point_colour, x, y, col.get());
-	}
+	});
 	
 	void draw_rectangle(const rect & rect_, bool outline) {
 		draw_rectangle(rect_.m_left, rect_.m_top, rect_.m_right, rect_.m_bottom, outline);
@@ -137,21 +144,21 @@ namespace fgm {
 		__basic(__FuncId::draw_rectangle, x1, y1, x2, y2, outline);
 	}
 	
-	void draw_rectangle_colour(const rect & rect_, const rect_t<color_bgr> & rect_col, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_rectangle_, (const rect & rect_, const rect_t<color_bgr> & rect_col, bool outline) {
 		draw_rectangle_colour(rect_.m_left, rect_.m_top, rect_.m_right, rect_.m_bottom, rect_col.m_left, rect_col.m_top, rect_col.m_right, rect_col.m_bottom, outline);
-	}
+	});
 
-	void draw_rectangle_colour(const rect & rect_, const color_bgr & col1, const color_bgr & col2, const color_bgr & col3, const color_bgr & col4, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_rectangle_, (const rect & rect_, const color_bgr & col1, const color_bgr & col2, const color_bgr & col3, const color_bgr & col4, bool outline) {
 		draw_rectangle_colour(rect_.m_left, rect_.m_top, rect_.m_right, rect_.m_bottom, col1.get(), col2.get(), col3.get(), col4.get(), outline);
-	}
+	});
 	
-	void draw_rectangle_colour(double x1, double y1, double x2, double y2, const rect_t<color_bgr> & rect_col, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_rectangle_, (double x1, double y1, double x2, double y2, const rect_t<color_bgr> & rect_col, bool outline) {
 		draw_rectangle_colour(x1, y1, x2, y2, rect_col.m_left, rect_col.m_top, rect_col.m_right, rect_col.m_bottom, outline);
-	}
+	});
 
-	void draw_rectangle_colour(double x1, double y1, double x2, double y2, const color_bgr & col1, const color_bgr & col2, const color_bgr & col3, const color_bgr & col4, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_rectangle_, (double x1, double y1, double x2, double y2, const color_bgr & col1, const color_bgr & col2, const color_bgr & col3, const color_bgr & col4, bool outline) {
 		__basic(__FuncId::draw_rectangle_colour, x1, y1, x2, y2, col1.get(), col2.get(), col3.get(), col4.get(), outline);
-	}
+	});
 	
 	void draw_roundrect(const rect & rect_, bool outline) {
 		draw_roundrect(rect_.m_left, rect_.m_top, rect_.m_right, rect_.m_bottom, outline);
@@ -161,13 +168,13 @@ namespace fgm {
 		__basic(__FuncId::draw_roundrect, x1, y1, x2, y2, outline);
 	}
 
-	void draw_roundrect_colour(const rect & rect_, const color_bgr & col1, const color_bgr & col2, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_roundrect_, (const rect & rect_, const color_bgr & col1, const color_bgr & col2, bool outline) {
 		draw_roundrect_colour(rect_.m_left, rect_.m_top, rect_.m_right, rect_.m_bottom, col1, col2, outline);
-	}
+	});
 	
-	void draw_roundrect_colour(double x1, double y1, double x2, double y2, const color_bgr & col1, const color_bgr & col2, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_roundrect_, (double x1, double y1, double x2, double y2, const color_bgr & col1, const color_bgr & col2, bool outline) {
 		__basic(__FuncId::draw_roundrect_colour, x1, y1, x2, y2, col1.get(), col2.get(), outline);
-	}
+	});
 	
 	void draw_roundrect_ext(const rect & rect_, double xrad, double yrad, bool outline) {
 		draw_roundrect_ext(rect_.m_left, rect_.m_top, rect_.m_right, rect_.m_bottom, xrad, yrad, outline);
@@ -177,13 +184,13 @@ namespace fgm {
 		__basic(__FuncId::draw_roundrect_ext, x1, y1, x2, y2, xrad, yrad, outline);
 	}
 	
-	void draw_roundrect_colour_ext(const rect & rect_, double xrad, double yrad, const color_bgr & col1, const color_bgr & col2, bool outline) {
+	FUNC_COLOR_COLOUR_EXT(void draw_roundrect_, _ext, (const rect & rect_, double xrad, double yrad, const color_bgr & col1, const color_bgr & col2, bool outline) {
 		draw_roundrect_colour_ext(rect_.m_left, rect_.m_top, rect_.m_right, rect_.m_bottom, xrad, yrad, col1, col2, outline);
-	}
+	});
 	
-	void draw_roundrect_colour_ext(double x1, double y1, double x2, double y2, double xrad, double yrad, const color_bgr & col1, const color_bgr & col2, bool outline) {
+	FUNC_COLOR_COLOUR_EXT(void draw_roundrect_, _ext, (double x1, double y1, double x2, double y2, double xrad, double yrad, const color_bgr & col1, const color_bgr & col2, bool outline) {
 		__basic(__FuncId::draw_roundrect_colour_ext, x1, y1, x2, y2, xrad, yrad, col1.get(), col2.get(), outline);
-	}
+	});
 	
 	void draw_triangle(const vec2 & xy1, const vec2 & xy2, const vec2 & xy3, bool outline) {
 		draw_triangle(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y, xy3.m_x, xy3.m_y, outline);
@@ -193,13 +200,13 @@ namespace fgm {
 		__basic(__FuncId::draw_triangle, x1, y1, x2, y2, x3, y3, outline);
 	}
 	
-	void draw_triangle_colour(const vec2 & xy1, const vec2 & xy2, const vec2 & xy3, const color_bgr & col1, const color_bgr & col2, const color_bgr & col3, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_triangle_, (const vec2 & xy1, const vec2 & xy2, const vec2 & xy3, const color_bgr & col1, const color_bgr & col2, const color_bgr & col3, bool outline) {
 		draw_triangle_colour(xy1.m_x, xy1.m_y, xy2.m_x, xy2.m_y, xy3.m_x, xy3.m_y, col1, col2, col3, outline);
-	}
+	});
 	
-	void draw_triangle_colour(double x1, double y1, double x2, double y2, double x3, double y3, const color_bgr & col1, const color_bgr & col2, const color_bgr & col3, bool outline) {
+	FUNC_COLOR_COLOUR(void draw_triangle_, (double x1, double y1, double x2, double y2, double x3, double y3, const color_bgr & col1, const color_bgr & col2, const color_bgr & col3, bool outline) {
 		__basic(__FuncId::draw_triangle_colour, x1, y1, x2, y2, x3, y3, col1.get(), col2.get(), col3.get(), outline);
-	}
+	});
 	
 	void draw_set_circle_precision(int precision) {
 		__basic(__FuncId::draw_set_circle_precision, precision);
@@ -405,13 +412,13 @@ namespace fgm {
 		__basic(__FuncId::draw_text_ext, x, y, string, sep, w);
 	}
 	
-	void draw_text_colour(const vec2 & xy, const std::string & string, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_, (const vec2 & xy, const std::string & string, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		draw_text_colour(xy.m_x, xy.m_y, string, c1, c2, c3, c4, alpha);
-	}
+	});
 
-	void draw_text_colour(double x, double y, const std::string & string, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_, (double x, double y, const std::string & string, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		__basic(__FuncId::draw_text_colour, x, y, string, c1.get(), c2.get(), c3.get(), c4.get(), alpha);
-	}
+	});
 	
 	void draw_text_transformed(const vec2 & xy, const std::string & string, const vec2 & scale, double angle) {
 		draw_text_transformed(xy.m_x, xy.m_y, string, scale.m_x, scale.m_y, angle);
@@ -429,13 +436,13 @@ namespace fgm {
 		__basic(__FuncId::draw_text_transformed, x, y, string, xscale, yscale, angle);
 	}
 	
-	void draw_text_ext_colour(const vec2 & xy, const std::string & string, double sep, double w, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_ext_, (const vec2 & xy, const std::string & string, double sep, double w, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		draw_text_ext_colour(xy.m_x, xy.m_y, string, sep, w, c1, c2, c3, c4, alpha);
-	}
+	});
 
-	void draw_text_ext_colour(double x, double y, const std::string & string, double sep, double w, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_ext_, (double x, double y, const std::string & string, double sep, double w, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		__basic(__FuncId::draw_text_ext_colour, x, y, string, sep, w, c1.get(), c2.get(), c3.get(), c4.get(), alpha);
-	}
+	});
 
 	void draw_text_ext_transformed(const vec2 & xy, const std::string & string, double sep, double w, const vec2 & scale, double angle) {
 		draw_text_ext_transformed(xy.m_x, xy.m_y, string, sep, w, scale.m_x, scale.m_y, angle);
@@ -453,31 +460,37 @@ namespace fgm {
 		__basic(__FuncId::draw_text_ext_transformed, x, y, string, sep, w, xscale, yscale, angle);
 	}
 	
-	void draw_text_transformed_colour(const vec2 & xy, const std::string & string, const vec2 & scale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha);
+	FUNC_COLOR_COLOUR(void draw_text_transformed_, (const vec2 & xy, const std::string & string, const vec2 & scale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+		draw_text_transformed_colour(xy.m_x, xy.m_y, string, scale.m_x, scale.m_y, angle, c1, c2, c3, c4, alpha);
+	});
 	
-	void draw_text_transformed_colour(const vec2 & xy, const std::string & string, double xscale, double yscale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha);
+	FUNC_COLOR_COLOUR(void draw_text_transformed_, (const vec2 & xy, const std::string & string, double xscale, double yscale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+		draw_text_transformed_colour(xy.m_x, xy.m_y, string, xscale, yscale, angle, c1, c2, c3, c4, alpha);
+	});
 	
-	void draw_text_transformed_colour(double x, double y, const std::string & string, const vec2 & scale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha);
+	FUNC_COLOR_COLOUR(void draw_text_transformed_, (double x, double y, const std::string & string, const vec2 & scale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+		draw_text_transformed_colour(x, y, string, scale.m_x, scale.m_y, angle, c1, c2, c3, c4, alpha);
+	});
 	
-	void draw_text_transformed_colour(double x, double y, const std::string & string, double xscale, double yscale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_transformed_, (double x, double y, const std::string & string, double xscale, double yscale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		__basic(__FuncId::draw_text_transformed_colour, x, y, string, xscale, yscale, angle, c1.get(), c2.get(), c3.get(), c4.get(), alpha);
-	}
+	});
 	
-	void draw_text_ext_transformed_colour(const vec2 & xy, const std::string & string, double sep, double w, const vec2 & scale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_ext_transformed_, (const vec2 & xy, const std::string & string, double sep, double w, const vec2 & scale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		draw_text_ext_transformed_colour(xy.m_x, xy.m_y, string, sep, w, scale.m_x, scale.m_y, angle, c1, c2, c3, c4, alpha);
-	}
+	});
 	
-	void draw_text_ext_transformed_colour(const vec2 & xy, const std::string & string, double sep, double w, double xscale, double yscale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_ext_transformed_, (const vec2 & xy, const std::string & string, double sep, double w, double xscale, double yscale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		draw_text_ext_transformed_colour(xy.m_x, xy.m_y, string, sep, w, xscale, yscale, angle, c1, c2, c3, c4, alpha);
-	}
+	});
 	
-	void draw_text_ext_transformed_colour(double x, double y, const std::string & string, double sep, double w, const vec2 & scale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_ext_transformed_, (double x, double y, const std::string & string, double sep, double w, const vec2 & scale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		draw_text_ext_transformed_colour(x, y, string, sep, w, scale.m_x, scale.m_y, angle, c1, c2, c3, c4, alpha);
-	}
+	});
 	
-	void draw_text_ext_transformed_colour(double x, double y, const std::string & string, double sep, double w, double xscale, double yscale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
+	FUNC_COLOR_COLOUR(void draw_text_ext_transformed_, (double x, double y, const std::string & string, double sep, double w, double xscale, double yscale, double angle, const color_bgr & c1, const color_bgr & c2, const color_bgr & c3, const color_bgr & c4, double alpha) {
 		__basic(__FuncId::draw_text_ext_transformed_colour, x, y, string, sep, w, xscale, yscale, angle, c1.get(), c2.get(), c3.get(), c4.get(), alpha);
-	}
+	});
 	
 	void draw_highscore(const rect & rect_) {
 		draw_highscore(rect_.m_left, rect_.m_top, rect_.m_right, rect_.m_bottom);

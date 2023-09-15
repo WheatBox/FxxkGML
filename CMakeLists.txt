@@ -29,6 +29,7 @@ message(${_outpath})
 		FxxkGML/FxxkGML/instance.cpp
 		FxxkGML/FxxkGML/layer.cpp
 		FxxkGML/FxxkGML/game_input.cpp
+		FxxkGML/FxxkGML/debug.cpp
 		FxxkGML/FxxkGML.cpp
 		${ARGN}
 	)

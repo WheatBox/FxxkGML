@@ -310,6 +310,49 @@ namespace fgm {
 		device_get_tilt_y = 4060,
 		device_get_tilt_z = 4061,
 
+	/* debug.h 5000+ */
+
+		// debug_mode = 5001,
+		// debug_event = 5002,
+		// debug_get_callstack = 5003,
+		// exception_unhandled_handler = 5004,
+		// get_integer = 5005,
+		// get_string = 5006,
+		show_error = 5007,
+		show_message = 5008,
+		show_question = 5009,
+		show_debug_message = 5010,
+		// show_debug_message_ext = 5011,
+		code_is_compiled = 5012,
+		fps_get = 5013,
+		fps_real_get = 5014,
+
+		// Toggling
+
+		show_debug_overlay = 5015,
+		show_debug_log = 5016,
+		is_debug_overlay_open = 5017,
+
+		// Views // TODO
+
+		dbg_view = 5018,
+		dbg_view_delete = 5019,
+		dbg_section = 5020,
+		dbg_section_delete = 5021,
+
+		// Controls // TODO
+
+		dbg_button = 5022,
+		dbg_checkbox = 5023,
+		dbg_colour = 5024,
+		dbg_drop_down = 5025,
+		dbg_same_line = 5026,
+		dbg_slider = 5027,
+		dbg_sprite = 5028,
+		dbg_text = 5029,
+		dbg_text_input = 5030,
+		dbg_watch = 5031,
+
 	/* */
 
 		random_range = 10002,

@@ -14,6 +14,8 @@ double val;
 int rot = 0;
 
 void fgm_init() {
+	fgm::show_debug_overlay(true);
+
 	spr_test = fgm::asset_get_index("spr_test");
 	spr_block = fgm::asset_get_index("spr_block");
 	obj_test = fgm::asset_get_index("obj_test");
@@ -108,18 +110,16 @@ void fgm_main() {
 	}
 	std::vector<fgm::ins_id> vins;
 	fgm::instance_position_list(250, 285, obj_collision_list_test, & vins, false);
-	if(fgm::keyboard_check('W')) {
-		for(auto & it : vins) {
-			fgm::instance_set_image_blend(it, fgm::c_maroon);
-		}
-	} else {
-		for(auto & it : vins) {
-			fgm::instance_set_image_blend(it, fgm::c_teal);
-		}
+	
+	for(auto & it : vins) {
+		fgm::instance_set_image_blend(it, fgm::c_teal);
 	}
 
 	fgm::instance_set_image_blend(fgm::instance_furthest(me.get_x(), me.get_y(), obj_collision_list_test), fgm::c_red);
 	
+	if(fgm::keyboard_check_pressed('F')) {
+		fgm::show_debug_message("pressed F key");
+	}
 }
 
 void DrawEvent() {
@@ -148,6 +148,10 @@ void DrawEvent() {
 	} else {
 		MyFuncTest(512, std::to_string(ins.get_depth(true)));
 	}
+
+	fgm::draw_set_color(fgm::c_black);
+	fgm::draw_text(0, 16, "fps:" + std::to_string(fgm::fps_get()));
+	fgm::draw_set_color(fgm::c_white);
 }
 
 void fgm_assistant(int assistant_index) {

@@ -1,7 +1,3 @@
-draw_set_color(c_black);
-draw_text(0, 16, "fps:" + string(fps));
-draw_set_color(c_white);
-
 draw_set_alpha(0.5);
 draw_rectangle(10, 40, 200, 400, false);
 draw_rectangle(-200, -200, 100, 200, false);

@@ -7,3 +7,4 @@
 #include "instance.h"
 #include "layer.h"
 #include "game_input.h"
+#include "debug.h"
