@@ -33,11 +33,15 @@ namespace fgm {
 		// variable_instance_get_names = 120,
 		// variable_instance_names_count = 121,
 		variable_instance_exists = 122,
-		variable_instance_get = 123,
-		variable_instance_set = 124,
-		variable_global_exists = 125,
-		variable_global_get = 126,
-		variable_global_set = 127,
+		variable_instance_get_real = 123,
+		variable_instance_get_string = 124,
+		variable_instance_set_real = 125,
+		variable_instance_set_string = 126,
+		variable_global_exists = 127,
+		variable_global_get_real = 128,
+		variable_global_get_string = 129,
+		variable_global_set_real = 130,
+		variable_global_set_string = 131,
 
 	/* class instance -1000+ */
 

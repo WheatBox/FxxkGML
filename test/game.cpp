@@ -75,6 +75,8 @@ void fgm_init() {
 		std::cout << std::hex << rgb1.get() << std::dec << std::endl;
 	};
 	coltest(hsv1);
+
+	fgm::variable_instance_set_real(me.get_id(), "vartest", 114514);
 }
 
 int t = 0;

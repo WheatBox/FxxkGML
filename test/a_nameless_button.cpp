@@ -1,10 +1,12 @@
 #include <FxxkGML.h>
 
 fgm::asset snd_click = -1;
+fgm::instance insgame;
 fgm::rect button_area { 128, 160, 320, 192 };
 
 void fgm_init() {
 	snd_click = fgm::asset_get_index("snd_click");
+	insgame = fgm::instance_find(fgm::asset_get_index("Object1"), 0);
 }
 
 void fgm_main() {
@@ -22,7 +24,7 @@ void fgm_main() {
 
 		if(fgm::mouse_check_button_pressed(fgm::mb_left)) {
 			fgm::audio_play_sound(snd_click, 1000, false);
-			fgm::show_debug_message(std::to_string(fgm::irandom_range(5, 10)));
+			fgm::show_debug_message(std::to_string(fgm::irandom_range(5, 10)) + "   " + std::to_string(fgm::variable_instance_get_real(insgame.get_id(), "vartest")));
 		}
 	}
 

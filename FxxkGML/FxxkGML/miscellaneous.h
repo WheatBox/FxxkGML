@@ -32,4 +32,15 @@ namespace fgm {
 	int asset_get_type(const char * name);
 	int asset_get_type(const std::string & name);
 
+	bool variable_instance_exists(ins_id instance_id, const std::string & name);
+	double variable_instance_get_real(ins_id instance_id, const std::string & name);
+	std::string variable_instance_get_string(ins_id instance_id, const std::string & name);
+	void variable_instance_set_real(ins_id instance_id, const std::string & name, double val);
+	void variable_instance_set_string(ins_id instance_id, const std::string & name, const std::string & val);
+	bool variable_global_exists(const std::string & name);
+	double variable_global_get_real(const std::string & name);
+	std::string variable_global_get_string(const std::string & name);
+	void variable_global_set_real(const std::string & name, double val);
+	void variable_global_set_string(const std::string & name, const std::string & val);
+
 }

@@ -31,6 +31,19 @@ enum EFxxkGMLFuncId {
 	_asset_get_index = 118,
 	_asset_get_type = 119,
 	
+	// _variable_instance_get_names = 120,
+	// _variable_instance_names_count = 121,
+	_variable_instance_exists = 122,
+	_variable_instance_get_real = 123,
+	_variable_instance_get_string = 124,
+	_variable_instance_set_real = 125,
+	_variable_instance_set_string = 126,
+	_variable_global_exists = 127,
+	_variable_global_get_real = 128,
+	_variable_global_get_string = 129,
+	_variable_global_set_real = 130,
+	_variable_global_set_string = 131,
+	
 /* class instance -1000+ */
 	
 	_cinstance_getdepth = -1001,
@@ -496,6 +509,27 @@ function __FxxkGML_RunFunc() {
 			RET(__RetR, cursor_sprite);
 		CASE EFxxkGMLFuncId._cursor_sprite_set:
 			cursor_sprite = ARG(__R, 0);
+			
+		CASE EFxxkGMLFuncId._variable_instance_exists:
+			RET(__RetR, variable_instance_exists(ARG(__R, 0), ARG(__S, 1)));
+		CASE EFxxkGMLFuncId._variable_instance_get_real:
+			RET(__RetR, variable_instance_get(ARG(__R, 0), ARG(__S, 1)));
+		CASE EFxxkGMLFuncId._variable_instance_get_string:
+			RET(__RetS, variable_instance_get(ARG(__R, 0), ARG(__S, 1)));
+		CASE EFxxkGMLFuncId._variable_instance_set_real:
+			variable_instance_set(ARG(__R, 0), ARG(__S, 1), ARG(__R, 2));
+		CASE EFxxkGMLFuncId._variable_instance_set_string:
+			variable_instance_set(ARG(__R, 0), ARG(__S, 1), ARG(__S, 2));
+		CASE EFxxkGMLFuncId._variable_global_exists:
+			RET(__RetR, variable_global_exists(ARG(__S, 0)));
+		CASE EFxxkGMLFuncId._variable_global_get_real:
+			RET(__RetR, variable_global_get(ARG(__S, 0)));
+		CASE EFxxkGMLFuncId._variable_global_get_string:
+			RET(__RetS, variable_global_get(ARG(__S, 0)));
+		CASE EFxxkGMLFuncId._variable_global_set_real:
+			variable_global_set(ARG(__S, 0), ARG(__R, 1));
+		CASE EFxxkGMLFuncId._variable_global_set_string:
+			variable_global_set(ARG(__S, 0), ARG(__S, 1));
 			
 		CASE EFxxkGMLFuncId._asset_get_index:
 			RET(__RetR, asset_get_index(ARG(__S, 0)));
