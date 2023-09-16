@@ -8,16 +8,6 @@ namespace fgm {
 
 namespace fgm {
 
-	double random_range(double x1, double x2) {
-		__basic(__FuncId::random_range, x1, x2);
-		return g_funcres.m_real;
-	}
-
-	asset asset_get_index(const std::string & name) {
-		__basic(__FuncId::asset_get_index, name);
-		return g_funcres.m_real;
-	}
-
 /* ------ class layer ------ */
 #pragma region __CLASSLAYER__
 

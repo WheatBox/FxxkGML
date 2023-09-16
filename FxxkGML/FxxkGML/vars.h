@@ -9,6 +9,25 @@
 #define RAD2DEG_RATIO 57.295779513082321
 
 namespace fgm {
+	
+	const int asset_object = 0;
+	const int asset_sprite = 1;
+	const int asset_sound = 2;
+	const int asset_room = 3;
+	const int asset_tiles = 9;
+	const int asset_path = 5;
+	const int asset_script = 6;
+	const int asset_font = 7;
+	const int asset_timeline = 8;
+	const int asset_shader = 10;
+	const int asset_animationcurve = 12;
+	const int asset_sequence = 11;
+	const int asset_particlesystem = 13;
+	const int asset_unknown = -1;
+
+}
+
+namespace fgm {
 
 	using asset = int; // Asset.xxx
 	using ins_id = int; // Id.Instance

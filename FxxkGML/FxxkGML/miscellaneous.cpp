@@ -86,4 +86,24 @@ namespace fgm {
 		__basic(__FuncId::cursor_sprite_set, spr);
 	}
 
+	asset asset_get_index(const char * name) {
+		__basic(__FuncId::asset_get_index, name);
+		return g_funcres.m_real;
+	}
+
+	asset asset_get_index(const std::string & name) {
+		__basic(__FuncId::asset_get_index, name);
+		return g_funcres.m_real;
+	}
+
+	int asset_get_type(const char * name) {
+		__basic(__FuncId::asset_get_type, name);
+		return g_funcres.m_real;
+	}
+
+	int asset_get_type(const std::string & name) {
+		__basic(__FuncId::asset_get_type, name);
+		return g_funcres.m_real;
+	}
+
 }

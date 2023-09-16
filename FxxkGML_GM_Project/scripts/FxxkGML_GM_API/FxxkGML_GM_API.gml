@@ -24,6 +24,9 @@ enum EFxxkGMLFuncId {
 	_cursor_sprite_get = 116,
 	_cursor_sprite_set = 117,
 	
+	_asset_get_index = 118,
+	_asset_get_type = 119,
+	
 /* class instance -1000+ */
 	
 	_cinstance_getdepth = -1001,
@@ -341,10 +344,6 @@ enum EFxxkGMLFuncId {
 	_audio_is_playing = 6017,
 	_audio_is_paused = 6018,
 	
-/* */
-	
-	_random_range = 10002,
-	_asset_get_index = 10003,
 };
 
 #macro ARG external_call
@@ -481,6 +480,11 @@ function __FxxkGML_RunFunc() {
 			RET(__RetR, cursor_sprite);
 		CASE EFxxkGMLFuncId._cursor_sprite_set:
 			cursor_sprite = ARG(__R, 0);
+			
+		CASE EFxxkGMLFuncId._asset_get_index:
+			RET(__RetR, asset_get_index(ARG(__S, 0)));
+		CASE EFxxkGMLFuncId._asset_get_type:
+			RET(__RetR, asset_get_type(ARG(__S, 0)));
 			
 		CASE EFxxkGMLFuncId._cinstance_getdepth:
 			RET(__RetR, (ARG(__R, 0)).depth);
@@ -1043,14 +1047,6 @@ function __FxxkGML_RunFunc() {
 			RET(__RetR, audio_is_playing(ARG_R_0to0));
 		CASE EFxxkGMLFuncId._audio_is_paused:
 			RET(__RetR, audio_is_paused(ARG_R_0to0));
-			
-		CASE EFxxkGMLFuncId._random_range:
-			RET(__RetR,
-				random_range(ARG(__R, 0), ARG(__R, 1)));
-			
-		CASE EFxxkGMLFuncId._asset_get_index:
-			RET(__RetR,
-				asset_get_index(ARG(__S, 0)));
 						
 	}
 	

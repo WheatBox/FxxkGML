@@ -27,4 +27,9 @@ namespace fgm {
 	asset cursor_sprite_get();
 	void cursor_sprite_set(asset spr);
 
+	asset asset_get_index(const char * name);
+	asset asset_get_index(const std::string & name);
+	int asset_get_type(const char * name);
+	int asset_get_type(const std::string & name);
+
 }

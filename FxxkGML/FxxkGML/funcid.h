@@ -27,6 +27,9 @@ namespace fgm {
 		cursor_sprite_get = 116,
 		cursor_sprite_set = 117,
 
+		asset_get_index = 118,
+		asset_get_type = 119,
+
 	/* class instance -1000+ */
 
 		cinstance_getdepth = -1001,
@@ -423,9 +426,5 @@ namespace fgm {
 		audio_create_stream
 		audio_destroy_stream*/
 
-	/* */
-
-		random_range = 10002,
-		asset_get_index = 10003,
 	};
 }

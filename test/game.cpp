@@ -14,6 +14,7 @@ double val;
 int rot = 0;
 
 void fgm_init() {
+	fgm::randomize();
 	fgm::show_debug_overlay(true);
 
 	spr_test = fgm::asset_get_index("spr_test");

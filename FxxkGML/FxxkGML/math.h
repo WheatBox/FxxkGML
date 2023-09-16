@@ -12,6 +12,18 @@ namespace fgm {
 	 * radian to degree */
 	double radtodeg(double rad);
 
+	/* 随机化种子
+	 * randomize the seed */
+	void randomize();
+	
+	/* 随机化种子
+	 * randomise the seed */
+	void randomise();
+
+	/* 生成随机数（带小数）
+	 * Generate random numbers (with decimals) */
+	double random_range(double n1, double n2);
+
 	template<typename T>
 	class vec2_t {
 	public:
