@@ -16,11 +16,13 @@ namespace fgm {
 	std::mt19937 __randomer(__randomer_seed);
 
 	void randomize() {
-		__randomer.seed(time(NULL));
+		__randomer_seed = time(NULL);
+		__randomer.seed(__randomer_seed);
 	}
 
 	void randomise() {
-		__randomer.seed(time(NULL));
+		__randomer_seed = time(NULL);
+		__randomer.seed(__randomer_seed);
 	}
 
 	double random(double n) {
