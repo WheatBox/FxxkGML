@@ -25,6 +25,18 @@ void fgm_assistant_export(mco_coro * co) {
 	__funcid = fgm::__FuncId::nothing;
 }
 
+EXPORT double GetVerLeft() {
+	return FGM_VERSION_LEFT;
+}
+
+EXPORT double GetVerMid() {
+	return FGM_VERSION_MID;
+}
+
+EXPORT double GetVerRight() {
+	return FGM_VERSION_RIGHT;
+}
+
 EXPORT void InitEntry() {
 	mco_desc desc = mco_desc_init(fgm_init_export, 0);
 	desc.user_data = NULL;

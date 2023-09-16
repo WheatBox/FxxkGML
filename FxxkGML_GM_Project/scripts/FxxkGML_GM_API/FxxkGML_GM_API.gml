@@ -1,3 +1,7 @@
+#macro FGM_VERSION_LEFT 0
+#macro FGM_VERSION_MID 0
+#macro FGM_VERSION_RIGHT 1
+
 enum EFxxkGMLFuncId {
 	_nothing = 0,
 	
@@ -373,6 +377,10 @@ function FxxkGML_Init(_dll_filename) {
 		show_error("无法找到文件：" + _dll_filename + " | Can not find the file: " + _dll_filename, true);
 	}
 	
+	__dllGetVersionLeft = external_define(_dll_filename, "GetVerLeft", dll_cdecl, ty_real, 0);
+	__dllGetVersionMid = external_define(_dll_filename, "GetVerMid", dll_cdecl, ty_real, 0);
+	__dllGetVersionRight = external_define(_dll_filename, "GetVerRight", dll_cdecl, ty_real, 0);
+	
 	//__dllEntry = external_define(_dll_filename, "Entry", dll_cdecl, ty_real, 0);
 	__dllAssistantEntry = external_define(_dll_filename, "AssistantEntry", dll_cdecl, ty_real, 1, ty_real);
 	__dllResume = external_define(_dll_filename, "Resume", dll_cdecl, ty_real, 0);
@@ -396,6 +404,14 @@ function FxxkGML_Init(_dll_filename) {
 	FxxkGML_Main();
 	__dllEntry = external_define(_dll_filename, "Entry", dll_cdecl, ty_real, 0);
 	/* ------------------------------ */
+}
+
+function FxxkGML_GetVersion() {
+	return {
+		left : external_call(__dllGetVersionLeft),
+		mid : external_call(__dllGetVersionMid),
+		right : external_call(__dllGetVersionRight),
+	};
 }
 	
 	/* --------------------------------------------- */
