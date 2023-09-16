@@ -353,6 +353,76 @@ namespace fgm {
 		dbg_text_input = 5030,
 		dbg_watch = 5031,
 
+	/* audio.h 6000+ */
+
+		// Asset Info
+
+		audio_exists = 6001,
+		audio_get_name = 6002,
+		audio_get_type = 6003,
+		audio_sound_length = 6004,
+		audio_sound_is_playable = 6005,
+
+		// Playing Sounds
+
+		audio_play_sound = 6006,
+		audio_play_sound__fullargs = 6007,
+		// audio_play_sound_ext = 6008, // TODO
+		audio_play_sound_at = 6009,
+		audio_play_sound_at__fullargs = 6010,
+		audio_pause_sound = 6011,
+		audio_pause_all = 6012,
+		audio_resume_sound = 6013,
+		audio_resume_all = 6014,
+		audio_stop_sound = 6015,
+		audio_stop_all = 6016,
+		audio_is_playing = 6017,
+		audio_is_paused = 6018,
+
+		/*// Audio Properties
+		
+		audio_sound_gain
+		audio_sound_get_gain
+		audio_sound_pitch
+		audio_sound_get_pitch
+		audio_sound_set_track_position
+		audio_sound_get_track_position
+		audio_sound_set_listener_mask
+		audio_sound_get_listener_mask
+
+		// Audio Loop Points
+
+		audio_sound_loop
+		audio_sound_get_loop
+		audio_sound_loop_start
+		audio_sound_get_loop_start
+		audio_sound_loop_end
+		audio_sound_get_loop_end
+		
+		// Configuration
+		
+		audio_master_gain
+		audio_set_master_gain
+		audio_get_master_gain
+		audio_channel_num
+		audio_falloff_set_model
+		audio_system_is_available
+		audio_system_is_initialised
+		
+		// Debugging
+
+		audio_debug
+
+		// Gain Conversion
+		
+		lin_to_db
+		db_to_lin
+		
+		// Audio Streams
+		
+		audio_create_stream
+		audio_destroy_stream*/
+
 	/* */
 
 		random_range = 10002,

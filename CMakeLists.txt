@@ -30,6 +30,7 @@ message(${_outpath})
 		FxxkGML/FxxkGML/layer.cpp
 		FxxkGML/FxxkGML/game_input.cpp
 		FxxkGML/FxxkGML/debug.cpp
+		FxxkGML/FxxkGML/audio.cpp
 		FxxkGML/FxxkGML.cpp
 		${ARGN}
 	)
@@ -59,6 +60,10 @@ build (game.dll ../FxxkGML_GM_Project/datafiles
 	test/myFuncTest.cpp
 
 	FxxkGML/wini/wini.cpp
+)
+
+build (a_nameless_button.dll ../FxxkGML_GM_Project/datafiles
+	test/a_nameless_button.cpp
 )
 
 # ----------------------------------------------

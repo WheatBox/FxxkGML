@@ -315,6 +315,32 @@ enum EFxxkGMLFuncId {
 	_dbg_text_input = 5030,
 	_dbg_watch = 5031,
 	
+/* audio.h 6000+ */
+
+	// Asset Info
+
+	_audio_exists = 6001,
+	_audio_get_name = 6002,
+	_audio_get_type = 6003,
+	_audio_sound_length = 6004,
+	_audio_sound_is_playable = 6005,
+
+	// Playing Sounds
+
+	_audio_play_sound = 6006,
+	_audio_play_sound__fullargs = 6007,
+	// _audio_play_sound_ext = 6008, // TODO
+	_audio_play_sound_at = 6009,
+	_audio_play_sound_at__fullargs = 6010,
+	_audio_pause_sound = 6011,
+	_audio_pause_all = 6012,
+	_audio_resume_sound = 6013,
+	_audio_resume_all = 6014,
+	_audio_stop_sound = 6015,
+	_audio_stop_all = 6016,
+	_audio_is_playing = 6017,
+	_audio_is_paused = 6018,
+	
 /* */
 	
 	_random_range = 10002,
@@ -980,6 +1006,43 @@ function __FxxkGML_RunFunc() {
 		CASE EFxxkGMLFuncId._dbg_view_delete:
 		CASE EFxxkGMLFuncId._dbg_section:
 		CASE EFxxkGMLFuncId._dbg_section_delete:
+		
+		CASE EFxxkGMLFuncId._audio_exists:
+			RET(__RetR, audio_exists(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._audio_get_name:
+			RET(__RetS, audio_get_name(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._audio_get_type:
+			RET(__RetR, audio_get_type(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._audio_sound_length:
+			RET(__RetR, audio_sound_length(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._audio_sound_is_playable:
+			RET(__RetR, audio_sound_is_playable(ARG_R_0to0));
+			
+		CASE EFxxkGMLFuncId._audio_play_sound:
+			RET(__RetR, audio_play_sound(ARG_R_0to2));
+		CASE EFxxkGMLFuncId._audio_play_sound__fullargs:
+			RET(__RetR, audio_play_sound(ARG_R_0to6));
+		// CASE EFxxkGMLFuncId._audio_play_sound_ext:
+		CASE EFxxkGMLFuncId._audio_play_sound_at:
+			RET(__RetR, audio_play_sound_at(ARG_R_0to8));
+		CASE EFxxkGMLFuncId._audio_play_sound_at__fullargs:
+			RET(__RetR, audio_play_sound_at(ARG_R_0to12));
+		CASE EFxxkGMLFuncId._audio_pause_sound:
+			audio_pause_sound(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._audio_pause_all:
+			audio_pause_all();
+		CASE EFxxkGMLFuncId._audio_resume_sound:
+			audio_resume_sound(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._audio_resume_all:
+			audio_resume_all();
+		CASE EFxxkGMLFuncId._audio_stop_sound:
+			audio_stop_sound(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._audio_stop_all:
+			audio_stop_all();
+		CASE EFxxkGMLFuncId._audio_is_playing:
+			RET(__RetR, audio_is_playing(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._audio_is_paused:
+			RET(__RetR, audio_is_paused(ARG_R_0to0));
 			
 		CASE EFxxkGMLFuncId._random_range:
 			RET(__RetR,

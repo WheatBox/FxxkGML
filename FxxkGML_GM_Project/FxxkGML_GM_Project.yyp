@@ -28,6 +28,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
   ],
   "IncludedFiles": [
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"a_nameless_button.dll","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"game.dll","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "isEcma": false,
@@ -41,7 +42,9 @@
     {"id":{"name":"spr_collision_list_test","path":"sprites/spr_collision_list_test/spr_collision_list_test.yy",},},
     {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
     {"id":{"name":"Object1","path":"objects/Object1/Object1.yy",},},
+    {"id":{"name":"obj_a_nameless_button","path":"objects/obj_a_nameless_button/obj_a_nameless_button.yy",},},
     {"id":{"name":"obj_collision_list_test","path":"objects/obj_collision_list_test/obj_collision_list_test.yy",},},
+    {"id":{"name":"snd_click","path":"sounds/snd_click/snd_click.yy",},},
     {"id":{"name":"FxxkGML_GM_API","path":"scripts/FxxkGML_GM_API/FxxkGML_GM_API.yy",},},
     {"id":{"name":"spr_block","path":"sprites/spr_block/spr_block.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},

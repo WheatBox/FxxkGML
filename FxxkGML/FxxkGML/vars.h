@@ -10,8 +10,9 @@
 
 namespace fgm {
 
-	using asset = int;
-	using ins_id = int;
+	using asset = int; // Asset.xxx
+	using ins_id = int; // Id.Instance
+	using sndins_id = int; // Id.Sound (Sound Instance ID)
 
 	const double pi = FXXKGML_PI;
 
