@@ -22,6 +22,7 @@ void fgm_main() {
 
 		if(fgm::mouse_check_button_pressed(fgm::mb_left)) {
 			fgm::audio_play_sound(snd_click, 1000, false);
+			fgm::show_debug_message(std::to_string(fgm::irandom_range(5, 10)));
 		}
 	}
 

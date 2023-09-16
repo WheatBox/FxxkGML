@@ -22,7 +22,27 @@ namespace fgm {
 
 	/* 生成随机数（带小数）
 	 * Generate random numbers (with decimals) */
+	double random(double n);
+
+	/* 生成随机数（带小数）
+	 * Generate random numbers (with decimals) */
 	double random_range(double n1, double n2);
+
+	/* 生成随机数（整数）
+	 * Generate random numbers (integer) */
+	int irandom(int n);
+
+	/* 生成随机数（整数）
+	 * Generate random numbers (integer) */
+	int irandom_range(int n1, int n2);
+	
+	/* 设定种子
+	 * set the seed */
+	void random_set_seed(int val);
+	
+	/* 获取种子
+	 * get the seed */
+	int random_get_seed();
 
 	template<typename T>
 	class vec2_t {
