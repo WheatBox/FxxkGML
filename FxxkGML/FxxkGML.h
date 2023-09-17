@@ -7,8 +7,6 @@
 #define FGM_VERSION_MID 0
 #define FGM_VERSION_RIGHT 1
 
-#define EXPORT extern "C" __declspec(dllexport)
-
 /* ----- 给用户的接口 ----- */
 /* - Interface for Users - */
 

@@ -2,7 +2,15 @@
 
 namespace fgm {
 	enum class __FuncId {
+
+	/* FxxkGML Control 0 ~ 99 */
+		
 		nothing = 0,
+		
+		FxxkGML_Init = 1,
+		FxxkGML_Main = 2,
+		FxxkGML_Assistant = 3,
+		FxxkGML_GetVersion = 4,
 
 	/* miscellaneous.h 100 ~ 999 */
 

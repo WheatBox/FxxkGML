@@ -3,7 +3,15 @@
 #macro FGM_VERSION_RIGHT 1
 
 enum EFxxkGMLFuncId {
+	
+/* FxxkGML Control 0 ~ 99 */
+		
 	_nothing = 0,
+		
+	_FxxkGML_Init = 1,
+	_FxxkGML_Main = 2,
+	_FxxkGML_Assistant = 3,
+	_FxxkGML_GetVersion = 4,
 	
 /* miscellaneous.h 100 ~ 999 */
 
@@ -471,6 +479,28 @@ function __FxxkGML_RunFunc() {
 		
 		case EFxxkGMLFuncId._nothing:
 			return 0;
+			
+		CASE EFxxkGMLFuncId._FxxkGML_Init:
+			___vartmp = ARG(__S, 1);
+			with(ARG(__R, 0)) {
+				FxxkGML_Init(___vartmp);
+			}
+		CASE EFxxkGMLFuncId._FxxkGML_Main:
+			with(ARG(__R, 0)) {
+				FxxkGML_Main();
+			}
+		CASE EFxxkGMLFuncId._FxxkGML_Assistant:
+			___vartmp = ARG(__R, 1);
+			with(ARG(__R, 0)) {
+				FxxkGML_Assistant(___vartmp);
+			}
+		CASE EFxxkGMLFuncId._FxxkGML_GetVersion:
+			with(ARG(__R, 0)) {
+				___vartmp = FxxkGML_GetVersion();
+			}
+			RET(__OthR, 0, ___vartmp.left);
+			RET(__OthR, 1, ___vartmp.mid);
+			RET(__OthR, 2, ___vartmp.right);
 			
 		CASE EFxxkGMLFuncId._delta_time_get:
 			RET(__RetR, delta_time);

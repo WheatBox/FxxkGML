@@ -157,10 +157,17 @@ void DrawEvent() {
 	fgm::draw_set_color(fgm::c_white);
 }
 
+void ChangeAlpha() {
+	me.set_image_alpha(static_cast<int>(me.get_image_alpha()) == 1 ? 0.5 : 1);
+}
+
 void fgm_assistant(int assistant_index) {
 	switch(assistant_index) {
 		case 114514:
 			DrawEvent();
+			break;
+		case 233:
+			ChangeAlpha();
 			break;
 	}
 }

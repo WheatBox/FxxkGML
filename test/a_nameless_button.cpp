@@ -9,6 +9,12 @@ void fgm_init() {
 	insgame = fgm::instance_find(fgm::asset_get_index("Object1"), 0);
 }
 
+std::string GetVersionStr(const fgm::instance & ins) {
+	int l, m, r;
+	fgm::FxxkGML_GetVersion(ins, & l, & m, & r);
+	return std::to_string(l) + "." + std::to_string(m) + "." + std::to_string(r);
+}
+
 void fgm_main() {
 	
 	fgm::draw_set_alpha(1);
@@ -25,6 +31,9 @@ void fgm_main() {
 		if(fgm::mouse_check_button_pressed(fgm::mb_left)) {
 			fgm::audio_play_sound(snd_click, 1000, false);
 			fgm::show_debug_message(std::to_string(fgm::irandom_range(5, 10)) + "   " + std::to_string(fgm::variable_instance_get_real(insgame.get_id(), "vartest")));
+
+			fgm::FxxkGML_Assistant(insgame, 233);
+			fgm::show_debug_message(GetVersionStr(insgame));
 		}
 	}
 

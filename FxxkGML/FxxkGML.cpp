@@ -3,6 +3,8 @@
 #define MINICORO_IMPL
 #include "minicoro/minicoro.h"
 
+#define EXPORT extern "C" __declspec(dllexport)
+
 /* ----- 给 GM 的接口 ----- */
 /* -- Interface for GM -- */
 

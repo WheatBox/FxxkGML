@@ -4,6 +4,18 @@
 
 namespace fgm {
 
+	void FxxkGML_Init(ins_id instance_id, const char * _dll_filename);
+	void FxxkGML_Init(ins_id instance_id, const std::string & _dll_filename);
+	void FxxkGML_Main(ins_id instance_id);
+	void FxxkGML_Assistant(ins_id instance_id, int assistantIndex);
+	void FxxkGML_GetVersion(ins_id instance_id, int * p_dest_left, int * p_dest_mid, int * p_dest_right);
+
+	void FxxkGML_Init(const instance & ins, const char * _dll_filename);
+	void FxxkGML_Init(const instance & ins, const std::string & _dll_filename);
+	void FxxkGML_Main(const instance & ins);
+	void FxxkGML_Assistant(const instance & ins, int assistantIndex);
+	void FxxkGML_GetVersion(const instance & ins, int * p_dest_left, int * p_dest_mid, int * p_dest_right);
+
 	int delta_time_get();
 
 	std::string game_save_id_get();
