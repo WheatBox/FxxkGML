@@ -34,6 +34,12 @@ Of course, if you are willing, you can also replace GML and directly use it to d
 
 ---
 
+### 文档 | Document
+
+https://github.com/WheatBox/FxxkGML/wiki
+
+---
+
 ### 各个模块 | Modules
 
 #### FxxkGML
