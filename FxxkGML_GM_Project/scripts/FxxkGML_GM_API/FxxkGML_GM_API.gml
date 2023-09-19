@@ -1,5 +1,5 @@
 #macro FGM_VERSION_LEFT 0
-#macro FGM_VERSION_MID 0
+#macro FGM_VERSION_MID 1
 #macro FGM_VERSION_RIGHT 1
 
 enum EFxxkGMLFuncId {
