@@ -5,7 +5,7 @@ fgm::instance insgame;
 fgm::rect button_area { 128, 160, 320, 192 };
 
 void fgm_init() {
-	snd_click = fgm::asset_get_index("snd_click");
+	snd_click = fgm::audio_create_stream("snd_click.ogg");
 	insgame = fgm::instance_find(fgm::asset_get_index("Object1"), 0);
 }
 
@@ -39,4 +39,10 @@ void fgm_main() {
 
 }
 
-void fgm_assistant(int) {}
+void fgm_assistant(int assistant_index) {
+	switch(assistant_index) {
+		case 100:
+			fgm::audio_destroy_stream(snd_click);
+			break;
+	}
+}

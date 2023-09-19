@@ -369,6 +369,78 @@ enum EFxxkGMLFuncId {
 	_audio_is_playing = 6017,
 	_audio_is_paused = 6018,
 	
+	// Audio Streams
+
+	_audio_create_stream = 6043,
+	_audio_destroy_stream = 6044,
+	
+/* sprite.h 7000+ */
+
+	_sprite_exists = 7001,
+	_sprite_get_name = 7002,
+	_sprite_get_number = 7003,
+	_sprite_get_speed = 7004,
+	_sprite_get_speed_type = 7005,
+	_sprite_get_width = 7006,
+	_sprite_get_height = 7007,
+	_sprite_get_size = 7008,
+	_sprite_get_xoffset = 7009,
+	_sprite_get_yoffset = 7010,
+	_sprite_get_offset = 7011,
+	_sprite_get_bbox_bottom = 7012,
+	_sprite_get_bbox_left = 7013,
+	_sprite_get_bbox_right = 7014,
+	_sprite_get_bbox_top = 7015,
+	_sprite_get_bbox = 7016,
+	_sprite_get_bbox_mode = 7017,
+	// _sprite_get_nineslice = 7018, // TODO
+	// _sprite_get_tpe = 7019, // HTML5 only
+	
+	// TODO
+	// _sprite_get_texture = 7020,
+	// _sprite_get_uvs = 7021,
+	// _sprite_get_info = 7022,
+
+	// Asset Properties
+		
+	_sprite_collision_mask = 7023,
+	_sprite_set_offset = 7024,
+	_sprite_set_bbox_mode = 7025,
+	_sprite_set_bbox = 7026,
+	_sprite_set_speed = 7027,
+	// _sprite_set_nineslice = 7028, // TODO
+		
+	// Creating & Modifying Sprites
+		
+	_sprite_add = 7029,
+	// _sprite_add_ext = 7030, // TODO
+	_sprite_delete = 7031,
+	_sprite_replace = 7032,
+	_sprite_duplicate = 7033,
+	_sprite_assign = 7034,
+	_sprite_merge = 7035,
+	_sprite_set_alpha_from_sprite = 7036,
+	// _sprite_nineslice_create = 7037,
+	_sprite_create_from_surface = 7038,
+	_sprite_add_from_surface = 7039,
+		
+	// Saving Sprites
+		
+	_sprite_save = 7040,
+	_sprite_save_strip = 7041,
+		
+	// Blending (HTML5)
+		
+	// _sprite_set_cache_size
+	// _sprite_set_cache_size_ext
+		
+	// Prefetching
+		
+	_sprite_prefetch = 7042,
+	// _sprite_prefetch_multi = 7043, // TODO
+	_sprite_flush = 7044,
+	// _sprite_flush_multi = 7045, // TODO
+	
 };
 
 #macro ARG external_call
@@ -1127,7 +1199,103 @@ function __FxxkGML_RunFunc() {
 			RET(__RetR, audio_is_playing(ARG_R_0to0));
 		CASE EFxxkGMLFuncId._audio_is_paused:
 			RET(__RetR, audio_is_paused(ARG_R_0to0));
-						
+			
+		CASE EFxxkGMLFuncId._audio_create_stream:
+			RET(__RetR, audio_create_stream(ARG(__S, 0)));
+		CASE EFxxkGMLFuncId._audio_destroy_stream:
+			audio_destroy_stream(ARG_R_0to0);
+			
+		CASE EFxxkGMLFuncId._sprite_exists:
+			RET(__RetR, sprite_exists(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_name:
+			RET(__RetS, sprite_get_name(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_number:
+			RET(__RetR, sprite_get_number(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_speed:
+			RET(__RetR, sprite_get_speed(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_speed_type:
+			RET(__RetR, sprite_get_speed_type(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_width:
+			RET(__RetR, sprite_get_width(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_height:
+			RET(__RetR, sprite_get_height(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_size:
+			___vartmp = ARG_R_0to0;
+			RET(__OthR, 0, sprite_get_width(___vartmp));
+			RET(__OthR, 1, sprite_get_height(___vartmp));
+		CASE EFxxkGMLFuncId._sprite_get_xoffset:
+			RET(__RetR, sprite_get_xoffset(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_yoffset:
+			RET(__RetR, sprite_get_yoffset(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_offset:
+			___vartmp = ARG_R_0to0;
+			RET(__OthR, 0, sprite_get_xoffset(___vartmp));
+			RET(__OthR, 1, sprite_get_yoffset(___vartmp));
+		CASE EFxxkGMLFuncId._sprite_get_bbox_bottom:
+			RET(__RetR, sprite_get_bbox_bottom(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_bbox_left:
+			RET(__RetR, sprite_get_bbox_left(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_bbox_right:
+			RET(__RetR, sprite_get_bbox_right(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_bbox_top:
+			RET(__RetR, sprite_get_bbox_top(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_get_bbox:
+			___vartmp = ARG_R_0to0;
+			RET(__OthR, 0, sprite_get_bbox_left(___vartmp));
+			RET(__OthR, 1, sprite_get_bbox_top(___vartmp));
+			RET(__OthR, 2, sprite_get_bbox_right(___vartmp));
+			RET(__OthR, 3, sprite_get_bbox_bottom(___vartmp));
+		CASE EFxxkGMLFuncId._sprite_get_bbox_mode:
+			RET(__RetR, sprite_get_bbox_mode(ARG_R_0to0));
+		// TODO
+		// CASE EFxxkGMLFuncId._sprite_get_texture:
+		// CASE EFxxkGMLFuncId._sprite_get_uvs:
+		// CASE EFxxkGMLFuncId._sprite_get_info:
+		
+		CASE EFxxkGMLFuncId._sprite_collision_mask:
+			sprite_collision_mask(ARG_R_0to8);
+		CASE EFxxkGMLFuncId._sprite_set_offset:
+			sprite_set_offset(ARG_R_0to2);
+		CASE EFxxkGMLFuncId._sprite_set_bbox_mode:
+			sprite_set_bbox_mode(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._sprite_set_bbox:
+			sprite_set_bbox(ARG_R_0to4);
+		CASE EFxxkGMLFuncId._sprite_set_speed:
+			RET(__RetR, sprite_set_speed(ARG_R_0to2));
+			
+		CASE EFxxkGMLFuncId._sprite_add:
+			RET(__RetR, sprite_add(ARG(__S, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5)));
+		// CASE EFxxkGMLFuncId._sprite_add_ext: // TODO
+		CASE EFxxkGMLFuncId._sprite_delete:
+			sprite_delete(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._sprite_replace:
+			sprite_replace(ARG(__S, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5), ARG(__R, 6));
+		CASE EFxxkGMLFuncId._sprite_duplicate:
+			RET(__RetR, sprite_duplicate(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._sprite_assign:
+			sprite_assign(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._sprite_merge:
+			sprite_merge(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._sprite_set_alpha_from_sprite:
+			sprite_set_alpha_from_sprite(ARG_R_0to1);
+			
+		CASE EFxxkGMLFuncId._sprite_create_from_surface:
+			RET(__RetR, sprite_create_from_surface(ARG_R_0to8));
+		CASE EFxxkGMLFuncId._sprite_add_from_surface:
+			sprite_add_from_surface(ARG_R_0to7);
+			
+		CASE EFxxkGMLFuncId._sprite_save:
+			sprite_save(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2));
+		CASE EFxxkGMLFuncId._sprite_save_strip:
+			sprite_save_strip(ARG(__R, 0), ARG(__S, 2));
+			
+		CASE EFxxkGMLFuncId._sprite_prefetch:
+			RET(__RetR, sprite_prefetch(ARG_R_0to0));
+		// CASE EFxxkGMLFuncId._sprite_prefetch_multi: // TODO
+		CASE EFxxkGMLFuncId._sprite_flush:
+			RET(__RetR, sprite_flush(ARG_R_0to0));
+		// CASE EFxxkGMLFuncId._sprite_flush_multi: // TODO
+
 	}
 	
 	return 1;

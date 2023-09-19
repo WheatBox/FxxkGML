@@ -9,3 +9,5 @@
 #include "game_input.h"
 #include "debug.h"
 #include "audio.h"
+#include "sprite.h"
+#include "font.h"

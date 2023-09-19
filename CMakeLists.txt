@@ -31,6 +31,8 @@ message(${_outpath})
 		FxxkGML/FxxkGML/game_input.cpp
 		FxxkGML/FxxkGML/debug.cpp
 		FxxkGML/FxxkGML/audio.cpp
+		FxxkGML/FxxkGML/sprite.cpp
+		FxxkGML/FxxkGML/font.cpp
 		FxxkGML/FxxkGML.cpp
 		${ARGN}
 	)

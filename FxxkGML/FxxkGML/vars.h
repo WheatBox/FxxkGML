@@ -51,6 +51,18 @@ namespace fgm {
 	const int gamespeed_fps = 0;
 	const int gamespeed_microseconds = 1;
 
+	const int spritespeed_framespersecond = 0;
+	const int spritespeed_framespergameframe = 1;
+
+	const int bboxmode_automatic = 0;
+	const int bboxmode_fullimage = 1;
+	const int bboxmode_manual = 2;
+
+	const int bboxkind_rectangular = 1;
+	const int bboxkind_ellipse = 2;
+	const int bboxkind_diamond = 3;
+	const int bboxkind_precise = 0;
+
 	/* Virtual Key Constant (vk_*) */
 
 	using vkey_t = unsigned char;

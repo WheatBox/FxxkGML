@@ -82,5 +82,14 @@ namespace fgm {
 		__basic(__FuncId::audio_is_paused, id_or_asset);
 		return g_funcres.m_real;
 	}
+
+	asset audio_create_stream(const std::string & filename) {
+		__basic(__FuncId::audio_create_stream, filename);
+		return g_funcres.m_real;
+	}
+
+	void audio_destroy_stream(asset stream_sound_id) {
+		__basic(__FuncId::audio_destroy_stream, stream_sound_id);
+	}
 	
 }

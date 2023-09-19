@@ -17,13 +17,14 @@ void fgm_init() {
 	fgm::randomize();
 	fgm::show_debug_overlay(true);
 
-	spr_test = fgm::asset_get_index("spr_test");
+	spr_test = fgm::sprite_add("spr_test.png", 1, false, false, 128, 256);
 	spr_block = fgm::asset_get_index("spr_block");
 	obj_test = fgm::asset_get_index("obj_test");
 	obj_collision_list_test = fgm::asset_get_index("obj_collision_list_test");
 	val = fgm::random_range(0, 100);
 
 	ins = fgm::instance(fgm::vec2(320, 420), -100, obj_test);
+	ins.set_sprite(spr_test);
 	
 	vec2_t_test();
 

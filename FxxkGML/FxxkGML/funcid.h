@@ -440,12 +440,124 @@ namespace fgm {
 		// Gain Conversion
 		
 		lin_to_db
-		db_to_lin
+		db_to_lin*/
 		
 		// Audio Streams
+
+		audio_create_stream = 6043,
+		audio_destroy_stream = 6044,
+
+	/* sprite.h 7000+ */
+
+		sprite_exists = 7001,
+		sprite_get_name = 7002,
+		sprite_get_number = 7003,
+		sprite_get_speed = 7004,
+		sprite_get_speed_type = 7005,
+		sprite_get_width = 7006,
+		sprite_get_height = 7007,
+		sprite_get_size = 7008,
+		sprite_get_xoffset = 7009,
+		sprite_get_yoffset = 7010,
+		sprite_get_offset = 7011,
+		sprite_get_bbox_bottom = 7012,
+		sprite_get_bbox_left = 7013,
+		sprite_get_bbox_right = 7014,
+		sprite_get_bbox_top = 7015,
+		sprite_get_bbox = 7016,
+		sprite_get_bbox_mode = 7017,
+		// sprite_get_nineslice = 7018, // TODO
+		// sprite_get_tpe = 7019, // HTML5 only
+
+		// TODO
+		// sprite_get_texture = 7020,
+		// sprite_get_uvs = 7021,
+		// sprite_get_info = 7022,
+
+		// Asset Properties
 		
-		audio_create_stream
-		audio_destroy_stream*/
+		sprite_collision_mask = 7023,
+		sprite_set_offset = 7024,
+		sprite_set_bbox_mode = 7025,
+		sprite_set_bbox = 7026,
+		sprite_set_speed = 7027,
+		// sprite_set_nineslice = 7028, // TODO
+		
+		// Creating & Modifying Sprites
+		
+		sprite_add = 7029,
+		// sprite_add_ext = 7030, // TODO
+		sprite_delete = 7031,
+		sprite_replace = 7032,
+		sprite_duplicate = 7033,
+		sprite_assign = 7034,
+		sprite_merge = 7035,
+		sprite_set_alpha_from_sprite = 7036,
+		// sprite_nineslice_create = 7037,
+		sprite_create_from_surface = 7038,
+		sprite_add_from_surface = 7039,
+		
+		// Saving Sprites
+		
+		sprite_save = 7040,
+		sprite_save_strip = 7041,
+		
+		// Blending (HTML5)
+		
+		// sprite_set_cache_size
+		// sprite_set_cache_size_ext
+		
+		// Prefetching
+		
+		sprite_prefetch = 7042,
+		// sprite_prefetch_multi = 7043, // TODO
+		sprite_flush = 7044,
+		// sprite_flush_multi = 7045, // TODO
+
+	/* font.h 8000+ */
+
+		// Asset Info
+
+		font_exists = 8001,
+		font_get_name = 8002,
+		font_get_fontname = 8003,
+		font_get_first = 8004,
+		font_get_last = 8005,
+		font_get_italic = 8006,
+		font_get_bold = 8007,
+		font_get_size = 8008,
+		font_get_info = 8009,
+		
+		// Texture
+		// TODO
+
+		// font_get_texture = 8010,
+		// font_get_uvs = 8011,
+		// font_cache_glyph = 8012,
+		
+		//  Adding/Removing Fonts
+
+		font_add = 8013,
+		font_add_sprite = 8014,
+		font_add_sprite_ext = 8015,
+		font_replace_sprite = 8016,
+		font_replace_sprite_ext = 8017,
+		font_delete = 8018,
+		
+		// Configuration
+
+		font_texture_page_size = 8019,
+		font_set_cache_size = 8020,
+		font_add_enable_aa = 8021,
+		font_add_get_enable_aa = 8022,
+		
+		// SDF
+
+		font_enable_sdf = 8023,
+		font_get_sdf_enabled = 8024,
+		font_sdf_spread = 8025,
+		font_get_sdf_spread = 8026,
+		font_enable_effects = 8027,
 
 	};
 }

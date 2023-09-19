@@ -24,4 +24,7 @@ namespace fgm {
 	bool audio_is_playing(sndins_id id_or_asset);
 	bool audio_is_paused(sndins_id id_or_asset);
 
+	asset audio_create_stream(const std::string & filename);
+	void audio_destroy_stream(asset stream_sound_id);
+
 }
