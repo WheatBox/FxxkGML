@@ -441,6 +441,52 @@ enum EFxxkGMLFuncId {
 	_sprite_flush = 7044,
 	// _sprite_flush_multi = 7045, // TODO
 	
+/* font.h 8000+ */
+
+	// Asset Info
+
+	_font_exists = 8001,
+	_font_get_name = 8002,
+	_font_get_fontname = 8003,
+	_font_get_first = 8004,
+	_font_get_last = 8005,
+	_font_get_italic = 8006,
+	_font_get_bold = 8007,
+	_font_get_size = 8008,
+	// _font_get_info = 8009, // TODO
+		
+	// Texture
+	// TODO
+
+	// _font_get_texture = 8010,
+	// _font_get_uvs = 8011,
+	// _font_cache_glyph = 8012,
+		
+	//  Adding/Removing Fonts
+
+	_font_add = 8013,
+	_font_add_sprite = 8014,
+	_font_add_sprite_ext = 8015,
+	_font_replace_sprite = 8016,
+	_font_replace_sprite_ext = 8017,
+	_font_delete = 8018,
+		
+	// Configuration
+
+	_font_texture_page_size_get = 8019,
+	_font_texture_page_size_set = 8020,
+	_font_set_cache_size = 8021,
+	_font_add_enable_aa = 8022,
+	_font_add_get_enable_aa = 8023,
+		
+	// SDF
+
+	_font_enable_sdf = 8024,
+	_font_get_sdf_enabled = 8025,
+	_font_sdf_spread = 8026,
+	_font_get_sdf_spread = 8027,
+	// _font_enable_effects = 8028, TODO
+	
 };
 
 #macro ARG external_call
@@ -1295,6 +1341,56 @@ function __FxxkGML_RunFunc() {
 		CASE EFxxkGMLFuncId._sprite_flush:
 			RET(__RetR, sprite_flush(ARG_R_0to0));
 		// CASE EFxxkGMLFuncId._sprite_flush_multi: // TODO
+		
+		CASE EFxxkGMLFuncId._font_exists:
+			RET(__RetR, font_exists(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._font_get_name:
+			RET(__RetS, font_get_name(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._font_get_fontname:
+			RET(__RetS, font_get_fontname(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._font_get_first:
+			RET(__RetR, font_get_first(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._font_get_last:
+			RET(__RetR, font_get_last(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._font_get_italic:
+			RET(__RetR, font_get_italic(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._font_get_bold:
+			RET(__RetR, font_get_bold(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._font_get_size:
+			RET(__RetR, font_get_size(ARG_R_0to0));
+		// CASE EFxxkGMLFuncId._font_get_info: // TODO
+		
+		CASE EFxxkGMLFuncId._font_add:
+			RET(__RetR, font_add(ARG(__S, 0), ARG(__R, 1), ARG(__R, 2), ARG(__R, 3), ARG(__R, 4), ARG(__R, 5)));
+		CASE EFxxkGMLFuncId._font_add_sprite:
+			RET(__RetR, font_add_sprite(ARG_R_0to3));
+		CASE EFxxkGMLFuncId._font_add_sprite_ext:
+			RET(__RetR, font_add_sprite_ext(ARG(__R, 0), ARG(__S, 1), ARG(__R, 2), ARG(__R, 3)));
+		CASE EFxxkGMLFuncId._font_replace_sprite:
+			font_replace_sprite(ARG_R_0to4);
+		CASE EFxxkGMLFuncId._font_replace_sprite_ext:
+			font_replace_sprite_ext(ARG(__R, 0), ARG(__R, 1), ARG(__S, 2), ARG(__R, 3), ARG(__R, 4));
+		CASE EFxxkGMLFuncId._font_delete:
+			font_delete(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._font_texture_page_size_get:
+			RET(__RetR, font_texture_page_size);
+		CASE EFxxkGMLFuncId._font_texture_page_size_set:
+			font_texture_page_size = ARG(__R, 0);
+		CASE EFxxkGMLFuncId._font_set_cache_size:
+			font_set_cache_size(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._font_add_enable_aa:
+			font_add_enable_aa(ARG_R_0to0);
+		CASE EFxxkGMLFuncId._font_add_get_enable_aa:
+			RET(__RetR, font_add_get_enable_aa());
+		CASE EFxxkGMLFuncId._font_enable_sdf:
+			font_enable_sdf(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._font_get_sdf_enabled:
+			RET(__RetR, font_get_sdf_enabled(ARG_R_0to0));
+		CASE EFxxkGMLFuncId._font_sdf_spread:
+			font_sdf_spread(ARG_R_0to1);
+		CASE EFxxkGMLFuncId._font_get_sdf_spread:
+			RET(__RetR, font_get_sdf_spread(ARG_R_0to0));
+		// CASE EFxxkGMLFuncId._font_enable_effects: // TODO
 
 	}
 	

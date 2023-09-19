@@ -526,7 +526,7 @@ namespace fgm {
 		font_get_italic = 8006,
 		font_get_bold = 8007,
 		font_get_size = 8008,
-		font_get_info = 8009,
+		// font_get_info = 8009, // TODO
 		
 		// Texture
 		// TODO
@@ -546,18 +546,19 @@ namespace fgm {
 		
 		// Configuration
 
-		font_texture_page_size = 8019,
-		font_set_cache_size = 8020,
-		font_add_enable_aa = 8021,
-		font_add_get_enable_aa = 8022,
+		font_texture_page_size_get = 8019,
+		font_texture_page_size_set = 8020,
+		font_set_cache_size = 8021,
+		font_add_enable_aa = 8022,
+		font_add_get_enable_aa = 8023,
 		
 		// SDF
 
-		font_enable_sdf = 8023,
-		font_get_sdf_enabled = 8024,
-		font_sdf_spread = 8025,
-		font_get_sdf_spread = 8026,
-		font_enable_effects = 8027,
+		font_enable_sdf = 8024,
+		font_get_sdf_enabled = 8025,
+		font_sdf_spread = 8026,
+		font_get_sdf_spread = 8027,
+		// font_enable_effects = 8028, // TODO
 
 	};
 }

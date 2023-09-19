@@ -21,7 +21,7 @@ void fgm_main() {
 	fgm::draw_set_color(fgm::c_black);
 	fgm::draw_roundrect_ext(button_area, 16, 16, false);
 	fgm::draw_set_color(fgm::c_white);
-	fgm::draw_text(button_area.left_top() + fgm::vec2(20, 6), "A Nameless Button");
+	fgm::draw_text(button_area.left_top() + fgm::vec2(20, 9), "A Nameless Button");
 
 	if(button_area.collision(fgm::mouse_pos_get())) {
 		fgm::draw_set_alpha(0.3);

@@ -17,6 +17,9 @@ void fgm_init() {
 	fgm::randomize();
 	fgm::show_debug_overlay(true);
 
+	fgm::asset fnt_consolas = fgm::font_add("C:/Windows/Fonts/consola.ttf", 12, false, false, 0, 65535);
+	fgm::draw_set_font(fnt_consolas);
+
 	spr_test = fgm::sprite_add("spr_test.png", 1, false, false, 128, 256);
 	spr_block = fgm::asset_get_index("spr_block");
 	obj_test = fgm::asset_get_index("obj_test");
