@@ -2,10 +2,10 @@
 
 #include "FxxkGML/core.h"
 
-// 0.0.1
+// 0.1.2
 #define FGM_VERSION_LEFT 0
 #define FGM_VERSION_MID 1
-#define FGM_VERSION_RIGHT 1
+#define FGM_VERSION_RIGHT 2
 
 /* ----- 给用户的接口 ----- */
 /* - Interface for Users - */

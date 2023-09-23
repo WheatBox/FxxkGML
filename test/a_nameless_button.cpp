@@ -34,6 +34,7 @@ void fgm_main() {
 
 			fgm::FxxkGML_Assistant(insgame, 233);
 			fgm::show_debug_message(GetVersionStr(insgame));
+			fgm::show_debug_message("Hi, I'm " + std::to_string(fgm::instance_id_get_self()));
 		}
 	}
 

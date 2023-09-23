@@ -214,6 +214,8 @@ namespace fgm {
 		instance_deactivate_layer = 2025,
 		instance_deactivate_layer__str = 2026,
 		instance_get = 2027,
+		instance_id_get_self = 2028,
+		instance_id_get_other = 2029,
 
 	/* layer.h 3000+ */
 	// TODO

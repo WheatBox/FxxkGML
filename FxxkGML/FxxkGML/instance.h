@@ -41,6 +41,9 @@ namespace fgm {
 	instance instance_get(int id);
 	instance instance_get_self();
 
+	ins_id instance_id_get_self();
+	ins_id instance_id_get_other();
+
 	/* instance variables */
 	
 	asset instance_get_object(ins_id id);

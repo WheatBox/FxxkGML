@@ -1,6 +1,6 @@
 #macro FGM_VERSION_LEFT 0
 #macro FGM_VERSION_MID 1
-#macro FGM_VERSION_RIGHT 1
+#macro FGM_VERSION_RIGHT 2
 
 enum EFxxkGMLFuncId {
 	
@@ -213,6 +213,8 @@ enum EFxxkGMLFuncId {
 	_instance_deactivate_layer = 2025,
 	_instance_deactivate_layer__str = 2026,
 	_instance_get = 2027,
+	_instance_id_get_self = 2028,
+	_instance_id_get_other = 2029,
 	
 /* layer.h 3000+ */
 	
@@ -1029,6 +1031,10 @@ function __FxxkGML_RunFunc() {
 			if(___vartmp.layer != -1 && ___vartmp.layer != "") {
 				RET(__OthR, 5, layer_get_name(___vartmp.layer));
 			}
+		CASE EFxxkGMLFuncId._instance_id_get_self:
+			RET(__RetR, self.id);
+		CASE EFxxkGMLFuncId._instance_id_get_other:
+			RET(__RetR, other.id);
 			
 		CASE EFxxkGMLFuncId._layer_exists:
 			RET(__RetR, layer_exists(ARG(__S, 0)));

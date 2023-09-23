@@ -173,6 +173,16 @@ namespace fgm {
 		return { self };
 	}
 
+	ins_id instance_id_get_self() {
+		__basic(__FuncId::instance_id_get_self);
+		return g_funcres.m_real;
+	}
+
+	ins_id instance_id_get_other() {
+		__basic(__FuncId::instance_id_get_other);
+		return g_funcres.m_real;
+	}
+
 	/* instance variables */
 
 #define ____IVV_GET(func) __instance_var_view.__setid(id); return __instance_var_view.func(true);
