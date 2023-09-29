@@ -27,7 +27,7 @@ namespace fgm {
 
 	double random(double n) {
 		return __randomer() % (static_cast<int>(n) + 1)
-			+ (__randomer() % 10000000) / 1e6;
+			+ (__randomer() % 1000000) / 1e6;
 	}
 
 	double random_range(double n1, double n2) {

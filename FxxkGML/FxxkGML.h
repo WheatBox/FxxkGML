@@ -5,7 +5,7 @@
 // 0.1.2
 #define FGM_VERSION_LEFT 0
 #define FGM_VERSION_MID 1
-#define FGM_VERSION_RIGHT 2
+#define FGM_VERSION_RIGHT 3
 
 /* ----- 给用户的接口 ----- */
 /* - Interface for Users - */
